@@ -1,0 +1,32 @@
+{
+  "training_date": "2026-02-01 23:37:34",
+  "training_samples": 25596,
+  "test_samples": 6400,
+  "n_features": 90,
+  "reactions_model": {
+    "type": "XGBoost",
+    "parameters": {
+      "learning_rate": 0.05,
+      "max_depth": 7,
+      "n_estimators": 200,
+      "subsample": 1.0
+    },
+    "mae": 11.274645057614515,
+    "rmse": 91.14407340589582,
+    "r2": 0.990599667292262,
+    "mape": 1.2111345410211848e+16
+  },
+  "comments_model": {
+    "type": "XGBoost",
+    "parameters": {
+      "learning_rate": 0.05,
+      "max_depth": 10,
+      "n_estimators": 200,
+      "subsample": 0.8
+    },
+    "mae": 0.8490755558013916,
+    "rmse": 5.073995466363345,
+    "r2": 0.99080890417099,
+    "mape": 500602450739200.0
+  }
+}

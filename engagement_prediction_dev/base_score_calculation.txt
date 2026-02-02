@@ -1,0 +1,92 @@
+Base Score Calculation 
+The algorithm prioritizes authentic storytelling with specific details over promotional 
+content and heavily penalizes external links. 
+Starting Point: 50 (average baseline) 
+Factors That Adjust the Score 
+1. Content Length (Word Count) 
+• 100-200 words: +8 points (optimal) 
+• 80-99 words: +5 points (good) 
+• 200-300 words: +3 points (acceptable) 
+• 50-79 words: -3 points (short) 
+• <50 words: -12 points (too short) 
+• >300 words: -15 points (too long) 
+• >400 words: -15 points (way too long) 
+2. Hook Patterns (First sentence analysis) 
+Only the first matching hook counts: 
+• "Never" narrative (overcoming doubt): +15 points 
+• Specific time (e.g., "It's 2:47am"): +12 points 
+• Powerful quote hook: +10 points 
+• Contrarian "Stop/Start": +7 points 
+• "I used to think/believe": +6 points 
+• "Everyone's/Everyone is": +5 points 
+• "Just realized": +5 points 
+• "It's official/Today": +6 points 
+• Recency signals (hours ago, last week): +4 points 
+3. Power Patterns (Multiple can match) 
+• Underdog/immigrant story: +9 points 
+• Transformation narrative: +8 points 
+• Powerful CTA question: +8 points 
+• "Nobody posts about" (hidden truth): +10 points 
+• Vulnerability/authenticity: +7 points 
+• Family/parenting: +8 points 
+• Specific time mentioned: +6 points 
+• Specific numbers/data: +4 points 
+• Learning from adversity: +5 points 
+• Value delivery promise: +4 points 
+• List/bullet format: +5 points 
+• Contrast/comparison: +5 points 
+• Aspirational payoff: +6 points 
+• Direct address ("you become"): +3 points 
+• Personal story: +5 points 
+4. Visual Content 
+• Video: +10 points 
+• Carousel: +8 points 
+• Image: +5 points 
+• No visual: 0 points (suggestion given) 
+5. External Links 
+• Has external link: -18 points (LinkedIn suppresses these heavily) 
+6. Posting Time 
+• Weekday morning/afternoon: +4 points (optimal B2B time) 
+• Weekday evening: 0 points 
+• Weekend: -6 points 
+7. Pattern Density (Total engagement elements) 
+• 6+ patterns: +12 points (exceptional viral potential) 
+• 4-5 patterns: +7 points (strong) 
+• 3 patterns: +4 points (solid) 
+• <2 patterns: -7 points (missing drivers) 
+8. Low-Effort Link Post Penalty 
+• <80 words + link + <2 patterns: -15 points (critical) 
+9. Link Preview Spam 
+• <60 words + link + no media: -10 points 
+10. Promotional Content Detection 
+Detects promotional language (product, demo, launch, "our product", "we built"): 
+• Heavy promotion (score ≥6): -12 points  
+o With video: additional -8 points 
+• Product-focused (score ≥4): -8 points  
+o With video: additional -5 points 
+• Some promotional (score ≥2): -4 points 
+Final Score 
+• Capped between 0-100 
+• Score is: Math.min(Math.max(baseScore, 0), 100) 
+Expected Metrics Calculation 
+Once the final score is determined: 
+Impression Multiplier 
+Depends on whether content is promotional: 
+Promotional Content (capped reach): 
+• Score <40: 25-40% of followers 
+• Score 40-55: 40-65% of followers 
+• Score 55+: 65-100% of followers (max) 
+Authentic Content (can go viral): 
+• Score <40: 8-12% reach 
+• Score 40-60: 12-30% reach 
+• Score 60-70: 30-60% reach 
+• Score 70-80: 60-120% reach 
+• Score 80-90: 120-220% reach 
+• Score 90+: 220-400%+ viral reach 
+Engagement Breakdown 
+• Base engagement rate: 1.5% 
+• Adjusted rate: 1.5% + (score/100 × 2.5%) = max ~4% 
+• Expected Impressions: Followers × Impression Multiplier 
+• Total Engagements: Impressions × Engagement Rate 
+• Reactions: 80% of total engagements 
+• Comments: 20% of total engagements

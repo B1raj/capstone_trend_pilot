@@ -1,0 +1,38 @@
+{
+  "initial_rows": 34012,
+  "final_rows": 31996,
+  "rows_removed": 2016,
+  "removal_percentage": 5.927319769493121,
+  "duplicates_removed": 0,
+  "missing_content": 2016,
+  "quality_issues_fixed": 0,
+  "outlier_stats": {
+    "reactions": {
+      "min": 0.0,
+      "max": 391498.0,
+      "mean": 483.3971121390174,
+      "median": 38.0,
+      "99th_percentile": 7831.799999999988,
+      "outliers_count": 320.0,
+      "outliers_pct": 1.0001250156269534
+    },
+    "comments": {
+      "min": 0.0,
+      "max": 32907.0,
+      "mean": 28.067852231528942,
+      "median": 3.0,
+      "99th_percentile": 379.0,
+      "outliers_count": 319.0,
+      "outliers_pct": 0.9969996249531191
+    },
+    "followers": {
+      "min": 171.0,
+      "max": 18289351.0,
+      "mean": 1156005.846685861,
+      "median": 408254.0,
+      "99th_percentile": 18289351.0,
+      "outliers_count": 0.0,
+      "outliers_pct": 0.0
+    }
+  }
+}
