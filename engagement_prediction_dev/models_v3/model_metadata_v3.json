@@ -1,0 +1,52 @@
+{
+  "version": "3.0",
+  "date": "2026-02-09 21:21:49",
+  "key_change": "Excluded followers feature to test content-only prediction",
+  "leakage_features_removed": [
+    "reactions_per_sentiment",
+    "reactions_per_word",
+    "comments_per_word",
+    "reactions_vs_influencer_avg",
+    "comments_vs_influencer_avg",
+    "comment_to_reaction_ratio"
+  ],
+  "excluded_features": [
+    "reactions",
+    "comments",
+    "name",
+    "slno",
+    "content",
+    "time_spent",
+    "location",
+    "followers",
+    "influencer_avg_engagement",
+    "influencer_total_engagement"
+  ],
+  "reactions_model": {
+    "type": "XGBoost",
+    "performance": {
+      "mae": 195.53078617742835,
+      "rmse": 592.0746029373012,
+      "r2": 0.6033209892978851,
+      "mape": 362.89985716757786
+    },
+    "feature_count": 82
+  },
+  "comments_model": {
+    "type": "XGBoost",
+    "performance": {
+      "mae": 15.216081619262695,
+      "rmse": 36.24890555998726,
+      "r2": 0.5309085845947266,
+      "mape": 172.70549545373763
+    },
+    "feature_count": 82
+  },
+  "training_data": {
+    "total_samples": 31996,
+    "train_samples": 25596,
+    "test_samples": 6400,
+    "reactions_zeros": 750,
+    "comments_zeros": 9728
+  }
+}

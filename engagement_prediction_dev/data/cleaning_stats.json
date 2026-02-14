@@ -1,34 +1,47 @@
 {
   "initial_rows": 34012,
-  "final_rows": 31996,
-  "rows_removed": 2016,
-  "removal_percentage": 5.927319769493121,
+  "final_rows": 31393,
+  "rows_removed": 2619,
+  "removal_percentage": 7.700223450546866,
   "duplicates_removed": 0,
   "missing_content": 2016,
+  "content_length_outliers_removed": 603,
   "quality_issues_fixed": 0,
+  "content_length_stats": {
+    "min": 1.0,
+    "max": 1394.0,
+    "mean": 327.7994124265533,
+    "median": 226.0,
+    "std": 298.88862979660075,
+    "1st_percentile": 16.0,
+    "99th_percentile": 1302.0,
+    "too_short_removed": 293,
+    "too_long_removed": 310,
+    "total_removed": 603
+  },
   "outlier_stats": {
     "reactions": {
       "min": 0.0,
       "max": 391498.0,
-      "mean": 483.3971121390174,
+      "mean": 483.5671328003058,
       "median": 38.0,
-      "99th_percentile": 7831.799999999988,
-      "outliers_count": 320.0,
-      "outliers_pct": 1.0001250156269534
+      "99th_percentile": 7832.27999999997,
+      "outliers_count": 314.0,
+      "outliers_pct": 1.0002229796451438
     },
     "comments": {
       "min": 0.0,
       "max": 32907.0,
-      "mean": 28.067852231528942,
+      "mean": 28.020259293473067,
       "median": 3.0,
-      "99th_percentile": 379.0,
-      "outliers_count": 319.0,
-      "outliers_pct": 0.9969996249531191
+      "99th_percentile": 379.0799999999981,
+      "outliers_count": 314.0,
+      "outliers_pct": 1.0002229796451438
     },
     "followers": {
       "min": 171.0,
       "max": 18289351.0,
-      "mean": 1156005.846685861,
+      "mean": 1169044.7595049758,
       "median": 408254.0,
       "99th_percentile": 18289351.0,
       "outliers_count": 0.0,

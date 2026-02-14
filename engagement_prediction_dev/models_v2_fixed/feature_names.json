@@ -27,11 +27,7 @@
     "hook_score",
     "hook_x_power_score",
     "influencer_avg_base_score",
-    "influencer_avg_engagement",
-    "influencer_avg_sentiment",
-    "influencer_consistency_reactions",
     "influencer_post_count",
-    "influencer_total_engagement",
     "is_multi_topic",
     "length_score",
     "line_break_count",
@@ -85,7 +81,7 @@
     "video_x_optimal_length",
     "word_count_original"
   ],
-  "n_features": 84,
+  "n_features": 80,
   "excluded_leakage_features": [
     "reactions_per_sentiment",
     "reactions_per_word",
