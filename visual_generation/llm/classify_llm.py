@@ -64,17 +64,12 @@ classDiagram
   LoadBalancer --> Server
 
 ## STEP 2B — IF IMAGE
-Produce a single, finalized prompt optimized for Stable Diffusion. Rules:
-- Lead with the subject, then style, lighting, mood, and technical quality tags
-- Be specific and descriptive; avoid abstract or vague language
-- Include negative space guidance if relevant (e.g., "no text, no watermark")
-- Format: comma-separated descriptive phrases, not a sentence
-
-## STEP 2C — IF NONE
-Provide a plain text response to the user's input. Rules:
-- Be concise and conversational
-- Do not fabricate a diagram or image where none is warranted
-- The "response" field should contain the full reply to the user
+Produce a single, finalized prompt optimized for Stable Diffusion:
+- One scene, one subject
+- Format: comma-separated phrases covering subject, setting, lighting
+- Strip all narrative, emotion, and story context — describe only what is visually present
+- It will be very short!
+- Example: "subject1 verb1 adjective1 subject2 at locattion1"
 
 ## OUTPUT FORMAT
 Respond with ONLY a single JSON object — no markdown, no explanation, no extra text.
