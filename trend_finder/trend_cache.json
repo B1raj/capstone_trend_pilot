@@ -1,0 +1,785 @@
+{
+  "metadata": {
+    "created": "2026-02-07T13:30:00",
+    "last_updated": "2026-02-07T16:03:56.069462"
+  },
+  "trends": {
+    "cloud|SG|today 1-m": {
+      "fetch_date": "2026-02-07T13:30:00",
+      "keyword": "Cloud",
+      "geo": "SG",
+      "timeframe": "today 1-m",
+      "data": {
+        "keyword": "Cloud",
+        "top_queries": [
+          {
+            "query": "on cloud",
+            "value": 100
+          },
+          {
+            "query": "google cloud",
+            "value": 65
+          },
+          {
+            "query": "cloud ai",
+            "value": 37
+          }
+        ],
+        "rising_queries": [
+          {
+            "query": "cloud 6 geo",
+            "value": 12250
+          },
+          {
+            "query": "posit cloud",
+            "value": 9550
+          },
+          {
+            "query": "ld cloud",
+            "value": 8850
+          }
+        ]
+      }
+    },
+    "aws|SG|today 1-m": {
+      "fetch_date": "2026-02-07T13:30:00",
+      "keyword": "AWS",
+      "geo": "SG",
+      "timeframe": "today 1-m",
+      "data": {
+        "keyword": "AWS",
+        "top_queries": [
+          {
+            "query": "what is aws",
+            "value": 100
+          },
+          {
+            "query": "aws cloud",
+            "value": 77
+          },
+          {
+            "query": "aws ai",
+            "value": 61
+          }
+        ],
+        "rising_queries": [
+          {
+            "query": "aws layoffs",
+            "value": 59500
+          },
+          {
+            "query": "aws reinvent",
+            "value": 39750
+          },
+          {
+            "query": "aws summit",
+            "value": 24300
+          }
+        ]
+      }
+    },
+    "microservices|SG|today 1-m": {
+      "fetch_date": "2026-02-07T13:30:00",
+      "keyword": "Microservices",
+      "geo": "SG",
+      "timeframe": "today 1-m",
+      "data": {
+        "keyword": "Microservices",
+        "top_queries": [
+          {
+            "query": "microservices architecture",
+            "value": 100
+          },
+          {
+            "query": "microservices best practices",
+            "value": 77
+          }
+        ],
+        "rising_queries": [
+          {
+            "query": "microservices best practices",
+            "value": 50
+          }
+        ]
+      }
+    },
+    "api|SG|today 1-m": {
+      "fetch_date": "2026-02-07T13:30:00",
+      "keyword": "API",
+      "geo": "SG",
+      "timeframe": "today 1-m",
+      "data": {
+        "keyword": "API",
+        "top_queries": [
+          {
+            "query": "what is api",
+            "value": 100
+          },
+          {
+            "query": "google api",
+            "value": 64
+          },
+          {
+            "query": "api key",
+            "value": 53
+          }
+        ],
+        "rising_queries": [
+          {
+            "query": "openclaw",
+            "value": 37100
+          },
+          {
+            "query": "clawdbot",
+            "value": 32800
+          },
+          {
+            "query": "moltbot",
+            "value": 12050
+          }
+        ]
+      }
+    },
+    "kong|SG|today 1-m": {
+      "fetch_date": "2026-02-07T13:30:00",
+      "keyword": "Kong",
+      "geo": "SG",
+      "timeframe": "today 1-m",
+      "data": {
+        "keyword": "Kong",
+        "top_queries": [
+          {
+            "query": "king kong",
+            "value": 100
+          },
+          {
+            "query": "hong kong express",
+            "value": 80
+          }
+        ],
+        "rising_queries": []
+      }
+    },
+    "architecture|SG|today 1-m": {
+      "fetch_date": "2026-02-07T13:30:00",
+      "keyword": "Architecture",
+      "geo": "SG",
+      "timeframe": "today 1-m",
+      "data": {
+        "keyword": "Architecture",
+        "top_queries": [
+          {
+            "query": "what is architecture",
+            "value": 100
+          },
+          {
+            "query": "architecture design",
+            "value": 64
+          },
+          {
+            "query": "data architecture",
+            "value": 60
+          }
+        ],
+        "rising_queries": [
+          {
+            "query": "aws architecture diagram",
+            "value": 66850
+          },
+          {
+            "query": "monolithic architecture",
+            "value": 64350
+          },
+          {
+            "query": "event driven architecture",
+            "value": 44350
+          }
+        ]
+      }
+    },
+    "integration|SG|today 1-m": {
+      "fetch_date": "2026-02-07T13:30:00",
+      "keyword": "Integration",
+      "geo": "SG",
+      "timeframe": "today 1-m",
+      "data": {
+        "keyword": "Integration",
+        "top_queries": [
+          {
+            "query": "api integration",
+            "value": 100
+          },
+          {
+            "query": "integration meaning",
+            "value": 56
+          },
+          {
+            "query": "integration by parts",
+            "value": 28
+          }
+        ],
+        "rising_queries": [
+          {
+            "query": "differentiation",
+            "value": 92150
+          },
+          {
+            "query": "integration by parts",
+            "value": 80
+          }
+        ]
+      }
+    },
+    "spring|SG|today 1-m": {
+      "fetch_date": "2026-02-07T13:30:00",
+      "keyword": "Spring",
+      "geo": "SG",
+      "timeframe": "today 1-m",
+      "data": {
+        "keyword": "Spring",
+        "top_queries": [
+          {
+            "query": "spring 2026",
+            "value": 100
+          },
+          {
+            "query": "spring fever",
+            "value": 74
+          },
+          {
+            "query": "hot spring",
+            "value": 49
+          }
+        ],
+        "rising_queries": [
+          {
+            "query": "spring fever episodes",
+            "value": 51500
+          },
+          {
+            "query": "best places to visit in spring",
+            "value": 44000
+          },
+          {
+            "query": "spring awakening",
+            "value": 17950
+          }
+        ]
+      }
+    },
+    "paylah|SG|today 1-m": {
+      "fetch_date": "2026-02-07T15:58:04.245044",
+      "keyword": "paylah",
+      "geo": "SG",
+      "timeframe": "today 1-m",
+      "data": {
+        "keyword": "paylah",
+        "top_queries": [
+          {
+            "query": "paylah dbs",
+            "value": 100
+          },
+          {
+            "query": "paylah to paynow",
+            "value": 27
+          },
+          {
+            "query": "paylah app",
+            "value": 20
+          },
+          {
+            "query": "paylah limit",
+            "value": 20
+          },
+          {
+            "query": "what is paylah",
+            "value": 14
+          },
+          {
+            "query": "ocbc paylah",
+            "value": 12
+          },
+          {
+            "query": "paynow vs paylah",
+            "value": 10
+          },
+          {
+            "query": "how to use paylah",
+            "value": 7
+          },
+          {
+            "query": "how to set up paylah",
+            "value": 6
+          },
+          {
+            "query": "difference between paynow and paylah",
+            "value": 6
+          }
+        ],
+        "rising_queries": [
+          {
+            "query": "paynow vs paylah",
+            "value": 262200
+          },
+          {
+            "query": "difference between paynow and paylah",
+            "value": 138200
+          },
+          {
+            "query": "is paylah down",
+            "value": 102250
+          },
+          {
+            "query": "paylah egift",
+            "value": 54500
+          },
+          {
+            "query": "dbs paylah hotline",
+            "value": 36700
+          },
+          {
+            "query": "dbs paylah $3",
+            "value": 32850
+          },
+          {
+            "query": "dbs paylah cny",
+            "value": 26400
+          },
+          {
+            "query": "dbs paylah down",
+            "value": 14400
+          },
+          {
+            "query": "paylah referral code",
+            "value": 12950
+          },
+          {
+            "query": "transfer paylah to bank account",
+            "value": 70
+          }
+        ]
+      }
+    },
+    "python|SG|today 1-m": {
+      "fetch_date": "2026-02-07T16:03:56.069448",
+      "keyword": "python",
+      "geo": "SG",
+      "timeframe": "today 1-m",
+      "data": {
+        "keyword": "python",
+        "top_queries": [
+          {
+            "query": "python list",
+            "value": 100
+          },
+          {
+            "query": "what is python",
+            "value": 93
+          },
+          {
+            "query": "python code",
+            "value": 85
+          },
+          {
+            "query": "install python",
+            "value": 51
+          },
+          {
+            "query": "python download",
+            "value": 39
+          },
+          {
+            "query": "python online",
+            "value": 38
+          },
+          {
+            "query": "python version",
+            "value": 35
+          },
+          {
+            "query": "set python",
+            "value": 28
+          },
+          {
+            "query": "pandas",
+            "value": 25
+          },
+          {
+            "query": "pandas python",
+            "value": 25
+          }
+        ],
+        "rising_queries": [
+          {
+            "query": "ti-84 plus ce python",
+            "value": 20950
+          },
+          {
+            "query": "python tutor",
+            "value": 14450
+          },
+          {
+            "query": "python online ide",
+            "value": 12950
+          },
+          {
+            "query": "learn python for beginners",
+            "value": 12450
+          },
+          {
+            "query": "python gitignore",
+            "value": 9500
+          },
+          {
+            "query": "floor division python",
+            "value": 4350
+          },
+          {
+            "query": "what is % in python",
+            "value": 2550
+          },
+          {
+            "query": "python code runner",
+            "value": 2200
+          },
+          {
+            "query": "trinket python 3",
+            "value": 1750
+          },
+          {
+            "query": "carpet python",
+            "value": 700
+          }
+        ]
+      }
+    }
+  },
+  "AWS": {
+    "score": 55.17204301075269,
+    "top_queries": [
+      {
+        "query": "what is aws",
+        "value": 100
+      },
+      {
+        "query": "aws news",
+        "value": 78
+      },
+      {
+        "query": "aws ai",
+        "value": 69
+      },
+      {
+        "query": "aws amazon",
+        "value": 66
+      },
+      {
+        "query": "aws cloud",
+        "value": 59
+      },
+      {
+        "query": "aws services",
+        "value": 33
+      },
+      {
+        "query": "s3",
+        "value": 33
+      },
+      {
+        "query": "aws news today",
+        "value": 32
+      },
+      {
+        "query": "aws s3",
+        "value": 32
+      },
+      {
+        "query": "azure",
+        "value": 30
+      }
+    ],
+    "rising_queries": [
+      {
+        "query": "aws devops agent",
+        "value": "1600"
+      },
+      {
+        "query": "aws transform custom",
+        "value": "1300"
+      },
+      {
+        "query": "cybersecurity news today",
+        "value": "350"
+      },
+      {
+        "query": "aws security agent",
+        "value": "300"
+      },
+      {
+        "query": "nvidia news today",
+        "value": "300"
+      },
+      {
+        "query": "aws news today",
+        "value": "250"
+      },
+      {
+        "query": "technology news today",
+        "value": "250"
+      },
+      {
+        "query": "ai news today",
+        "value": "200"
+      },
+      {
+        "query": "anthropic news",
+        "value": "200"
+      },
+      {
+        "query": "kiro",
+        "value": "190"
+      }
+    ],
+    "timestamp": "2026-02-16T15:09:55.212792+00:00"
+  },
+  "OpenShift": {
+    "score": 51.73118279569893,
+    "top_queries": [],
+    "rising_queries": [],
+    "timestamp": "2026-02-16T15:09:37.738974+00:00"
+  },
+  "REST APIs": {
+    "score": 17.49462365591398,
+    "top_queries": [],
+    "rising_queries": [],
+    "timestamp": "2026-02-16T15:10:00.740008+00:00"
+  },
+  "Kong": {
+    "score": 28.473118279569892,
+    "top_queries": [
+      {
+        "query": "king kong",
+        "value": 100
+      },
+      {
+        "query": "hong kong china",
+        "value": 54
+      },
+      {
+        "query": "new hong kong",
+        "value": 50
+      },
+      {
+        "query": "hong kong city",
+        "value": 27
+      },
+      {
+        "query": "hong kong restaurant",
+        "value": 26
+      },
+      {
+        "query": "kong dog",
+        "value": 26
+      },
+      {
+        "query": "donkey kong switch",
+        "value": 17
+      },
+      {
+        "query": "donkey kong country",
+        "value": 17
+      },
+      {
+        "query": "godzilla x kong",
+        "value": 14
+      },
+      {
+        "query": "hong kong express",
+        "value": 13
+      }
+    ],
+    "rising_queries": [
+      {
+        "query": "new hong kong",
+        "value": "60"
+      },
+      {
+        "query": "hong kong city",
+        "value": "50"
+      }
+    ],
+    "timestamp": "2026-02-16T15:09:32.027664+00:00"
+  },
+  "Apigee": {
+    "score": 31.0752688172043,
+    "top_queries": [
+      {
+        "query": "apigee api",
+        "value": 100
+      },
+      {
+        "query": "what is apigee",
+        "value": 59
+      },
+      {
+        "query": "apigee gateway",
+        "value": 43
+      },
+      {
+        "query": "apigee news",
+        "value": 35
+      },
+      {
+        "query": "apigee hybrid",
+        "value": 23
+      },
+      {
+        "query": "apigee edge",
+        "value": 22
+      },
+      {
+        "query": "kong",
+        "value": 20
+      },
+      {
+        "query": "apigee proxy",
+        "value": 19
+      },
+      {
+        "query": "apigee pricing",
+        "value": 15
+      },
+      {
+        "query": "apigee meaning",
+        "value": 12
+      }
+    ],
+    "rising_queries": [
+      {
+        "query": "apigee news",
+        "value": "250"
+      },
+      {
+        "query": "apigee pricing",
+        "value": "200"
+      },
+      {
+        "query": "kong",
+        "value": "190"
+      },
+      {
+        "query": "what is apigee",
+        "value": "60"
+      }
+    ],
+    "timestamp": "2026-02-16T15:09:50.362116+00:00"
+  },
+  "Zuul": {
+    "score": 13.612903225806452,
+    "top_queries": [],
+    "rising_queries": [],
+    "timestamp": "2026-02-16T15:09:58.061052+00:00"
+  },
+  "Axway": {
+    "score": 11.53763440860215,
+    "top_queries": [],
+    "rising_queries": [],
+    "timestamp": "2026-02-16T15:09:34.738243+00:00"
+  },
+  "API Gateways": {
+    "score": 2.6451612903225805,
+    "top_queries": [],
+    "rising_queries": [],
+    "timestamp": "2026-02-16T15:10:03.370704+00:00"
+  },
+  "Microservices": {
+    "score": 31.193548387096776,
+    "top_queries": [
+      {
+        "query": "microservices architecture",
+        "value": 100
+      },
+      {
+        "query": "microservices best practices",
+        "value": 75
+      },
+      {
+        "query": "what is microservices",
+        "value": 22
+      },
+      {
+        "query": "what are microservices",
+        "value": 9
+      },
+      {
+        "query": "microservices patterns",
+        "value": 8
+      },
+      {
+        "query": "kubernetes",
+        "value": 5
+      },
+      {
+        "query": "microservices interview questions",
+        "value": 2
+      },
+      {
+        "query": "latest climate change news",
+        "value": 1
+      },
+      {
+        "query": "new york times",
+        "value": 1
+      },
+      {
+        "query": "best space documentaries",
+        "value": 1
+      }
+    ],
+    "rising_queries": [
+      {
+        "query": "latest climate change news",
+        "value": "27900"
+      },
+      {
+        "query": "new york times",
+        "value": "20300"
+      },
+      {
+        "query": "best space documentaries",
+        "value": "19700"
+      },
+      {
+        "query": "schengen visa requirements",
+        "value": "16950"
+      },
+      {
+        "query": "microservices best practices",
+        "value": "350"
+      },
+      {
+        "query": "microservices architecture",
+        "value": "110"
+      }
+    ],
+    "timestamp": "2026-02-16T15:09:47.701094+00:00"
+  },
+  "WSO2": {
+    "score": 13.0,
+    "top_queries": [],
+    "rising_queries": [],
+    "timestamp": "2026-02-16T15:09:43.696440+00:00"
+  },
+  "Spring Cloud": {
+    "score": 50.83870967741935,
+    "top_queries": [],
+    "rising_queries": [],
+    "timestamp": "2026-02-16T15:09:41.035891+00:00"
+  },
+  "Integration Architecture": {
+    "score": 39.24731182795699,
+    "top_queries": [],
+    "rising_queries": [],
+    "timestamp": "2026-02-16T15:04:05.101222+00:00"
+  }
+}
