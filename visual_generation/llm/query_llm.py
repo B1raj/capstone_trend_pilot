@@ -7,35 +7,44 @@ It classifies the input and, if architectural, generates Mermaid code.
 
 import requests
 import sys
+import json
 
 OLLAMA_API_URL = "http://localhost:11434/api/generate"  # Default Ollama endpoint
 MODEL = "llama3.1:8b"
 
-PROMPT_TEMPLATE = """
-You are an assistant that classifies user requests for visual generation. 
-If the request is for an architectural/system/process diagram, respond with:
-Type: architecture\nMermaid:\n<mermaid code here>
-If the request is for a general image, respond with:
-Type: image
-If neither, respond with:
-Type: none
-User input: {user_input}
-"""
+def send_prompt(prompt: str, model: str = None, base_url: str = OLLAMA_API_URL):
+    """Send a raw prompt string to the Ollama API and return the unified text response.
 
-def query_llm(user_input: str):
-    prompt = PROMPT_TEMPLATE.format(user_input=user_input)
+    This function keeps model selection centralized (uses `MODEL` by default) and
+    returns a concatenated text response to simplify callers.
+    """
+    use_model = model if model is not None else MODEL
     data = {
-        "model": MODEL,
+        "model": use_model,
         "prompt": prompt,
         "stream": False
     }
-    response = requests.post(OLLAMA_API_URL, json=data)
+    response = requests.post(base_url, json=data)
     response.raise_for_status()
-    return response.json()["response"]
+    data = response.json()
+    # Normalize common Ollama response shapes
+    if isinstance(data, dict):
+        if "response" in data:
+            return data["response"]
+        if "responses" in data and isinstance(data["responses"], list):
+            parts = []
+            for r in data["responses"]:
+                content = r.get("content", [])
+                for c in content:
+                    if c.get("type") in ("output_text", "message") and "text" in c:
+                        parts.append(c["text"])
+            if parts:
+                return "".join(parts)
+    return json.dumps(data, ensure_ascii=False)
 
 if __name__ == "__main__":
     if len(sys.argv) < 2:
         print("Usage: python query_llm.py <user_input>")
         sys.exit(1)
     user_input = sys.argv[1]
-    print(query_llm(user_input))
+    print(send_prompt(user_input))
