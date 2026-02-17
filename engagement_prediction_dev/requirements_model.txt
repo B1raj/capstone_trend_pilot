@@ -1,6 +1,6 @@
 # Core Data Processing
 pandas>=2.0.0
-numpy>=1.24.0
+numpy>=2.3.0
 
 # NLP Libraries
 nltk>=3.8

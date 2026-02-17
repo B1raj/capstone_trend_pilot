@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "date": "2026-02-09 21:53:11",
+  "date": "2026-02-18 00:36:59",
   "leakage_features_removed": [
     "reactions_per_sentiment",
     "reactions_per_word",
@@ -12,28 +12,28 @@
   "reactions_model": {
     "type": "XGBoost",
     "performance": {
-      "mae": 211.93453522198988,
-      "rmse": 594.3547227109974,
-      "r2": 0.60025983028039,
-      "mape": 607.2423547821992
+      "mae": 253.20020576885767,
+      "rmse": 380.6326640642773,
+      "r2": 0.7902322161879867,
+      "mape": 956.998986394367
     },
-    "feature_count": 79
+    "feature_count": 69
   },
   "comments_model": {
-    "type": "LightGBM",
+    "type": "XGBoost",
     "performance": {
-      "mae": 16.133508542038687,
-      "rmse": 36.58662501012378,
-      "r2": 0.5221271326640858,
-      "mape": 211.30356438161076
+      "mae": 15.574833897075482,
+      "rmse": 24.22758544963429,
+      "r2": 0.9122066540560827,
+      "mape": 460.3549329166425
     },
-    "feature_count": 79
+    "feature_count": 69
   },
   "training_data": {
-    "total_samples": 31996,
-    "train_samples": 25596,
-    "test_samples": 6400,
-    "reactions_zeros": 750,
-    "comments_zeros": 9728
+    "total_samples": 139,
+    "train_samples": 111,
+    "test_samples": 28,
+    "reactions_zeros": 0,
+    "comments_zeros": 28
   }
 }

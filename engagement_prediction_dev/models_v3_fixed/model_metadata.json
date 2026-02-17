@@ -1,12 +1,12 @@
 {
   "version": "2.0",
   "status": "FIXED - No data leakage",
-  "training_date": "2026-02-09 21:53:40",
+  "training_date": "2026-02-18 00:37:06",
   "dataset": {
-    "total_samples": 31996,
-    "training_samples": 25596,
-    "test_samples": 6400,
-    "n_features": 79,
+    "total_samples": 139,
+    "training_samples": 111,
+    "test_samples": 28,
+    "n_features": 69,
     "excluded_leakage_features": [
       "reactions_per_sentiment",
       "reactions_per_word",
@@ -17,27 +17,27 @@
     ]
   },
   "data_quality": {
-    "reactions_zeros_pct": 2.344043005375672,
-    "comments_zeros_pct": 30.403800475059384
+    "reactions_zeros_pct": 0.0,
+    "comments_zeros_pct": 20.14388489208633
   },
   "reactions_model": {
-    "type": "Random Forest",
+    "type": "XGBoost Tuned",
     "performance": {
-      "r2": 0.5886314966433418,
-      "mae": 201.74733300092106,
-      "rmse": 602.93756126962,
-      "smape": 82.55682283527628,
-      "medae": 41.72306079021699
+      "r2": 0.9332592327407078,
+      "mae": 165.29185024329595,
+      "rmse": 214.7001051699236,
+      "smape": 118.06307837785226,
+      "medae": 133.20113372802734
     }
   },
   "comments_model": {
-    "type": "LightGBM",
+    "type": "XGBoost Tuned",
     "performance": {
-      "r2": 0.5319840424394426,
-      "mae": 16.324098461140707,
-      "rmse": 36.207329419215974,
-      "smape": 122.0561591687347,
-      "medae": 5.534424912838819
+      "r2": 0.9123429330288795,
+      "mae": 16.015224364187038,
+      "rmse": 24.208774270354073,
+      "smape": 116.37832181450185,
+      "medae": 9.070537567138672
     }
   },
   "fixes_applied": [
