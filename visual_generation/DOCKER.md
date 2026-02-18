@@ -125,9 +125,9 @@ To access the generated images/diagrams on your host machine, mount a volume:
 mkdir -p output
 
 docker run --rm \
-  -e DASHSCOPE_API_KEY=your_real_dashscope_key_here \
-  -v "$(pwd)/output:/app/output" \
-  visual-generation "Draw a sequence diagram of a user logging in."
+  -e DASHSCOPE_API_KEY="your-key" \
+  -v "/$(pwd)/output:/app/output" \
+  visual-generation "User authentication involves symmetric key encryption"
 ```
 
 **Windows PowerShell:**
