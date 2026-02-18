@@ -174,7 +174,7 @@ def select_post_topic(trending_df, profile_text, chosen_topic=None):
 
     prompt = f"""You are a LinkedIn content strategist who specializes in timely, high-engagement posts.
 
-Given the following trending topics with their Google Trends data (what people are actually searching for right now), pick the single BEST topic and angle for a LinkedIn post.
+Given the following trending topics with their Google Trends data (what people are actually searching for right now), select the 3 BEST rising/breakout search signals and generate one post title per signal.
 
 Trending Topics with Search Data:
 {topics_summary}
@@ -189,30 +189,38 @@ CRITICAL RULE — Version numbers and factual accuracy:
 - NEVER fabricate announcements, launches, or features that are not evidenced by the search data.
 
 Instructions:
-1. Focus on SPECIFICITY over generality. Look at the rising/breakout searches — these reveal new releases, announcements, hot debates, or breakthroughs that people care about RIGHT NOW.
-2. The post title MUST reference a specific thing (a new feature, release, tool, comparison, migration, controversy, or real-world use case) — NOT a generic thought-leadership angle.
-3. If rising queries mention a specific product launch, version, integration, or comparison — use that as the post hook.
-4. The post should feel like the author is reacting to something happening NOW, not writing a textbook intro.
+1. Scan ALL rising/breakout searches across all topics — these are the signals with the highest momentum RIGHT NOW.
+2. Pick the 3 MOST DIFFERENT high-momentum search signals (do not pick 3 signals from the same topic — spread across different topics if possible).
+3. For each signal, write ONE post title that hooks directly into that specific search trend.
+4. Each title MUST name the specific thing people are searching for (a tool, comparison, launch, integration, controversy) — not a generic angle.
+5. The post should feel like the author is reacting to something happening NOW, not writing a textbook intro.
 
 BAD examples (too generic, or fabricated versions — avoid these):
 - "Unlocking New Potentials: How AWS Transforms Cloud Architecture"
 - "Why Kubernetes is the Future of DevOps"
 - "OpenShift 4.12: What Its New GitOps Features Mean..." (version not from search data = hallucinated)
 
-GOOD examples (specific, timely, opinionated, grounded in search data):
+GOOD examples (specific, timely, grounded in a real search signal):
 - "AWS just launched S3 Express One Zone — here's why it changes the game for latency-sensitive apps"
 - "Everyone's comparing GPT-4o vs Claude 3.5 — here's what actually matters for production RAG pipelines"
 - "OpenShift's latest update doubles down on GitOps — here's what changed for cloud-native teams"
 
 Respond in this exact format:
-TOPIC: <chosen topic>
-POST TITLE: <specific, timely post title — no fabricated version numbers>
-REASONING: <2-3 sentences explaining what specific trend/search signal drove this recommendation>
+SIGNAL 1: <the exact rising search term that inspired this>
+POST TITLE 1: <specific, timely post title grounded in signal 1>
+
+SIGNAL 2: <the exact rising search term that inspired this>
+POST TITLE 2: <specific, timely post title grounded in signal 2>
+
+SIGNAL 3: <the exact rising search term that inspired this>
+POST TITLE 3: <specific, timely post title grounded in signal 3>
+
+REASONING: <2-3 sentences explaining why these 3 signals have the highest momentum right now>
 """
 
     response = client.chat.completions.create(
         model="gpt-4o",
-        max_tokens=400,
+        max_tokens=600,
         messages=[{"role": "user", "content": prompt}],
     )
 

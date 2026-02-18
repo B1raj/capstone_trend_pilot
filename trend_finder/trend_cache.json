@@ -781,5 +781,384 @@
     "top_queries": [],
     "rising_queries": [],
     "timestamp": "2026-02-16T15:04:05.101222+00:00"
+  },
+  "Enterprise Batch Processing": {
+    "score": 0.0,
+    "top_queries": [],
+    "rising_queries": [],
+    "timestamp": "2026-02-16T17:32:07.754991+00:00"
+  },
+  "SPAs": {
+    "score": 80.35483870967742,
+    "top_queries": [],
+    "rising_queries": [],
+    "timestamp": "2026-02-16T17:32:11.600423+00:00"
+  },
+  "Event Driven Architecture": {
+    "score": 3.752688172043011,
+    "top_queries": [],
+    "rising_queries": [],
+    "timestamp": "2026-02-16T17:32:14.204258+00:00"
+  },
+  "Stream Processing": {
+    "score": 31.634408602150536,
+    "top_queries": [],
+    "rising_queries": [],
+    "timestamp": "2026-02-16T17:32:16.890782+00:00"
+  },
+  "SOA": {
+    "score": 73.35483870967742,
+    "top_queries": [],
+    "rising_queries": [],
+    "timestamp": "2026-02-16T17:32:20.349710+00:00"
+  },
+  "Data Lakehouse Architecture": {
+    "score": 2.075268817204301,
+    "top_queries": [],
+    "rising_queries": [],
+    "timestamp": "2026-02-16T17:32:22.883149+00:00"
+  },
+  "MCP server": {
+    "score": 56.98924731182796,
+    "top_queries": [
+      {
+        "query": "what is mcp",
+        "value": 100
+      },
+      {
+        "query": "what is mcp server",
+        "value": 80
+      },
+      {
+        "query": "ai mcp server",
+        "value": 61
+      },
+      {
+        "query": "mcp server claude",
+        "value": 48
+      },
+      {
+        "query": "claude",
+        "value": 47
+      },
+      {
+        "query": "github mcp",
+        "value": 46
+      },
+      {
+        "query": "github mcp server",
+        "value": 46
+      },
+      {
+        "query": "mcp server list",
+        "value": 39
+      },
+      {
+        "query": "mcp protocol",
+        "value": 37
+      },
+      {
+        "query": "model context protocol",
+        "value": 32
+      }
+    ],
+    "rising_queries": [
+      {
+        "query": "openclaw",
+        "value": "33850"
+      },
+      {
+        "query": "power bi modeling mcp server",
+        "value": "500"
+      },
+      {
+        "query": "openai news today",
+        "value": "300"
+      },
+      {
+        "query": "model context protocol",
+        "value": "300"
+      },
+      {
+        "query": "power bi mcp server",
+        "value": "250"
+      },
+      {
+        "query": "mcp protocol",
+        "value": "200"
+      },
+      {
+        "query": "youtube mcp server",
+        "value": "170"
+      },
+      {
+        "query": "anthropic",
+        "value": "150"
+      },
+      {
+        "query": "ai news today",
+        "value": "120"
+      },
+      {
+        "query": "home assistant mcp server",
+        "value": "120"
+      }
+    ],
+    "timestamp": "2026-02-18T05:13:07.221977+00:00"
+  },
+  "MCP": {
+    "score": 62.96774193548387,
+    "top_queries": [
+      {
+        "query": "mcp server",
+        "value": 100
+      },
+      {
+        "query": "what is mcp",
+        "value": 51
+      },
+      {
+        "query": "ai mcp",
+        "value": 47
+      },
+      {
+        "query": "claude",
+        "value": 42
+      },
+      {
+        "query": "claude mcp",
+        "value": 42
+      },
+      {
+        "query": "mcp news",
+        "value": 31
+      },
+      {
+        "query": "mcp protocol",
+        "value": 28
+      },
+      {
+        "query": "github",
+        "value": 24
+      },
+      {
+        "query": "mcp github",
+        "value": 24
+      },
+      {
+        "query": "model context protocol",
+        "value": 21
+      }
+    ],
+    "rising_queries": [
+      {
+        "query": "antigravity mcp",
+        "value": "105550"
+      },
+      {
+        "query": "openclaw",
+        "value": "35850"
+      },
+      {
+        "query": "clawdbot",
+        "value": "19500"
+      },
+      {
+        "query": "antigravity",
+        "value": "7450"
+      },
+      {
+        "query": "claude cowork",
+        "value": "1700"
+      },
+      {
+        "query": "superbowl mcp",
+        "value": "1000"
+      },
+      {
+        "query": "super bowl mcp",
+        "value": "550"
+      },
+      {
+        "query": "opencode",
+        "value": "550"
+      },
+      {
+        "query": "opencode mcp",
+        "value": "450"
+      },
+      {
+        "query": "model context protocol",
+        "value": "200"
+      }
+    ],
+    "timestamp": "2026-02-18T05:43:27.233207+00:00"
+  },
+  "Gateway": {
+    "score": 78.33333333333333,
+    "top_queries": [
+      {
+        "query": "gateway pundit",
+        "value": 100
+      },
+      {
+        "query": "gateway church",
+        "value": 10
+      },
+      {
+        "query": "gateway high school",
+        "value": 6
+      }
+    ],
+    "rising_queries": [],
+    "timestamp": "2026-02-18T05:43:31.447488+00:00"
+  },
+  "mcp servers": {
+    "score": 56.365591397849464,
+    "top_queries": [
+      {
+        "query": "best mcp servers",
+        "value": 100
+      },
+      {
+        "query": "mcp servers claude",
+        "value": 84
+      },
+      {
+        "query": "mcp servers list",
+        "value": 68
+      },
+      {
+        "query": "github mcp",
+        "value": 53
+      },
+      {
+        "query": "claude code",
+        "value": 49
+      },
+      {
+        "query": "what are mcp servers",
+        "value": 44
+      },
+      {
+        "query": "list of mcp servers",
+        "value": 38
+      },
+      {
+        "query": "top mcp servers",
+        "value": 34
+      },
+      {
+        "query": "free mcp servers",
+        "value": 31
+      },
+      {
+        "query": "mcp servers cursor",
+        "value": 25
+      }
+    ],
+    "rising_queries": [
+      {
+        "query": "clawdbot",
+        "value": "25100"
+      },
+      {
+        "query": "list of mcp servers",
+        "value": "80"
+      },
+      {
+        "query": "mcp servers list",
+        "value": "80"
+      }
+    ],
+    "timestamp": "2026-02-18T05:47:52.548966+00:00"
+  },
+  "agentic ai": {
+    "score": 55.193548387096776,
+    "top_queries": [
+      {
+        "query": "what is agentic ai",
+        "value": 100
+      },
+      {
+        "query": "ai news",
+        "value": 86
+      },
+      {
+        "query": "ai agents",
+        "value": 37
+      },
+      {
+        "query": "google agentic ai",
+        "value": 35
+      },
+      {
+        "query": "agentic definition",
+        "value": 32
+      },
+      {
+        "query": "agentic ai definition",
+        "value": 32
+      },
+      {
+        "query": "ai news today",
+        "value": 25
+      },
+      {
+        "query": "agentic ai tools",
+        "value": 24
+      },
+      {
+        "query": "generative ai",
+        "value": 24
+      },
+      {
+        "query": "agentic ai foundation",
+        "value": 24
+      }
+    ],
+    "rising_queries": [
+      {
+        "query": "building trust with agentic ai from pindrop",
+        "value": "91150"
+      },
+      {
+        "query": "nerovet ai smart dentistry",
+        "value": "20300"
+      },
+      {
+        "query": "earmor vs peltor",
+        "value": "17000"
+      },
+      {
+        "query": "sam's club mobile app in 2025 iphone",
+        "value": "11900"
+      },
+      {
+        "query": "peltor vs sordin vs earmor",
+        "value": "7650"
+      },
+      {
+        "query": "8 tech ideas that made the web move quicker",
+        "value": "6700"
+      },
+      {
+        "query": "how to beat aleks by using",
+        "value": "5950"
+      },
+      {
+        "query": "sam's club mobile app embraces the future in 2025",
+        "value": "2500"
+      },
+      {
+        "query": "zupimage",
+        "value": "900"
+      },
+      {
+        "query": "openclaw",
+        "value": "700"
+      }
+    ],
+    "timestamp": "2026-02-18T05:47:56.352822+00:00"
   }
 }
