@@ -8,6 +8,7 @@ Requires Node.js and Mermaid CLI installed locally.
 import subprocess
 import sys
 import os
+import tempfile
 
 
 def sanitize_mermaid_code(mermaid_code: str) -> str:
@@ -33,8 +34,11 @@ def render_mermaid(mermaid_code: str, output_path: str, format: str = "svg"):
         format: 'svg' or 'png'.
     """
     sanitized_code = sanitize_mermaid_code(mermaid_code)
-    temp_input = "temp_diagram.mmd"
-    with open(temp_input, "w", encoding="utf-8") as f:
+    # Write temp file near the output path to avoid permission/path surprises in Docker
+    out_dir = os.path.dirname(os.path.abspath(output_path)) or os.getcwd()
+    os.makedirs(out_dir, exist_ok=True)
+    with tempfile.NamedTemporaryFile(mode="w", suffix=".mmd", prefix="diagram_", dir=out_dir, delete=False, encoding="utf-8") as f:
+        temp_input = f.name
         f.write(sanitized_code)
     try:
         # Try to use full path to mmdc if available
@@ -60,13 +64,19 @@ def render_mermaid(mermaid_code: str, output_path: str, format: str = "svg"):
             "-b", "transparent",
             "-e", format
         ]
+        puppeteer_cfg = os.environ.get("MMDC_PUPPETEER_CONFIG")
+        if puppeteer_cfg:
+            cmd.extend(["-p", puppeteer_cfg])
         subprocess.run(cmd, check=True)
         print(f"Diagram saved to {output_path}")
     except Exception as e:
         print(f"Error rendering diagram: {e}")
-    # finally:
-    #     if os.path.exists(temp_input):
-    #         os.remove(temp_input)
+    finally:
+        try:
+            if temp_input and os.path.exists(temp_input):
+                os.remove(temp_input)
+        except Exception:
+            pass
 
 if __name__ == "__main__":
     if len(sys.argv) < 3:

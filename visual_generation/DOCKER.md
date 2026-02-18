@@ -215,6 +215,12 @@ The `--rm` flag automatically removes the container after it exits, so no cleanu
 - Make sure you're passing the API key with `-e DASHSCOPE_API_KEY=...` or have it set in your shell
 - Verify your API key is valid
 
+**Error: "Failed to launch the browser process" / missing `libgobject-2.0.so.0`**
+- This comes from Mermaid CLI (it uses Puppeteer/Chromium under the hood).
+- The Docker image installs the required Chromium runtime libraries and uses a Puppeteer config that adds `--no-sandbox`.
+- Rebuild the image after pulling the latest Dockerfile changes:
+  - `docker build --no-cache -t visual-generation .`
+
 **Error: "LLM error" or "Image generation error"**
 - Check your DashScope API key is valid and has sufficient credits
 - Verify your internet connection (the service calls external APIs)
