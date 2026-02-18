@@ -11,7 +11,7 @@ import requests
 import json
 import os
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-from config import OLLAMA_MODEL, DASHSCOPE_API_KEY, DASHSCOPE_IMAGE_API_URL, DASHSCOPE_DEFAULT_SIZE, DASHSCOPE_IMAGE_MODEL
+from config import DASHSCOPE_API_KEY, DASHSCOPE_IMAGE_API_URL, DASHSCOPE_DEFAULT_SIZE, DASHSCOPE_IMAGE_MODEL
 
 def generate_stable_diffusion_image(prompt: str, output_path: str, model_path: str = "CompVis/stable-diffusion-v1-4", disable_safety: bool = True):
     # Import heavy ML libraries lazily so importing this module remains lightweight

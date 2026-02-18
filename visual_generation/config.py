@@ -7,7 +7,7 @@ OLLAMA_API_URL = os.getenv("OLLAMA_API_URL", "http://localhost:11434/api/generat
 OLLAMA_MODEL = os.getenv("OLLAMA_MODEL", "llama3.1:8b")
 
 # Alibaba DashScope API key (can be overridden by environment variable)
-DASHSCOPE_API_KEY = os.getenv("DASHSCOPE_API_KEY", "")
+DASHSCOPE_API_KEY = os.getenv("DASHSCOPE_API_KEY", "sk-77bf5205f590473d9711008ed7f497cf")
 DASHSCOPE_BASE_URL = os.getenv("DASHSCOPE_BASE_URL", "https://dashscope-intl.aliyuncs.com/compatible-mode/v1")
 # Default chat model for DashScope (Alibaba)
 DASHSCOPE_CHAT_MODEL = os.getenv("DASHSCOPE_CHAT_MODEL", "qwen-plus")
@@ -18,3 +18,8 @@ DASHSCOPE_IMAGE_API_URL = os.getenv("DASHSCOPE_IMAGE_API_URL", "https://dashscop
 # Default image generation parameters
 DASHSCOPE_DEFAULT_SIZE = os.getenv("DASHSCOPE_DEFAULT_SIZE", "1024*1024")
 DASHSCOPE_IMAGE_MODEL = os.getenv("DASHSCOPE_IMAGE_MODEL", "z-image-turbo")
+
+# Output directory for generated artifacts
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
+OUTPUT_DIR = os.getenv("OUTPUT_DIR", os.path.join(BASE_DIR, "output"))

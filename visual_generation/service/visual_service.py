@@ -14,6 +14,7 @@ import time
 
 # Script paths
 BASE_DIR = os.path.dirname(__file__)
+# Output directory is now configured in config.py
 # ensure parent package (visual_generation) is importable
 sys.path.insert(0, os.path.normpath(os.path.join(BASE_DIR, '..')))
 # Ensure llm subpackage is importable as top-level modules (query_llm import expects this)
@@ -30,6 +31,8 @@ LOG_PATH = os.path.join(BASE_DIR, 'visual_service.log')
 logging.basicConfig(level=logging.INFO, format='%(levelname)s: %(message)s')
 logger = logging.getLogger()
 
+from config import OUTPUT_DIR
+os.makedirs(OUTPUT_DIR, exist_ok=True)
 
 def init_logging():
     """Attach a file handler for debug logging.
@@ -53,9 +56,9 @@ def run_llm(prompt: str, timeout: int = 200) -> dict:
 def generate_mermaid_image(mermaid_code: str, timeout: int = 200) -> str:
     # Call the renderer directly with the provided Mermaid code string
     m = (mermaid_code or '').strip()
-    # Output file should be created in the service folder (BASE_DIR)
+    # Output file should be created in the output folder (OUTPUT_DIR)
     out_filename = "generate_diagram.png"
-    out_path = os.path.join(BASE_DIR, out_filename)
+    out_path = os.path.join(OUTPUT_DIR, out_filename)
     try:
         render_mermaid(m, out_path, format='png')
         # verify that the renderer produced the expected output file
@@ -71,9 +74,9 @@ def generate_mermaid_image(mermaid_code: str, timeout: int = 200) -> str:
 
 def generate_sd_image(prompt: str, timeout: int = 200) -> str:
     # Call the Stable Diffusion generator script to create an image file
-    # Output file should be created in the service folder (BASE_DIR)
+    # Output file should be created in the output folder (OUTPUT_DIR)
     out_filename = "generated_image.png"
-    out_path = os.path.join(BASE_DIR, out_filename)
+    out_path = os.path.join(OUTPUT_DIR, out_filename)
     try:
         # call the image generator function directly
         generate_image(prompt, out_path)
@@ -115,7 +118,7 @@ def main():
             # persist the mermaid source for inspection
             ts = int(time.time())
             mmd_name = f'failed_diagram_{ts}.mmd'
-            mmd_path = os.path.join(BASE_DIR, mmd_name)
+            mmd_path = os.path.join(OUTPUT_DIR, mmd_name)
             try:
                 with open(mmd_path, 'w', encoding='utf-8') as mf:
                     mf.write(mermaid or '')
