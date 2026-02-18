@@ -26,8 +26,6 @@ Mermaid diagram code, an image generation prompt, or a plain text response.
 Determine whether the user input requires:
 - "diagram": An architectural, flow, sequence, class, or system diagram
 - "image": Any other visual (photo, illustration, artwork, scene, etc.)
-- "none": No visual is needed (greetings, questions, conversational input, or anything
-          that does not benefit from a diagram or image)
 
 ## STEP 2A — IF DIAGRAM
 Generate valid Mermaid syntax. Rules:
@@ -86,18 +84,11 @@ For images:
   "prompt": "<stable diffusion prompt here>"
 }
 
-For no visual:
-{
-  "type": "none",
-  "response": "<plain text reply here>"
-}
-
 ## RULES
 - Output must be valid, parseable JSON
 - String values must escape newlines as \\n and quotes as \\"
 - Do not include any text outside the JSON object
 - The mermaid_code value must always include the <<<MERMAID_CODE_START>>> and <<<MERMAID_CODE_END>>> markers
-- When in doubt about whether a visual is needed, prefer "none" over generating an unnecessary image
 """
 
 def classify_and_generate(user_text):
@@ -107,7 +98,7 @@ def classify_and_generate(user_text):
 
     system_prompt = (PROMPT)
     
-    full_prompt = f"{system_prompt}\nUser input: {user_text}\n"
+    full_prompt = f"{system_prompt}\nUser input: {sanitize_text(user_text)}\n"
     response = send_prompt(full_prompt)
     # Log raw response for debugging to a file and print delimiters to stdout so
     # the exact LLM output can be inspected when parsing fails.
@@ -155,6 +146,17 @@ def classify_and_generate(user_text):
     except Exception as e:
         print(f"Error parsing LLM response: {e}\nRaw response: {response}")
         return None
+
+def sanitize_text(text):
+  """
+  Cleans the input text, keeping only pure text (removes non-printable characters and excessive whitespace).
+  """
+  import string
+  # Remove non-printable characters
+  text = ''.join(c for c in text if c in string.printable)
+  # Replace all whitespace (including newlines, tabs) with a single space
+  text = ' '.join(text.split())
+  return text
 
 if __name__ == "__main__":
     if len(sys.argv) < 2:

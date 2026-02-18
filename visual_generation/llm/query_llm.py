@@ -9,16 +9,24 @@ import requests
 import sys
 import json
 
-OLLAMA_API_URL = "http://localhost:11434/api/generate"  # Default Ollama endpoint
-MODEL = "llama3.1:8b"
+import os
+from openai import OpenAI
 
-def send_prompt(prompt: str, model: str = None, base_url: str = OLLAMA_API_URL):
+
+import sys
+import os
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
+# Import config variables
+from config import OLLAMA_API_URL, OLLAMA_MODEL, DASHSCOPE_API_KEY, DASHSCOPE_BASE_URL, DASHSCOPE_CHAT_MODEL
+
+def send_ollama_prompt(prompt: str, model: str = OLLAMA_MODEL, base_url: str = OLLAMA_API_URL):
     """Send a raw prompt string to the Ollama API and return the unified text response.
 
     This function keeps model selection centralized (uses `MODEL` by default) and
     returns a concatenated text response to simplify callers.
     """
-    use_model = model if model is not None else MODEL
+    use_model = model if model is not None else OLLAMA_MODEL
     data = {
         "model": use_model,
         "prompt": prompt,
@@ -42,9 +50,42 @@ def send_prompt(prompt: str, model: str = None, base_url: str = OLLAMA_API_URL):
                 return "".join(parts)
     return json.dumps(data, ensure_ascii=False)
 
+
+def send_alibaba_prompt(messages, model=DASHSCOPE_CHAT_MODEL, api_key=DASHSCOPE_API_KEY, base_url=DASHSCOPE_BASE_URL):
+    """Send a chat prompt to Alibaba Cloud's Model Studio (DashScope) using OpenAI-compatible API."""
+    
+    if not api_key:
+        raise ValueError("DASHSCOPE_API_KEY environment variable not set and no api_key provided.")
+    
+    client = OpenAI(api_key=api_key, base_url=base_url)
+    completion = client.chat.completions.create(
+        model=model,
+        messages=messages,
+    )
+    return completion.choices[0].message.content if completion.choices else completion.model_dump_json()
+
+
+def send_prompt(prompt, llm_type="alibaba", **kwargs):
+    """Dispatch prompt to the specified LLM type ('ollama' or 'alibaba')."""
+    if llm_type == "ollama":
+        return send_ollama_prompt(prompt, **kwargs)
+    elif llm_type == "alibaba":
+        # Alibaba expects a list of messages, not a string prompt
+        if isinstance(prompt, str):
+            messages = [
+                {"role": "user", "content": prompt},
+            ]
+        else:
+            messages = prompt
+        return send_alibaba_prompt(messages, **kwargs)
+    else:
+        raise ValueError(f"Unknown llm_type: {llm_type}")
+
+
 if __name__ == "__main__":
     if len(sys.argv) < 2:
-        print("Usage: python query_llm.py <user_input>")
+        print("Usage: python query_llm.py <user_input> [llm_type]")
         sys.exit(1)
     user_input = sys.argv[1]
-    print(send_prompt(user_input))
+    llm_type = sys.argv[2] if len(sys.argv) > 2 else "alibaba"
+    print(send_prompt(user_input, llm_type=llm_type))

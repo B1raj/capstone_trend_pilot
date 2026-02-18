@@ -9,6 +9,21 @@ import subprocess
 import sys
 import os
 
+
+def sanitize_mermaid_code(mermaid_code: str) -> str:
+    """
+    Sanitize Mermaid code string for rendering.
+    - Converts escaped newlines (\\n) to real newlines.
+    - Strips leading/trailing whitespace.
+    - Ensures consistent line endings.
+    """
+    if not isinstance(mermaid_code, str):
+        return ""
+    code = mermaid_code.replace("\\n", "\n")
+    code = code.replace("\r\n", "\n").replace("\r", "\n")
+    code = code.strip()
+    return code
+
 def render_mermaid(mermaid_code: str, output_path: str, format: str = "svg"):
     """
     Render Mermaid code to an image file using Mermaid CLI.
@@ -17,9 +32,10 @@ def render_mermaid(mermaid_code: str, output_path: str, format: str = "svg"):
         output_path: Path to save the rendered image.
         format: 'svg' or 'png'.
     """
+    sanitized_code = sanitize_mermaid_code(mermaid_code)
     temp_input = "temp_diagram.mmd"
     with open(temp_input, "w", encoding="utf-8") as f:
-        f.write(mermaid_code)
+        f.write(sanitized_code)
     try:
         # Try to use full path to mmdc if available
         mmdc_path = os.environ.get("MMDC_PATH")
@@ -48,9 +64,9 @@ def render_mermaid(mermaid_code: str, output_path: str, format: str = "svg"):
         print(f"Diagram saved to {output_path}")
     except Exception as e:
         print(f"Error rendering diagram: {e}")
-    finally:
-        if os.path.exists(temp_input):
-            os.remove(temp_input)
+    # finally:
+    #     if os.path.exists(temp_input):
+    #         os.remove(temp_input)
 
 if __name__ == "__main__":
     if len(sys.argv) < 3:
