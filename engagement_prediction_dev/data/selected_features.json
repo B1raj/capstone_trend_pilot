@@ -1,153 +1,163 @@
 {
-  "n_features_selected": 81,
+  "n_features_selected": 88,
   "selected_features": [
-    "comments_per_word",
+    "influencer_avg_comments",
     "reactions_per_sentiment",
-    "influencer_std_reactions",
+    "influencer_avg_engagement",
     "comments_vs_influencer_avg",
-    "has_aspirational",
-    "followers",
-    "ner_location_count",
     "reactions_vs_influencer_avg",
-    "comment_to_reaction_ratio",
-    "readability_flesch_kincaid",
-    "has_location_mention",
-    "text_difficult_words_count",
+    "influencer_total_engagement",
+    "reactions_per_word",
+    "comments_per_word",
     "sentiment_compound",
-    "ner_total_entities",
-    "text_lexical_diversity",
-    "text_avg_sentence_length",
-    "power_pattern_score",
-    "ner_product_count",
-    "style_quote_marks",
-    "style_question_marks",
-    "style_number_count",
-    "topic_count",
-    "style_has_question",
+    "text_difficult_words_count",
+    "total_engagement_elements",
+    "readability_flesch_kincaid",
+    "comment_to_reaction_ratio",
     "base_score_capped",
-    "influencer_std_comments",
-    "ner_date_count",
-    "sentiment_x_readability",
-    "length_score",
-    "has_personal_story",
-    "style_all_caps_words",
-    "has_contrast",
-    "has_adversity_learning",
-    "topic_leadership",
-    "has_vulnerability",
-    "topic_career",
-    "has_family",
-    "ner_org_count",
-    "style_parentheses_count",
-    "style_has_numbers",
-    "has_transformation",
-    "mention_count",
-    "ner_money_count",
-    "ner_person_count",
+    "text_lexical_diversity",
     "influencer_avg_sentiment",
-    "hashtag_count_extracted",
-    "influencer_avg_base_score",
-    "has_org_mention",
-    "has_direct_address",
-    "num_hashtags",
-    "promotional_penalty",
-    "is_multi_topic",
-    "has_entities",
-    "topic_personal_dev",
-    "topic_tech",
-    "topic_finance",
-    "influencer_post_count",
-    "style_exclamation_marks",
+    "influencer_std_comments",
+    "readability_gunning_fog",
+    "sentence_count",
+    "text_avg_sentence_length",
+    "topic_count",
+    "influencer_std_reactions",
+    "sentiment_x_readability",
+    "ner_location_count",
+    "style_question_marks",
+    "ner_org_count",
     "style_has_parentheses",
+    "influencer_avg_base_score",
+    "followers",
+    "ner_person_count",
+    "ner_date_count",
+    "influencer_consistency_reactions",
+    "unique_emoji_count",
+    "hashtag_count_extracted",
+    "style_quote_marks",
+    "has_aspirational",
+    "has_location_mention",
+    "length_score",
+    "emoji_count",
+    "is_multi_topic",
+    "style_parentheses_count",
+    "has_contrast",
+    "style_all_caps_words",
+    "influencer_post_count",
+    "has_personal_story",
+    "style_emoji_count",
     "style_has_emoji",
     "style_has_all_caps",
-    "influencer_consistency_reactions",
-    "style_emoji_count",
+    "style_number_count",
+    "has_direct_address",
+    "topic_tech",
+    "style_exclamation_marks",
+    "has_family",
+    "topic_personal_dev",
+    "style_has_question",
+    "link_penalty_score",
+    "ner_money_count",
+    "has_transformation",
     "has_person_mention",
-    "topic_business",
-    "has_value_promise",
-    "style_has_exclamation",
-    "has_specific_numbers",
-    "hook_x_power_score",
-    "hook_score",
-    "url_count",
-    "has_recency_hook",
     "style_bullet_count",
-    "style_has_bullets",
-    "has_external_link",
+    "url_count",
+    "style_has_numbers",
+    "has_vulnerability",
+    "topic_business",
+    "has_specific_numbers",
+    "has_value_promise",
+    "mention_count",
+    "style_has_exclamation",
+    "topic_finance",
+    "has_adversity_learning",
+    "topic_leadership",
+    "topic_career",
+    "ner_product_count",
     "style_has_quotes",
-    "has_specific_time_content",
-    "has_underdog",
+    "has_entities",
+    "link_spam_penalty",
+    "style_has_bullets",
+    "is_low_effort_link",
+    "is_promotional",
     "has_hidden_truth",
+    "hook_x_power_score",
+    "has_org_mention",
+    "hook_score",
     "ner_event_count",
     "has_announcement_hook",
-    "is_link_spam"
+    "has_specific_time_content",
+    "has_recency_hook",
+    "has_underdog"
   ],
   "features_by_category": {
     "base_formula": [
-      "power_pattern_score",
       "base_score_capped",
-      "length_score",
       "influencer_avg_base_score",
-      "promotional_penalty",
+      "length_score",
+      "link_penalty_score",
+      "link_spam_penalty",
       "hook_x_power_score",
-      "hook_score",
-      "is_link_spam"
+      "hook_score"
     ],
     "nlp": [
-      "ner_location_count",
-      "readability_flesch_kincaid",
-      "text_difficult_words_count",
       "sentiment_compound",
-      "ner_total_entities",
+      "text_difficult_words_count",
+      "readability_flesch_kincaid",
       "text_lexical_diversity",
+      "readability_gunning_fog",
       "text_avg_sentence_length",
-      "ner_product_count",
-      "style_quote_marks",
-      "style_question_marks",
-      "style_number_count",
-      "style_has_question",
-      "ner_date_count",
       "sentiment_x_readability",
-      "style_all_caps_words",
+      "ner_location_count",
+      "style_question_marks",
       "ner_org_count",
-      "style_parentheses_count",
-      "style_has_numbers",
-      "ner_money_count",
-      "ner_person_count",
-      "style_exclamation_marks",
       "style_has_parentheses",
+      "ner_person_count",
+      "ner_date_count",
+      "style_quote_marks",
+      "style_parentheses_count",
+      "style_all_caps_words",
+      "style_emoji_count",
       "style_has_emoji",
       "style_has_all_caps",
-      "style_emoji_count",
-      "style_has_exclamation",
+      "style_number_count",
+      "style_exclamation_marks",
+      "style_has_question",
+      "ner_money_count",
       "style_bullet_count",
-      "style_has_bullets",
+      "style_has_numbers",
+      "style_has_exclamation",
+      "ner_product_count",
       "style_has_quotes",
+      "style_has_bullets",
       "ner_event_count"
     ],
     "topic": [
       "topic_count",
-      "topic_leadership",
-      "topic_career",
-      "topic_personal_dev",
       "topic_tech",
+      "topic_personal_dev",
+      "topic_business",
       "topic_finance",
-      "topic_business"
+      "topic_leadership",
+      "topic_career"
     ],
     "influencer": [
-      "influencer_std_reactions",
-      "influencer_std_comments",
+      "influencer_avg_comments",
+      "influencer_avg_engagement",
+      "influencer_total_engagement",
       "influencer_avg_sentiment",
+      "influencer_std_comments",
+      "influencer_std_reactions",
       "influencer_avg_base_score",
-      "influencer_post_count",
-      "influencer_consistency_reactions"
+      "influencer_consistency_reactions",
+      "influencer_post_count"
     ],
     "derived": [
-      "comments_per_word",
       "reactions_per_sentiment",
       "comments_vs_influencer_avg",
       "reactions_vs_influencer_avg",
+      "reactions_per_word",
+      "comments_per_word",
       "comment_to_reaction_ratio",
       "sentiment_x_readability",
       "hook_x_power_score"
@@ -155,551 +165,586 @@
   },
   "feature_importance": [
     {
-      "feature": "comments_per_word",
-      "importance_reactions": 0.2285113818719427,
-      "importance_comments": 0.8562165958387393,
-      "avg_importance": 0.542363988855341
+      "feature": "influencer_avg_comments",
+      "importance_reactions": 0.002682296919263095,
+      "importance_comments": 0.8899179239605226,
+      "avg_importance": 0.44630011043989287
     },
     {
       "feature": "reactions_per_sentiment",
-      "importance_reactions": 0.4974730500376214,
-      "importance_comments": 0.07414953281219396,
-      "avg_importance": 0.2858112914249077
+      "importance_reactions": 0.6113714761381911,
+      "importance_comments": 0.012387966966198897,
+      "avg_importance": 0.311879721552195
     },
     {
-      "feature": "influencer_std_reactions",
-      "importance_reactions": 0.23955172745144593,
-      "importance_comments": 0.009973053833048296,
-      "avg_importance": 0.12476239064224712
+      "feature": "influencer_avg_engagement",
+      "importance_reactions": 0.33858207172516325,
+      "importance_comments": 0.0009724942929194573,
+      "avg_importance": 0.16977728300904135
     },
     {
       "feature": "comments_vs_influencer_avg",
-      "importance_reactions": 0.0036666018515228295,
-      "importance_comments": 0.004281085607127648,
-      "avg_importance": 0.0039738437293252386
-    },
-    {
-      "feature": "has_aspirational",
-      "importance_reactions": 0.0038199175272419315,
-      "importance_comments": 0.0025059258931818705,
-      "avg_importance": 0.003162921710211901
-    },
-    {
-      "feature": "followers",
-      "importance_reactions": 0.00012320908263282083,
-      "importance_comments": 0.006165135644427075,
-      "avg_importance": 0.0031441723635299477
-    },
-    {
-      "feature": "ner_location_count",
-      "importance_reactions": 0.0003362997847518996,
-      "importance_comments": 0.005274417978224901,
-      "avg_importance": 0.0028053588814884005
+      "importance_reactions": 0.0019141070813663856,
+      "importance_comments": 0.0311393168775042,
+      "avg_importance": 0.016526711979435293
     },
     {
       "feature": "reactions_vs_influencer_avg",
-      "importance_reactions": 0.004859036379731208,
-      "importance_comments": 0.0006683998348827148,
-      "avg_importance": 0.0027637181073069616
+      "importance_reactions": 0.001791819820657614,
+      "importance_comments": 0.01771498924362774,
+      "avg_importance": 0.009753404532142677
     },
     {
-      "feature": "comment_to_reaction_ratio",
-      "importance_reactions": 0.0033589014949583214,
-      "importance_comments": 0.0013388827428883864,
-      "avg_importance": 0.002348892118923354
+      "feature": "influencer_total_engagement",
+      "importance_reactions": 0.014251591739429997,
+      "importance_comments": 0.0006151312150142003,
+      "avg_importance": 0.007433361477222099
     },
     {
-      "feature": "readability_flesch_kincaid",
-      "importance_reactions": 0.0014810481232429193,
-      "importance_comments": 0.003111164003959979,
-      "avg_importance": 0.002296106063601449
+      "feature": "reactions_per_word",
+      "importance_reactions": 0.0009765400520790802,
+      "importance_comments": 0.00864927823310422,
+      "avg_importance": 0.00481290914259165
     },
     {
-      "feature": "has_location_mention",
-      "importance_reactions": 0.0004170399758852407,
-      "importance_comments": 0.003946900583234636,
-      "avg_importance": 0.0021819702795599382
-    },
-    {
-      "feature": "text_difficult_words_count",
-      "importance_reactions": 0.0011240839036363924,
-      "importance_comments": 0.0025102970044726773,
-      "avg_importance": 0.0018171904540545349
+      "feature": "comments_per_word",
+      "importance_reactions": 0.0031797525803361334,
+      "importance_comments": 0.004894083410213048,
+      "avg_importance": 0.004036917995274591
     },
     {
       "feature": "sentiment_compound",
-      "importance_reactions": 0.0016593707177679914,
-      "importance_comments": 0.0017899982146764443,
-      "avg_importance": 0.0017246844662222177
+      "importance_reactions": 0.0033798781237938647,
+      "importance_comments": 0.0008123826025269309,
+      "avg_importance": 0.002096130363160398
     },
     {
-      "feature": "ner_total_entities",
-      "importance_reactions": 0.0009535506736112138,
-      "importance_comments": 0.0023634249812871893,
-      "avg_importance": 0.0016584878274492015
+      "feature": "text_difficult_words_count",
+      "importance_reactions": 0.0017587633766250475,
+      "importance_comments": 0.0019892461989049347,
+      "avg_importance": 0.0018740047877649911
     },
     {
-      "feature": "text_lexical_diversity",
-      "importance_reactions": 0.0002084586520690676,
-      "importance_comments": 0.002537163348779443,
-      "avg_importance": 0.0013728110004242553
+      "feature": "total_engagement_elements",
+      "importance_reactions": 0.000103470149137485,
+      "importance_comments": 0.0035372799670589433,
+      "avg_importance": 0.0018203750580982141
     },
     {
-      "feature": "text_avg_sentence_length",
-      "importance_reactions": 0.00119346060445631,
-      "importance_comments": 0.0014435657528059722,
-      "avg_importance": 0.001318513178631141
+      "feature": "readability_flesch_kincaid",
+      "importance_reactions": 0.0019711330258375564,
+      "importance_comments": 0.001586254845503381,
+      "avg_importance": 0.0017786939356704686
     },
     {
-      "feature": "power_pattern_score",
-      "importance_reactions": 0.0006886578448557378,
-      "importance_comments": 0.0017458529036839749,
-      "avg_importance": 0.0012172553742698564
-    },
-    {
-      "feature": "ner_product_count",
-      "importance_reactions": 6.673273877577428e-06,
-      "importance_comments": 0.001997346107978655,
-      "avg_importance": 0.0010020096909281163
-    },
-    {
-      "feature": "style_quote_marks",
-      "importance_reactions": 0.00016097890005304185,
-      "importance_comments": 0.0017013718935401788,
-      "avg_importance": 0.0009311753967966103
-    },
-    {
-      "feature": "style_question_marks",
-      "importance_reactions": 0.0002600948536164474,
-      "importance_comments": 0.001550984983875276,
-      "avg_importance": 0.0009055399187458616
-    },
-    {
-      "feature": "style_number_count",
-      "importance_reactions": 0.0014937073928651958,
-      "importance_comments": 0.0002673027861914264,
-      "avg_importance": 0.0008805050895283112
-    },
-    {
-      "feature": "topic_count",
-      "importance_reactions": 0.0013155159196273662,
-      "importance_comments": 0.00033522390225218616,
-      "avg_importance": 0.0008253699109397761
-    },
-    {
-      "feature": "style_has_question",
-      "importance_reactions": 8.889567325868178e-06,
-      "importance_comments": 0.0016020851926329977,
-      "avg_importance": 0.0008054873799794329
+      "feature": "comment_to_reaction_ratio",
+      "importance_reactions": 0.001528898632509398,
+      "importance_comments": 0.0019521071449818733,
+      "avg_importance": 0.0017405028887456358
     },
     {
       "feature": "base_score_capped",
-      "importance_reactions": 0.00040976836408208373,
-      "importance_comments": 0.0010555131774287489,
-      "avg_importance": 0.0007326407707554163
+      "importance_reactions": 0.00022705206295179628,
+      "importance_comments": 0.002838199960224673,
+      "avg_importance": 0.0015326260115882345
     },
     {
-      "feature": "influencer_std_comments",
-      "importance_reactions": 1.4770490143241511e-05,
-      "importance_comments": 0.0012318870216530492,
-      "avg_importance": 0.0006233287558981453
-    },
-    {
-      "feature": "ner_date_count",
-      "importance_reactions": 0.0009540158544118313,
-      "importance_comments": 0.0002663297810766671,
-      "avg_importance": 0.0006101728177442492
-    },
-    {
-      "feature": "sentiment_x_readability",
-      "importance_reactions": 0.0001375758021947586,
-      "importance_comments": 0.0010065039559845656,
-      "avg_importance": 0.0005720398790896621
-    },
-    {
-      "feature": "length_score",
-      "importance_reactions": 5.351882880673992e-06,
-      "importance_comments": 0.0010935018973169846,
-      "avg_importance": 0.0005494268900988293
-    },
-    {
-      "feature": "has_personal_story",
-      "importance_reactions": 0.0010499653548593588,
-      "importance_comments": 1.1952372387632966e-05,
-      "avg_importance": 0.000530958863623496
-    },
-    {
-      "feature": "style_all_caps_words",
-      "importance_reactions": 0.0005369812351757667,
-      "importance_comments": 0.0005153248362051343,
-      "avg_importance": 0.0005261530356904505
-    },
-    {
-      "feature": "has_contrast",
-      "importance_reactions": 8.955003546777132e-05,
-      "importance_comments": 0.0008129695301183322,
-      "avg_importance": 0.00045125978279305176
-    },
-    {
-      "feature": "has_adversity_learning",
-      "importance_reactions": 7.992327165911313e-05,
-      "importance_comments": 0.0007074746608111726,
-      "avg_importance": 0.0003936989662351429
-    },
-    {
-      "feature": "topic_leadership",
-      "importance_reactions": 0.00013328513756180046,
-      "importance_comments": 0.0006537299115489591,
-      "avg_importance": 0.0003935075245553798
-    },
-    {
-      "feature": "has_vulnerability",
-      "importance_reactions": 0.0006199788854605742,
-      "importance_comments": 0.00012590566781238555,
-      "avg_importance": 0.00037294227663647986
-    },
-    {
-      "feature": "topic_career",
-      "importance_reactions": 0.00020749283158804507,
-      "importance_comments": 0.0004291327798502268,
-      "avg_importance": 0.00031831280571913595
-    },
-    {
-      "feature": "has_family",
-      "importance_reactions": 0.00015960809415371515,
-      "importance_comments": 0.00047066311465190745,
-      "avg_importance": 0.0003151356044028113
-    },
-    {
-      "feature": "ner_org_count",
-      "importance_reactions": 0.00017483637772199622,
-      "importance_comments": 0.00044719489482323834,
-      "avg_importance": 0.00031101563627261727
-    },
-    {
-      "feature": "style_parentheses_count",
-      "importance_reactions": 0.00021483671648884768,
-      "importance_comments": 0.0003995997054976266,
-      "avg_importance": 0.00030721821099323715
-    },
-    {
-      "feature": "style_has_numbers",
-      "importance_reactions": 0.00054589489190986,
-      "importance_comments": 2.0462364458184743e-05,
-      "avg_importance": 0.00028317862818402236
-    },
-    {
-      "feature": "has_transformation",
-      "importance_reactions": 0.00026427191564857563,
-      "importance_comments": 0.0002643789583087926,
-      "avg_importance": 0.00026432543697868413
-    },
-    {
-      "feature": "mention_count",
-      "importance_reactions": 5.3515875006250987e-05,
-      "importance_comments": 0.0004345142895184111,
-      "avg_importance": 0.00024401508226233105
-    },
-    {
-      "feature": "ner_money_count",
-      "importance_reactions": 1.3372668037749406e-05,
-      "importance_comments": 0.00041397699458550416,
-      "avg_importance": 0.00021367483131162678
-    },
-    {
-      "feature": "ner_person_count",
-      "importance_reactions": 0.00019466645541682225,
-      "importance_comments": 0.00019856653259814526,
-      "avg_importance": 0.00019661649400748375
+      "feature": "text_lexical_diversity",
+      "importance_reactions": 0.001200696679987531,
+      "importance_comments": 0.0011112944182382004,
+      "avg_importance": 0.0011559955491128658
     },
     {
       "feature": "influencer_avg_sentiment",
-      "importance_reactions": 3.814806317380229e-06,
-      "importance_comments": 0.00036696493157542846,
-      "avg_importance": 0.00018538986894640436
+      "importance_reactions": 0.0011410675553473002,
+      "importance_comments": 0.0011283708896490093,
+      "avg_importance": 0.0011347192224981546
     },
     {
-      "feature": "hashtag_count_extracted",
-      "importance_reactions": 2.7673145350699e-05,
-      "importance_comments": 0.0002867662352179772,
-      "avg_importance": 0.0001572196902843381
+      "feature": "influencer_std_comments",
+      "importance_reactions": 0.00010533272520084592,
+      "importance_comments": 0.0019778323008750203,
+      "avg_importance": 0.0010415825130379332
     },
     {
-      "feature": "influencer_avg_base_score",
-      "importance_reactions": 0.0001480269605547985,
-      "importance_comments": 0.00011293503912150632,
-      "avg_importance": 0.00013048099983815241
+      "feature": "readability_gunning_fog",
+      "importance_reactions": 0.0003471892273864075,
+      "importance_comments": 0.0015927434274873797,
+      "avg_importance": 0.0009699663274368936
     },
     {
-      "feature": "has_org_mention",
-      "importance_reactions": 0.00019673890700396812,
-      "importance_comments": 1.2355188471423368e-05,
-      "avg_importance": 0.00010454704773769574
+      "feature": "sentence_count",
+      "importance_reactions": 0.000628346024964477,
+      "importance_comments": 0.0011055275495573638,
+      "avg_importance": 0.0008669367872609204
     },
     {
-      "feature": "has_direct_address",
-      "importance_reactions": 3.935738164335115e-06,
-      "importance_comments": 0.00020177017208876965,
-      "avg_importance": 0.00010285295512655239
+      "feature": "text_avg_sentence_length",
+      "importance_reactions": 0.0008981382831844383,
+      "importance_comments": 0.0008068717860986844,
+      "avg_importance": 0.0008525050346415614
     },
     {
-      "feature": "num_hashtags",
-      "importance_reactions": 0.0001921437029811919,
-      "importance_comments": 6.493117066962993e-07,
-      "avg_importance": 9.63965073439441e-05
+      "feature": "topic_count",
+      "importance_reactions": 0.001048117712501484,
+      "importance_comments": 0.000619267761803759,
+      "avg_importance": 0.0008336927371526215
     },
     {
-      "feature": "promotional_penalty",
-      "importance_reactions": 5.806672066543299e-05,
-      "importance_comments": 0.00013333372389854237,
-      "avg_importance": 9.570022228198768e-05
+      "feature": "influencer_std_reactions",
+      "importance_reactions": 0.0011733177492509366,
+      "importance_comments": 0.0002797882645501658,
+      "avg_importance": 0.0007265530069005512
     },
     {
-      "feature": "is_multi_topic",
-      "importance_reactions": 0.00010335388139981267,
-      "importance_comments": 4.569609017853961e-05,
-      "avg_importance": 7.452498578917614e-05
+      "feature": "sentiment_x_readability",
+      "importance_reactions": 0.0008381219966258715,
+      "importance_comments": 0.0004680354969999735,
+      "avg_importance": 0.0006530787468129226
     },
     {
-      "feature": "has_entities",
-      "importance_reactions": 2.9737513794575813e-06,
-      "importance_comments": 0.00011912983003492358,
-      "avg_importance": 6.105179070719058e-05
+      "feature": "ner_location_count",
+      "importance_reactions": 0.00020086146331682627,
+      "importance_comments": 0.0011001067027598657,
+      "avg_importance": 0.000650484083038346
     },
     {
-      "feature": "topic_personal_dev",
-      "importance_reactions": 5.076834988910632e-05,
-      "importance_comments": 7.07347954980962e-05,
-      "avg_importance": 6.075157269360126e-05
+      "feature": "style_question_marks",
+      "importance_reactions": 0.0005044480569939625,
+      "importance_comments": 0.0007019111075931081,
+      "avg_importance": 0.0006031795822935353
     },
     {
-      "feature": "topic_tech",
-      "importance_reactions": 8.089025970548492e-05,
-      "importance_comments": 3.8694542902742584e-05,
-      "avg_importance": 5.979240130411375e-05
-    },
-    {
-      "feature": "topic_finance",
-      "importance_reactions": 6.689479816465388e-05,
-      "importance_comments": 5.048862450405862e-05,
-      "avg_importance": 5.869171133435625e-05
-    },
-    {
-      "feature": "influencer_post_count",
-      "importance_reactions": 8.426260124089561e-06,
-      "importance_comments": 0.00010543070320852186,
-      "avg_importance": 5.692848166630571e-05
-    },
-    {
-      "feature": "style_exclamation_marks",
-      "importance_reactions": 7.737029579330405e-05,
-      "importance_comments": 2.8690306293564952e-05,
-      "avg_importance": 5.3030301043434497e-05
+      "feature": "ner_org_count",
+      "importance_reactions": 0.0009777926392068083,
+      "importance_comments": 0.00018500607283715402,
+      "avg_importance": 0.0005813993560219811
     },
     {
       "feature": "style_has_parentheses",
-      "importance_reactions": 0.00010461319693819027,
-      "importance_comments": 7.415264495910273e-07,
-      "avg_importance": 5.267736169389065e-05
+      "importance_reactions": 0.0008479142566152908,
+      "importance_comments": 0.00029787534953543723,
+      "avg_importance": 0.000572894803075364
     },
     {
-      "feature": "style_has_emoji",
-      "importance_reactions": 7.247657841408727e-05,
-      "importance_comments": 2.115866762866959e-05,
-      "avg_importance": 4.6817623021378434e-05
+      "feature": "influencer_avg_base_score",
+      "importance_reactions": 0.00017350174767455858,
+      "importance_comments": 0.0009007621919330124,
+      "avg_importance": 0.0005371319698037855
     },
     {
-      "feature": "style_has_all_caps",
-      "importance_reactions": 9.07994136805444e-05,
-      "importance_comments": 1.9874163159126816e-06,
-      "avg_importance": 4.6393414998228546e-05
+      "feature": "followers",
+      "importance_reactions": 0.0004330269245905298,
+      "importance_comments": 0.0004654927839103487,
+      "avg_importance": 0.00044925985425043924
+    },
+    {
+      "feature": "ner_person_count",
+      "importance_reactions": 0.00035730758973639715,
+      "importance_comments": 0.0004667667031381049,
+      "avg_importance": 0.000412037146437251
+    },
+    {
+      "feature": "ner_date_count",
+      "importance_reactions": 8.16221337340956e-05,
+      "importance_comments": 0.0007163463625669519,
+      "avg_importance": 0.00039898424815052374
     },
     {
       "feature": "influencer_consistency_reactions",
-      "importance_reactions": 4.418787732493927e-05,
-      "importance_comments": 4.844379665383961e-05,
-      "avg_importance": 4.631583698938944e-05
+      "importance_reactions": 0.000286023222491436,
+      "importance_comments": 0.00045521211804987985,
+      "avg_importance": 0.00037061767027065794
+    },
+    {
+      "feature": "unique_emoji_count",
+      "importance_reactions": 0.00021281396087851755,
+      "importance_comments": 0.0005278431907126034,
+      "avg_importance": 0.0003703285757955605
+    },
+    {
+      "feature": "hashtag_count_extracted",
+      "importance_reactions": 0.0006103797442900457,
+      "importance_comments": 0.00010286124064992475,
+      "avg_importance": 0.00035662049246998524
+    },
+    {
+      "feature": "style_quote_marks",
+      "importance_reactions": 0.00024362501641016194,
+      "importance_comments": 0.00046274152281854005,
+      "avg_importance": 0.000353183269614351
+    },
+    {
+      "feature": "has_aspirational",
+      "importance_reactions": 0.0005513895173656188,
+      "importance_comments": 9.374340206309354e-05,
+      "avg_importance": 0.00032256645971435614
+    },
+    {
+      "feature": "has_location_mention",
+      "importance_reactions": 0.00012933257912857093,
+      "importance_comments": 0.00047089791395933835,
+      "avg_importance": 0.0003001152465439546
+    },
+    {
+      "feature": "length_score",
+      "importance_reactions": 0.00036913930254158704,
+      "importance_comments": 0.0001774727398727543,
+      "avg_importance": 0.00027330602120717064
+    },
+    {
+      "feature": "emoji_count",
+      "importance_reactions": 0.0001287852700967428,
+      "importance_comments": 0.0004066615197509426,
+      "avg_importance": 0.0002677233949238427
+    },
+    {
+      "feature": "is_multi_topic",
+      "importance_reactions": 7.267786230306155e-05,
+      "importance_comments": 0.0003843207742344239,
+      "avg_importance": 0.00022849931826874275
+    },
+    {
+      "feature": "style_parentheses_count",
+      "importance_reactions": 0.0001882615298056281,
+      "importance_comments": 0.00026401839596962767,
+      "avg_importance": 0.0002261399628876279
+    },
+    {
+      "feature": "has_contrast",
+      "importance_reactions": 0.00043245711841063657,
+      "importance_comments": 6.7987737039528765e-06,
+      "avg_importance": 0.00021962794605729472
+    },
+    {
+      "feature": "style_all_caps_words",
+      "importance_reactions": 0.00012315189473400363,
+      "importance_comments": 0.00028181338917864656,
+      "avg_importance": 0.0002024826419563251
+    },
+    {
+      "feature": "influencer_post_count",
+      "importance_reactions": 0.00020634932810891491,
+      "importance_comments": 0.00019761474176664763,
+      "avg_importance": 0.00020198203493778126
+    },
+    {
+      "feature": "has_personal_story",
+      "importance_reactions": 4.5171659590524226e-05,
+      "importance_comments": 0.00033325247368803555,
+      "avg_importance": 0.00018921206663927989
     },
     {
       "feature": "style_emoji_count",
-      "importance_reactions": 5.461352281185966e-05,
-      "importance_comments": 3.241751665352757e-05,
-      "avg_importance": 4.3515519732693615e-05
+      "importance_reactions": 0.0002563032093178197,
+      "importance_comments": 7.809442152704171e-05,
+      "avg_importance": 0.0001671988154224307
+    },
+    {
+      "feature": "style_has_emoji",
+      "importance_reactions": 0.0001233095765731818,
+      "importance_comments": 0.0001719731663281597,
+      "avg_importance": 0.00014764137145067074
+    },
+    {
+      "feature": "style_has_all_caps",
+      "importance_reactions": 0.0002409178215751438,
+      "importance_comments": 3.5459709962338404e-05,
+      "avg_importance": 0.0001381887657687411
+    },
+    {
+      "feature": "style_number_count",
+      "importance_reactions": 3.085412125693792e-05,
+      "importance_comments": 0.0002439778459277326,
+      "avg_importance": 0.00013741598359233526
+    },
+    {
+      "feature": "has_direct_address",
+      "importance_reactions": 1.1247393426243807e-05,
+      "importance_comments": 0.00026230745788020254,
+      "avg_importance": 0.00013677742565322318
+    },
+    {
+      "feature": "topic_tech",
+      "importance_reactions": 2.0381098120626513e-05,
+      "importance_comments": 0.0002425327788457438,
+      "avg_importance": 0.00013145693848318516
+    },
+    {
+      "feature": "style_exclamation_marks",
+      "importance_reactions": 3.321995068249897e-05,
+      "importance_comments": 0.0001872126642791427,
+      "avg_importance": 0.00011021630748082084
+    },
+    {
+      "feature": "has_family",
+      "importance_reactions": 0.00015121491609230208,
+      "importance_comments": 6.161499316834361e-05,
+      "avg_importance": 0.00010641495463032284
+    },
+    {
+      "feature": "topic_personal_dev",
+      "importance_reactions": 0.0001411236695496421,
+      "importance_comments": 4.262171964891347e-05,
+      "avg_importance": 9.187269459927778e-05
+    },
+    {
+      "feature": "style_has_question",
+      "importance_reactions": 0.0001328971944718761,
+      "importance_comments": 4.7992342436013584e-05,
+      "avg_importance": 9.044476845394484e-05
+    },
+    {
+      "feature": "link_penalty_score",
+      "importance_reactions": 6.410050389922372e-06,
+      "importance_comments": 0.00015830144056596074,
+      "avg_importance": 8.235574547794155e-05
+    },
+    {
+      "feature": "ner_money_count",
+      "importance_reactions": 3.308961081864723e-05,
+      "importance_comments": 0.00010373156818602914,
+      "avg_importance": 6.841058950233818e-05
+    },
+    {
+      "feature": "has_transformation",
+      "importance_reactions": 1.6935592815343506e-05,
+      "importance_comments": 0.0001080393727890421,
+      "avg_importance": 6.24874828021928e-05
     },
     {
       "feature": "has_person_mention",
-      "importance_reactions": 3.12515370895316e-05,
-      "importance_comments": 4.4522889142754634e-05,
-      "avg_importance": 3.788721311614311e-05
-    },
-    {
-      "feature": "topic_business",
-      "importance_reactions": 6.655553204111109e-06,
-      "importance_comments": 5.870955822295978e-05,
-      "avg_importance": 3.268255571353545e-05
-    },
-    {
-      "feature": "has_value_promise",
-      "importance_reactions": 7.621335139105521e-06,
-      "importance_comments": 4.6716242276345936e-05,
-      "avg_importance": 2.7168788707725728e-05
-    },
-    {
-      "feature": "style_has_exclamation",
-      "importance_reactions": 4.013489112228013e-06,
-      "importance_comments": 4.042210487943012e-05,
-      "avg_importance": 2.2217796995829065e-05
-    },
-    {
-      "feature": "has_specific_numbers",
-      "importance_reactions": 2.1374343333362167e-05,
-      "importance_comments": 5.130827088305914e-07,
-      "avg_importance": 1.094371302109638e-05
-    },
-    {
-      "feature": "hook_x_power_score",
-      "importance_reactions": 7.56046628825676e-08,
-      "importance_comments": 1.927786160144599e-05,
-      "avg_importance": 9.676733132164279e-06
-    },
-    {
-      "feature": "hook_score",
-      "importance_reactions": 1.3424104255910155e-07,
-      "importance_comments": 1.634021809068938e-05,
-      "avg_importance": 8.23722956662424e-06
-    },
-    {
-      "feature": "url_count",
-      "importance_reactions": 5.261500850770398e-07,
-      "importance_comments": 1.4091528044703821e-05,
-      "avg_importance": 7.30883906489043e-06
-    },
-    {
-      "feature": "has_recency_hook",
-      "importance_reactions": 5.3246330699245284e-08,
-      "importance_comments": 1.30732228544726e-05,
-      "avg_importance": 6.5632345925859226e-06
+      "importance_reactions": 3.967461384134245e-05,
+      "importance_comments": 8.296420207755699e-05,
+      "avg_importance": 6.131940795944972e-05
     },
     {
       "feature": "style_bullet_count",
-      "importance_reactions": 3.4767322692724517e-06,
-      "importance_comments": 8.005992947774622e-06,
-      "avg_importance": 5.741362608523536e-06
+      "importance_reactions": 2.4122381041616297e-05,
+      "importance_comments": 9.514573910875946e-05,
+      "avg_importance": 5.963406007518788e-05
     },
     {
-      "feature": "style_has_bullets",
-      "importance_reactions": 3.9532289159048265e-06,
-      "importance_comments": 6.4929394847770365e-06,
-      "avg_importance": 5.223084200340931e-06
+      "feature": "url_count",
+      "importance_reactions": 6.0579831632062975e-05,
+      "importance_comments": 5.804141100393818e-05,
+      "avg_importance": 5.9310621318000575e-05
     },
     {
-      "feature": "has_external_link",
-      "importance_reactions": 2.180197632370201e-07,
-      "importance_comments": 9.039560798452021e-06,
-      "avg_importance": 4.628790280844521e-06
+      "feature": "style_has_numbers",
+      "importance_reactions": 1.8933415282549498e-05,
+      "importance_comments": 9.58012483912016e-05,
+      "avg_importance": 5.7367331836875545e-05
+    },
+    {
+      "feature": "has_vulnerability",
+      "importance_reactions": 2.2838815796104248e-05,
+      "importance_comments": 9.014398052454823e-05,
+      "avg_importance": 5.649139816032624e-05
+    },
+    {
+      "feature": "topic_business",
+      "importance_reactions": 8.740382334516285e-06,
+      "importance_comments": 0.00010223683710431455,
+      "avg_importance": 5.548860971941542e-05
+    },
+    {
+      "feature": "has_specific_numbers",
+      "importance_reactions": 7.463476361639186e-05,
+      "importance_comments": 2.8141047953963927e-05,
+      "avg_importance": 5.138790578517789e-05
+    },
+    {
+      "feature": "has_value_promise",
+      "importance_reactions": 1.7962296837854493e-05,
+      "importance_comments": 8.229098714610717e-05,
+      "avg_importance": 5.012664199198083e-05
+    },
+    {
+      "feature": "mention_count",
+      "importance_reactions": 7.47774026683545e-06,
+      "importance_comments": 8.955633307844678e-05,
+      "avg_importance": 4.8517036672641117e-05
+    },
+    {
+      "feature": "style_has_exclamation",
+      "importance_reactions": 4.355877192380754e-06,
+      "importance_comments": 7.642328088145267e-05,
+      "avg_importance": 4.038957903691671e-05
+    },
+    {
+      "feature": "topic_finance",
+      "importance_reactions": 3.217402811904852e-05,
+      "importance_comments": 4.470930472349124e-05,
+      "avg_importance": 3.844166642126988e-05
+    },
+    {
+      "feature": "has_adversity_learning",
+      "importance_reactions": 1.9002456865453965e-05,
+      "importance_comments": 5.2583085969000346e-05,
+      "avg_importance": 3.5792771417227154e-05
+    },
+    {
+      "feature": "topic_leadership",
+      "importance_reactions": 4.824735096766918e-05,
+      "importance_comments": 1.8577502452039368e-05,
+      "avg_importance": 3.341242670985427e-05
+    },
+    {
+      "feature": "topic_career",
+      "importance_reactions": 4.093614557863345e-05,
+      "importance_comments": 2.2933720935595522e-05,
+      "avg_importance": 3.193493325711449e-05
+    },
+    {
+      "feature": "ner_product_count",
+      "importance_reactions": 3.3512050921811647e-06,
+      "importance_comments": 5.788339678746491e-05,
+      "avg_importance": 3.061730093982304e-05
     },
     {
       "feature": "style_has_quotes",
-      "importance_reactions": 4.45634558981803e-07,
-      "importance_comments": 5.207078719748051e-06,
-      "avg_importance": 2.8263566393649273e-06
+      "importance_reactions": 2.190426438879511e-05,
+      "importance_comments": 3.298602319743762e-05,
+      "avg_importance": 2.7445143793116366e-05
     },
     {
-      "feature": "has_specific_time_content",
-      "importance_reactions": 4.0224693534048606e-07,
-      "importance_comments": 1.6355259407273105e-06,
-      "avg_importance": 1.0188864380338983e-06
+      "feature": "has_entities",
+      "importance_reactions": 2.3975198611490107e-06,
+      "importance_comments": 3.436137666449541e-05,
+      "avg_importance": 1.837944826282221e-05
     },
     {
-      "feature": "has_underdog",
-      "importance_reactions": 7.391880160719392e-08,
-      "importance_comments": 1.7814454125100328e-06,
-      "avg_importance": 9.276821070586133e-07
+      "feature": "link_spam_penalty",
+      "importance_reactions": 3.7090266891764142e-06,
+      "importance_comments": 2.4423111457684407e-05,
+      "avg_importance": 1.406606907343041e-05
+    },
+    {
+      "feature": "style_has_bullets",
+      "importance_reactions": 1.7787395315271363e-05,
+      "importance_comments": 1.0300288916472104e-05,
+      "avg_importance": 1.4043842115871733e-05
+    },
+    {
+      "feature": "is_low_effort_link",
+      "importance_reactions": 2.244819557092673e-05,
+      "importance_comments": 4.922601164926368e-06,
+      "avg_importance": 1.3685398367926549e-05
+    },
+    {
+      "feature": "is_promotional",
+      "importance_reactions": 6.247600746648587e-06,
+      "importance_comments": 1.5505779680652707e-05,
+      "avg_importance": 1.0876690213650647e-05
     },
     {
       "feature": "has_hidden_truth",
-      "importance_reactions": 6.158338794118089e-07,
-      "importance_comments": 9.351735206077853e-08,
-      "avg_importance": 3.546756157362937e-07
+      "importance_reactions": 4.445720422784609e-07,
+      "importance_comments": 1.634348219903807e-05,
+      "avg_importance": 8.394027120658265e-06
+    },
+    {
+      "feature": "hook_x_power_score",
+      "importance_reactions": 5.998310544846828e-06,
+      "importance_comments": 8.888264152710031e-06,
+      "avg_importance": 7.44328734877843e-06
+    },
+    {
+      "feature": "has_org_mention",
+      "importance_reactions": 4.355461941483885e-06,
+      "importance_comments": 9.787718876955627e-06,
+      "avg_importance": 7.071590409219756e-06
+    },
+    {
+      "feature": "hook_score",
+      "importance_reactions": 9.771749316317384e-06,
+      "importance_comments": 2.6860882006994023e-06,
+      "avg_importance": 6.228918758508393e-06
     },
     {
       "feature": "ner_event_count",
-      "importance_reactions": 1.4166409715389726e-09,
-      "importance_comments": 2.2805456385786884e-07,
-      "avg_importance": 1.147356024147039e-07
+      "importance_reactions": 7.147252958251042e-06,
+      "importance_comments": 1.5632265056959047e-06,
+      "avg_importance": 4.3552397319734734e-06
     },
     {
       "feature": "has_announcement_hook",
-      "importance_reactions": 7.981461080535227e-11,
-      "importance_comments": 1.6646783516157272e-07,
-      "avg_importance": 8.327382488618904e-08
+      "importance_reactions": 1.311125492043108e-06,
+      "importance_comments": 3.8177080513119753e-07,
+      "avg_importance": 8.464481485871528e-07
     },
     {
-      "feature": "is_link_spam",
-      "importance_reactions": 2.1197149674964033e-08,
-      "importance_comments": 0.0,
-      "avg_importance": 1.0598574837482016e-08
+      "feature": "has_specific_time_content",
+      "importance_reactions": 2.1245898392869322e-07,
+      "importance_comments": 3.234759549954339e-07,
+      "avg_importance": 2.6796746946206353e-07
+    },
+    {
+      "feature": "has_recency_hook",
+      "importance_reactions": 8.088502773217678e-08,
+      "importance_comments": 2.7805453744901637e-07,
+      "avg_importance": 1.794697825905966e-07
+    },
+    {
+      "feature": "has_underdog",
+      "importance_reactions": 3.647175150162686e-08,
+      "importance_comments": 5.0893746066709023e-08,
+      "avg_importance": 4.368274878416794e-08
     }
   ],
   "dropped_high_correlation": [
-    "text_avg_syllables_per_word",
-    "is_low_effort_link",
-    "char_count_original",
-    "reactions_per_word",
-    "influencer_avg_comments",
-    "text_word_count",
-    "power_pattern_count",
-    "char_count_clean",
-    "emoji_count",
-    "base_score",
-    "pattern_density_score",
-    "question_mark_count",
-    "exclamation_mark_count",
-    "influencer_total_engagement",
-    "readability_smog",
-    "text_sentence_count",
-    "readability_gunning_fog",
-    "unique_emoji_count",
-    "influencer_median_comments",
-    "influencer_median_reactions",
-    "link_penalty_score",
-    "total_engagement_elements",
-    "influencer_avg_engagement",
     "readability_ari",
-    "low_effort_link_penalty",
-    "word_count_clean",
-    "is_promotional",
-    "link_spam_penalty",
-    "influencer_avg_reactions",
-    "promotional_score",
+    "char_count_clean",
+    "base_score",
+    "readability_smog",
+    "influencer_median_comments",
     "word_count_original",
-    "sentence_count",
-    "text_syllable_count",
-    "readability_flesch_ease"
+    "text_sentence_count",
+    "promotional_score",
+    "power_pattern_score",
+    "question_mark_count",
+    "is_link_spam",
+    "exclamation_mark_count",
+    "pattern_density_score",
+    "power_pattern_count",
+    "has_external_link",
+    "promotional_penalty",
+    "sentiment_neutral",
+    "text_word_count",
+    "text_avg_syllables_per_word",
+    "low_effort_link_penalty",
+    "readability_flesch_ease",
+    "word_count_clean",
+    "influencer_avg_reactions",
+    "influencer_median_reactions",
+    "num_hashtags",
+    "ner_total_entities",
+    "char_count_original",
+    "text_syllable_count"
   ],
   "dropped_low_variance": [
     "line_break_count",
-    "has_quote_hook_hook",
-    "has_specific_time_hook",
-    "has_belief_transformation_hook",
     "has_contrarian_hook",
-    "has_never_narrative_hook",
-    "has_list_format",
     "has_realization_hook",
+    "has_media",
     "has_carousel",
     "has_image",
     "media_score",
-    "has_media",
     "has_video",
     "video_x_optimal_length",
     "media_x_optimal_length",
+    "has_never_narrative_hook",
+    "has_belief_transformation_hook",
     "sentiment_negative",
-    "sentiment_positive",
-    "feature_density",
-    "sentiment_neutral",
-    "has_everyone_pattern_hook",
+    "has_list_format",
+    "has_specific_time_hook",
     "is_heavy_promo",
+    "has_everyone_pattern_hook",
+    "has_quote_hook_hook",
+    "feature_density",
     "has_cta_question",
+    "sentiment_positive",
     "text_difficult_words_ratio"
   ]
 }

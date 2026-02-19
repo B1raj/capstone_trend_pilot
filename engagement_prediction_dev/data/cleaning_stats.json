@@ -1,51 +1,51 @@
 {
-  "initial_rows": 143,
-  "final_rows": 139,
-  "rows_removed": 4,
-  "removal_percentage": 2.797202797202797,
+  "initial_rows": 786,
+  "final_rows": 772,
+  "rows_removed": 14,
+  "removal_percentage": 1.7811704834605597,
   "duplicates_removed": 0,
   "missing_content": 0,
-  "content_length_outliers_removed": 4,
+  "content_length_outliers_removed": 14,
   "quality_issues_fixed": 0,
   "content_length_stats": {
-    "min": 66.0,
-    "max": 23527.0,
-    "mean": 4011.769230769231,
-    "median": 1960.0,
-    "std": 4102.1563630183855,
-    "1st_percentile": 84.42,
-    "99th_percentile": 15759.920000000004,
-    "too_short_removed": 2,
-    "too_long_removed": 2,
-    "total_removed": 4
+    "min": 12.0,
+    "max": 27299.0,
+    "mean": 2107.8409669211196,
+    "median": 1136.0,
+    "std": 2775.6798960802894,
+    "1st_percentile": 26.0,
+    "99th_percentile": 13184.549999999994,
+    "too_short_removed": 6,
+    "too_long_removed": 8,
+    "total_removed": 14
   },
   "outlier_stats": {
     "reactions": {
       "min": 1.0,
-      "max": 7068.0,
-      "mean": 464.978417266187,
-      "median": 47.0,
-      "99th_percentile": 6819.580000000002,
-      "outliers_count": 2.0,
-      "outliers_pct": 1.4388489208633095
+      "max": 26403.0,
+      "mean": 397.229274611399,
+      "median": 64.0,
+      "95th_percentile": 1669.8999999999999,
+      "outliers_count": 39.0,
+      "outliers_pct": 5.051813471502591
     },
     "comments": {
       "min": 0.0,
-      "max": 599.0,
-      "mean": 38.97841726618705,
-      "median": 3.0,
-      "99th_percentile": 562.1000000000003,
-      "outliers_count": 2.0,
-      "outliers_pct": 1.4388489208633095
+      "max": 729.0,
+      "mean": 33.44430051813472,
+      "median": 4.0,
+      "95th_percentile": 153.89999999999986,
+      "outliers_count": 39.0,
+      "outliers_pct": 5.051813471502591
     },
     "followers": {
-      "min": 360.0,
-      "max": 1174021.0,
-      "mean": 178004.6330935252,
-      "median": 17014.0,
-      "99th_percentile": 1174021.0,
-      "outliers_count": 0.0,
-      "outliers_pct": 0.0
+      "min": 80.0,
+      "max": 2750998.0,
+      "mean": 175185.3031088083,
+      "median": 12279.0,
+      "95th_percentile": 1174428.0,
+      "outliers_count": 30.0,
+      "outliers_pct": 3.8860103626943006
     }
   }
 }
