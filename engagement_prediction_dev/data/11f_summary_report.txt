@@ -1,0 +1,151 @@
+======================================================================
+NB11f — PER-TIER BINARY CLASSIFIERS
+LinkedIn Engagement Prediction — TrendPilot
+Generated: 2026-02-20 03:56
+======================================================================
+
+DESIGN
+  Separate RF / XGBoost / LightGBM trained per follower tier.
+  Labels  : per-tier training-subset median  (~50/50 within each tier)
+  Features: 71 content features (no log_followers, no follower_tier)
+  Tuning  : none  (small per-tier sample sizes)
+
+TIER SAMPLE SIZES
+  Tier                     n_train   n_test   tier_median_er
+----------------------------------------------------------------------
+  micro (<10k)                 268       77           22.216
+  small (10k-50k)              184       41            3.340
+  medium (50k-200k)             76       16            1.723
+  large (>200k)                 89       21            0.337
+----------------------------------------------------------------------
+
+ALL MODEL RESULTS
+  Tier                    Model             Macro F1      Acc   Best?
+----------------------------------------------------------------------
+  micro (<10k)            RandomForest        0.6103   0.6104
+  micro (<10k)            XGBoost             0.7011   0.7013
+  micro (<10k)            LightGBM            0.7119   0.7143  YES
+
+  small (10k-50k)         RandomForest        0.6333   0.6341
+  small (10k-50k)         XGBoost             0.7317   0.7317  YES
+  small (10k-50k)         LightGBM            0.5586   0.5610
+
+  medium (50k-200k)       RandomForest        0.6761   0.6875  YES
+  medium (50k-200k)       XGBoost             0.6761   0.6875  YES
+  medium (50k-200k)       LightGBM            0.6000   0.6250
+
+  large (>200k)           RandomForest        0.7597   0.7619  YES
+  large (>200k)           XGBoost             0.6667   0.6667
+  large (>200k)           LightGBM            0.6111   0.6190
+
+AGGREGATE SUMMARY (weighted by test-set size)
+  Tier                     n_test    Best F1       Best Model
+----------------------------------------------------------------------
+  micro (<10k)                 77     0.7119         LightGBM
+  small (10k-50k)              41     0.7317          XGBoost
+  medium (50k-200k)            16     0.6761     RandomForest
+  large (>200k)                21     0.7597     RandomForest
+----------------------------------------------------------------------
+  Weighted avg Macro F1           0.7199
+  Random baseline                 0.5000
+  Lift over random               +0.2199
+
+COMPARISON TO OTHER EXPERIMENTS
+  NB11c  2-class, with followers         F1=0.8064  lift=+0.3064
+  NB11d  2-class, no followers            F1=0.7673  lift=+0.2673
+  NB11e  within-tier labels, 1 model     F1~0.7350  lift=~+0.2350
+  NB11f  per-tier models (this)          F1=0.7199  lift=+0.2199
+
+CONFUSION MATRICES PER TIER  (best model, rows=actual  cols=predicted)
+
+  micro (<10k)  |  model=LightGBM  F1=0.7119  n=77
+                                   Pred: Below (<22.2)  Pred: Above (>=22.2)
+  Actual: Below (<22.2)                             31                    12
+  Actual: Above (>=22.2)                            10                    24
+  Accuracy : 0.714
+  Below (<22.2)         precision=0.756  recall=0.721
+  Above (>=22.2)        precision=0.667  recall=0.706
+
+  small (10k-50k)  |  model=XGBoost  F1=0.7317  n=41
+                                    Pred: Below (<3.3)   Pred: Above (>=3.3)
+  Actual: Below (<3.3)                              15                     7
+  Actual: Above (>=3.3)                              4                    15
+  Accuracy : 0.732
+  Below (<3.3)          precision=0.789  recall=0.682
+  Above (>=3.3)         precision=0.682  recall=0.789
+
+  medium (50k-200k)  |  model=RandomForest  F1=0.6761  n=16
+                                    Pred: Below (<1.7)   Pred: Above (>=1.7)
+  Actual: Below (<1.7)                               7                     2
+  Actual: Above (>=1.7)                              3                     4
+  Accuracy : 0.688
+  Below (<1.7)          precision=0.700  recall=0.778
+  Above (>=1.7)         precision=0.667  recall=0.571
+
+  large (>200k)  |  model=RandomForest  F1=0.7597  n=21
+                                    Pred: Below (<0.3)   Pred: Above (>=0.3)
+  Actual: Below (<0.3)                               7                     2
+  Actual: Above (>=0.3)                              3                     9
+  Accuracy : 0.762
+  Below (<0.3)          precision=0.700  recall=0.778
+  Above (>=0.3)         precision=0.818  recall=0.750
+
+TOP 10 FEATURES PER TIER  (XGBoost importances)
+
+  micro (<10k)  (model=XGBoost  F1=0.7011)
+     1. style_has_exclamation                   0.0467
+     2. has_direct_address                      0.0381
+     3. style_exclamation_marks                 0.0340
+     4. url_count                               0.0333
+     5. style_has_question                      0.0331
+     6. topic_business                          0.0329
+     7. link_penalty_score                      0.0307
+     8. unique_emoji_count                      0.0286
+     9. emoji_count                             0.0284
+    10. ner_org_count                           0.0276
+
+  small (10k-50k)  (model=XGBoost  F1=0.7317)
+     1. topic_career                            0.0588
+     2. style_has_exclamation                   0.0567
+     3. has_contrast                            0.0480
+     4. ner_location_count                      0.0349
+     5. has_vulnerability                       0.0329
+     6. text_lexical_diversity                  0.0311
+     7. ner_person_count                        0.0295
+     8. sentence_count                          0.0290
+     9. ner_org_count                           0.0285
+    10. sentiment_compound                      0.0277
+
+  medium (50k-200k)  (model=XGBoost  F1=0.6761)
+     1. emoji_count                             0.0970
+     2. style_has_emoji                         0.0649
+     3. unique_emoji_count                      0.0617
+     4. topic_count                             0.0568
+     5. text_difficult_words_count              0.0470
+     6. length_score                            0.0451
+     7. topic_career                            0.0428
+     8. sentiment_x_readability                 0.0412
+     9. has_location_mention                    0.0411
+    10. style_quote_marks                       0.0372
+
+  large (>200k)  (model=XGBoost  F1=0.6667)
+     1. text_difficult_words_count              0.1138
+     2. url_count                               0.0911
+     3. readability_flesch_kincaid              0.0683
+     4. length_score                            0.0589
+     5. readability_gunning_fog                 0.0540
+     6. has_contrast                            0.0518
+     7. link_penalty_score                      0.0417
+     8. sentence_count                          0.0376
+     9. sentiment_x_readability                 0.0366
+    10. style_number_count                      0.0364
+
+OUTPUT FILES
+  ../data/11f_results_all_models.csv
+  ../data/11f_feature_importances.csv
+  ../data/11f_summary_report.txt
+  ../data/11f_tier_performance.png
+  ../data/11f_feature_importance_per_tier.png
+  ../data/11f_confusion_matrices.png
+  ../data/11f_distributions.png
+======================================================================

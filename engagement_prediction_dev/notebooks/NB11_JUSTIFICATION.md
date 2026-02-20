@@ -1,16 +1,17 @@
-# NB11: Engagement Rate Classification — What Was Done and Why
 
-## The Core Problem with Previous Notebooks (NB09/NB10)
+# Engagement Rate Classification — What Was Done and Why
 
-The earlier notebooks tried to classify posts as below/average/above engagement using **raw reactions** or **LOO-relative reactions** (reactions ÷ author's historical median). Both approaches had a fundamental flaw:
+## Core Problem Addressed
+
+Previous approaches to classifying post engagement often failed to account for the influence of audience size. For example:
 
 > **A post with 500 reactions means something completely different depending on whether the author has 2,000 followers or 2,000,000 followers.**
 
-The model was essentially learning "big accounts get more reactions" — not "this is good content."
+This led to models learning "big accounts get more reactions" — not "this is good content."
 
 ---
 
-## Decision 1: New Target Variable — Engagement Rate
+## Decision 1: Target Variable — Engagement Rate
 
 ```python
 engagement_rate = (reactions + comments) / (followers / 1000)
@@ -22,10 +23,12 @@ Dividing by `followers/1000` normalises engagement to a *per-1,000-follower rate
 **Why include comments:**
 NB10 dropped comments because they were too noisy to predict in isolation. But as part of a combined engagement metric they add signal — a post that drives discussion is genuinely more engaging.
 
-**Why this beats the NB10 LOO approach:**
-LOO required the author to have multiple posts in the dataset to compute a meaningful baseline. With 84% of authors having only one post, 84% of posts fell back to the global median — making LOO nearly meaningless for most of the data. Engagement rate requires no author history at all.
+
+**Why this approach is superior:**
+Engagement rate requires no author history at all, making it applicable to all posts equally. It avoids the pitfalls of methods that depend on author-specific baselines, which are often unavailable for most data.
 
 ---
+
 
 ## Decision 2: Split Before Assigning Class Labels
 
@@ -36,13 +39,16 @@ p67 = df_train['engagement_rate'].quantile(2/3)
 # same thresholds applied to test set
 ```
 
-**Why:** If you compute percentile thresholds on the full dataset and then split, the test set's distribution influenced where the class boundaries were drawn. That's a subtle form of data leakage. By deriving thresholds from training data only and applying them to the test set, the model is evaluated under conditions that genuinely simulate deployment.
+**Why:** If you compute percentile thresholds on the full dataset and then split, the test set's distribution influences where the class boundaries are drawn. That's a subtle form of data leakage. By deriving thresholds from training data only and applying them to the test set, the model is evaluated under conditions that genuinely simulate deployment.
 
 ---
 
+
 ## Decision 3: Drop Leaky Features
 
+
 Three categories of columns were dropped.
+
 
 ### Direct leakage — columns that contain or are derived from the target
 
@@ -53,6 +59,7 @@ Three categories of columns were dropped.
 | `reactions_per_sentiment` | Same issue — reactions derived |
 | `comment_to_reaction_ratio` | Computed from the same post's engagement |
 | `base_score_capped` | Composite score derived from engagement signals |
+
 
 ### Influencer history leakage — all `influencer_*` columns
 
@@ -66,6 +73,7 @@ Specifically dropped:
 - `influencer_consistency_reactions`
 - `reactions_vs_influencer_avg`, `comments_vs_influencer_avg`
 
+
 ### Metadata — not learnable features for a content quality model
 
 - `name` — identifier
@@ -73,6 +81,7 @@ Specifically dropped:
 - `time_spent`, `location` — session metadata, not post content
 
 ---
+
 
 ## Decision 4: Transform Followers Instead of Dropping Entirely
 
@@ -99,6 +108,7 @@ Provides a clean categorical encoding of creator size that aligns with how the i
 
 ---
 
+
 ## Decision 5: Balanced Class Weights + Stratified Split
 
 ```python
@@ -110,25 +120,26 @@ train_test_split(..., stratify=df['_tmp_class'])
 
 ---
 
-## Why Results Improved (+12 to +19 Macro F1 Points over NB10)
+## Results
 
-| Model | NB10 (LOO-relative) | NB11 (Engagement Rate) | Delta |
-|-------|--------------------|-----------------------|-------|
-| Random Forest | 0.446 | 0.502 | +0.056 |
-| XGBoost | 0.401 | 0.566 | +0.165 |
-| LightGBM | 0.378 | 0.568 | +0.190 |
-| Random baseline | 0.333 | 0.333 | — |
+| Model         | Macro F1 Score |
+|-------------- |:--------------:|
+| Random Forest | 0.502          |
+| XGBoost       | 0.566          |
+| LightGBM      | 0.568          |
+| Random Baseline | 0.333        |
 
 The improvement comes from a better-defined problem, not better modelling:
 
 1. **Cleaner target** — engagement rate separates content quality from audience size, giving the model a genuine signal to learn
-2. **No cold-start degradation** — NB10's LOO approach was meaningless for 84% of posts; this approach works for all posts equally
+2. **No cold-start degradation** — this approach works for all posts equally
 3. **More signal in features** — with leaky influencer features removed, the model must learn from content features, which is exactly the goal
 4. **Balanced classes** — equal class sizes mean the model cannot win by predicting the majority class
 
-The fundamental insight: **the previous models were partially measuring "how big is this creator" rather than "how good is this content."** Engagement rate fixes that.
+The fundamental insight: **previous models were partially measuring "how big is this creator" rather than "how good is this content."** Engagement rate fixes that.
 
 ---
+
 
 ## Class Interpretation
 
@@ -139,6 +150,7 @@ The fundamental insight: **the previous models were partially measuring "how big
 | 2 — Above Average | rate > p67 (~15.2 per 1k followers) | Content significantly over-performing — strong quality signal |
 
 ---
+
 
 ## Limitations
 
