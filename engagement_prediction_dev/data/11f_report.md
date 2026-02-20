@@ -1,7 +1,7 @@
 # NB11f — Per-Tier Binary Classifiers
 ## LinkedIn Engagement Prediction — TrendPilot
 
-**Generated:** 2026-02-20 03:56  
+**Generated:** 2026-02-21 01:17  
 **Notebook:** `11f_per_tier_models.ipynb`
 
 ---
@@ -78,10 +78,9 @@ For each tier, `compute_sample_weight("balanced")` is computed from the training
 
 | Tier              | n_train | n_test | Tier Median ER |
 | ----------------- | ------- | ------ | -------------- |
-| micro (<10k)      | 268     | 77     | 22.216         |
-| small (10k-50k)   | 184     | 41     | 3.340          |
-| medium (50k-200k) | 76      | 16     | 1.723          |
-| large (>200k)     | 89      | 21     | 0.337          |
+| micro (<10k)      | 275     | 70     | 21.832         |
+| small (10k-50k)   | 177     | 45     | 2.894          |
+| medium (50k-200k) | 32      | 7      | 1.552          |
 
 *Tier Median ER* is the engagement-rate threshold used as the class boundary for that tier's model. It is derived from the training subset only.
 
@@ -89,30 +88,26 @@ For each tier, `compute_sample_weight("balanced")` is computed from the training
 
 | Tier              | Model        | Macro F1 | Accuracy | Best? |
 | ----------------- | ------------ | -------- | -------- | ----- |
-| micro (<10k)      | RandomForest | 0.6103   | 0.6104   |       |
-| micro (<10k)      | XGBoost      | 0.7011   | 0.7013   |       |
-| micro (<10k)      | LightGBM     | 0.7119   | 0.7143   | YES   |
-| small (10k-50k)   | RandomForest | 0.6333   | 0.6341   |       |
-| small (10k-50k)   | XGBoost      | 0.7317   | 0.7317   | YES   |
-| small (10k-50k)   | LightGBM     | 0.5586   | 0.561    |       |
-| medium (50k-200k) | RandomForest | 0.6761   | 0.6875   | YES   |
-| medium (50k-200k) | XGBoost      | 0.6761   | 0.6875   | YES   |
-| medium (50k-200k) | LightGBM     | 0.6      | 0.625    |       |
-| large (>200k)     | RandomForest | 0.7597   | 0.7619   | YES   |
-| large (>200k)     | XGBoost      | 0.6667   | 0.6667   |       |
-| large (>200k)     | LightGBM     | 0.6111   | 0.619    |       |
+| micro (<10k)      | RandomForest | 0.7105   | 0.7143   | YES   |
+| micro (<10k)      | XGBoost      | 0.6283   | 0.6286   |       |
+| micro (<10k)      | LightGBM     | 0.6708   | 0.6714   |       |
+| small (10k-50k)   | RandomForest | 0.6026   | 0.6222   |       |
+| small (10k-50k)   | XGBoost      | 0.6961   | 0.7111   | YES   |
+| small (10k-50k)   | LightGBM     | 0.5701   | 0.5778   |       |
+| medium (50k-200k) | RandomForest | 0.5714   | 0.5714   | YES   |
+| medium (50k-200k) | XGBoost      | 0.3      | 0.4286   |       |
+| medium (50k-200k) | LightGBM     | 0.5333   | 0.5714   |       |
 
 ### 4.3 Aggregate Summary
 
 | Tier              | n_test | Best F1 | Best Model   | Lift    |
 | ----------------- | ------ | ------- | ------------ | ------- |
-| micro (<10k)      | 77     | 0.7119  | LightGBM     | +0.2119 |
-| small (10k-50k)   | 41     | 0.7317  | XGBoost      | +0.2317 |
-| medium (50k-200k) | 16     | 0.6761  | RandomForest | +0.1761 |
-| large (>200k)     | 21     | 0.7597  | RandomForest | +0.2597 |
+| micro (<10k)      | 70     | 0.7105  | RandomForest | +0.2105 |
+| small (10k-50k)   | 45     | 0.6961  | XGBoost      | +0.1961 |
+| medium (50k-200k) | 7      | 0.5714  | RandomForest | +0.0714 |
 
-**Weighted average Macro F1 (by test-set size): 0.7199**  
-**Lift over random baseline (0.500): +0.2199**
+**Weighted average Macro F1 (by test-set size): 0.6972**  
+**Lift over random baseline (0.500): +0.1972**
 
 ### 4.4 Comparison to Previous Experiments
 
@@ -121,131 +116,103 @@ For each tier, `compute_sample_weight("balanced")` is computed from the training
 | NB11c      | 2-class, global median, with follower features | 0.8064   | +0.3064  |
 | NB11d      | 2-class, global median, no follower features   | 0.7673   | +0.2673  |
 | NB11e      | within-tier labels, single shared model        | ~0.7350  | ~+0.2350 |
-| NB11f      | per-tier models (this)                         | 0.7199   | +0.2199  |
+| NB11f      | per-tier models (this)                         | 0.6972   | +0.1972  |
 
 ### 4.5 Confusion Matrices
 
 Each confusion matrix shows the best-performing model for that tier. Rows are actual labels; columns are predicted labels. Precision and recall are reported per class.
 
-#### micro (<10k)  —  LightGBM  |  F1=0.7119  (n=77)
+#### micro (<10k)  —  RandomForest  |  F1=0.7105  (n=70)
 
-|                        | Pred: Below (<22.2) | Pred: Above (>=22.2) |
+|                        | Pred: Below (<21.8) | Pred: Above (>=21.8) |
 | ---------------------- | ------------------- | -------------------- |
-| Actual: Below (<22.2)  | 31                  | 12                   |
-| Actual: Above (>=22.2) | 10                  | 24                   |
+| Actual: Below (<21.8)  | 29                  | 9                    |
+| Actual: Above (>=21.8) | 11                  | 21                   |
 
 | Class          | Precision | Recall | F1        |
 | -------------- | --------- | ------ | --------- |
-| Below (<22.2)  | 0.756     | 0.721  | 0.738     |
-| Above (>=22.2) | 0.667     | 0.706  | 0.686     |
+| Below (<21.8)  | 0.725     | 0.763  | 0.744     |
+| Above (>=21.8) | 0.700     | 0.656  | 0.677     |
 | **Accuracy**   |           |        | **0.714** |
 
-#### small (10k-50k)  —  XGBoost  |  F1=0.7317  (n=41)
+#### small (10k-50k)  —  XGBoost  |  F1=0.6961  (n=45)
 
-|                       | Pred: Below (<3.3) | Pred: Above (>=3.3) |
+|                       | Pred: Below (<2.9) | Pred: Above (>=2.9) |
 | --------------------- | ------------------ | ------------------- |
-| Actual: Below (<3.3)  | 15                 | 7                   |
-| Actual: Above (>=3.3) | 4                  | 15                  |
+| Actual: Below (<2.9)  | 11                 | 5                   |
+| Actual: Above (>=2.9) | 8                  | 21                  |
 
 | Class         | Precision | Recall | F1        |
 | ------------- | --------- | ------ | --------- |
-| Below (<3.3)  | 0.789     | 0.682  | 0.732     |
-| Above (>=3.3) | 0.682     | 0.789  | 0.732     |
-| **Accuracy**  |           |        | **0.732** |
+| Below (<2.9)  | 0.579     | 0.688  | 0.629     |
+| Above (>=2.9) | 0.808     | 0.724  | 0.764     |
+| **Accuracy**  |           |        | **0.711** |
 
-#### medium (50k-200k)  —  RandomForest  |  F1=0.6761  (n=16)
+#### medium (50k-200k)  —  RandomForest  |  F1=0.5714  (n=7)
 
-|                       | Pred: Below (<1.7) | Pred: Above (>=1.7) |
+|                       | Pred: Below (<1.6) | Pred: Above (>=1.6) |
 | --------------------- | ------------------ | ------------------- |
-| Actual: Below (<1.7)  | 7                  | 2                   |
-| Actual: Above (>=1.7) | 3                  | 4                   |
+| Actual: Below (<1.6)  | 2                  | 2                   |
+| Actual: Above (>=1.6) | 1                  | 2                   |
 
 | Class         | Precision | Recall | F1        |
 | ------------- | --------- | ------ | --------- |
-| Below (<1.7)  | 0.700     | 0.778  | 0.737     |
-| Above (>=1.7) | 0.667     | 0.571  | 0.615     |
-| **Accuracy**  |           |        | **0.688** |
-
-#### large (>200k)  —  RandomForest  |  F1=0.7597  (n=21)
-
-|                       | Pred: Below (<0.3) | Pred: Above (>=0.3) |
-| --------------------- | ------------------ | ------------------- |
-| Actual: Below (<0.3)  | 7                  | 2                   |
-| Actual: Above (>=0.3) | 3                  | 9                   |
-
-| Class         | Precision | Recall | F1        |
-| ------------- | --------- | ------ | --------- |
-| Below (<0.3)  | 0.700     | 0.778  | 0.737     |
-| Above (>=0.3) | 0.818     | 0.750  | 0.783     |
-| **Accuracy**  |           |        | **0.762** |
+| Below (<1.6)  | 0.667     | 0.500  | 0.571     |
+| Above (>=1.6) | 0.500     | 0.667  | 0.571     |
+| **Accuracy**  |           |        | **0.571** |
 
 ### 4.6 Feature Importances per Tier (Top 10, XGBoost)
 
-#### micro (<10k)  —  XGBoost  |  F1=0.7011
+#### micro (<10k)  —  XGBoost  |  F1=0.6283
 
 | Rank | Feature                 | Importance |
 | ---- | ----------------------- | ---------- |
-| 1    | style_has_exclamation   | 0.0467     |
-| 2    | has_direct_address      | 0.0381     |
-| 3    | style_exclamation_marks | 0.0340     |
-| 4    | url_count               | 0.0333     |
-| 5    | style_has_question      | 0.0331     |
-| 6    | topic_business          | 0.0329     |
-| 7    | link_penalty_score      | 0.0307     |
-| 8    | unique_emoji_count      | 0.0286     |
-| 9    | emoji_count             | 0.0284     |
-| 10   | ner_org_count           | 0.0276     |
+| 1    | has_transformation      | 0.0389     |
+| 2    | has_external_link       | 0.0378     |
+| 3    | style_bullet_count      | 0.0360     |
+| 4    | url_count               | 0.0337     |
+| 5    | style_exclamation_marks | 0.0313     |
+| 6    | emoji_count             | 0.0304     |
+| 7    | unique_emoji_count      | 0.0291     |
+| 8    | has_direct_address      | 0.0263     |
+| 9    | topic_business          | 0.0253     |
+| 10   | style_quote_marks       | 0.0247     |
 
-#### small (10k-50k)  —  XGBoost  |  F1=0.7317
+#### small (10k-50k)  —  XGBoost  |  F1=0.6961
 
 | Rank | Feature                | Importance |
 | ---- | ---------------------- | ---------- |
-| 1    | topic_career           | 0.0588     |
-| 2    | style_has_exclamation  | 0.0567     |
-| 3    | has_contrast           | 0.0480     |
-| 4    | ner_location_count     | 0.0349     |
-| 5    | has_vulnerability      | 0.0329     |
-| 6    | text_lexical_diversity | 0.0311     |
-| 7    | ner_person_count       | 0.0295     |
-| 8    | sentence_count         | 0.0290     |
-| 9    | ner_org_count          | 0.0285     |
-| 10   | sentiment_compound     | 0.0277     |
+| 1    | style_has_quotes       | 0.0470     |
+| 2    | is_multi_topic         | 0.0428     |
+| 3    | promotional_score      | 0.0389     |
+| 4    | text_lexical_diversity | 0.0369     |
+| 5    | sentiment_compound     | 0.0360     |
+| 6    | ner_date_count         | 0.0347     |
+| 7    | has_person_mention     | 0.0342     |
+| 8    | has_contrast           | 0.0341     |
+| 9    | unique_emoji_count     | 0.0308     |
+| 10   | ner_person_count       | 0.0299     |
 
-#### medium (50k-200k)  —  XGBoost  |  F1=0.6761
-
-| Rank | Feature                    | Importance |
-| ---- | -------------------------- | ---------- |
-| 1    | emoji_count                | 0.0970     |
-| 2    | style_has_emoji            | 0.0649     |
-| 3    | unique_emoji_count         | 0.0617     |
-| 4    | topic_count                | 0.0568     |
-| 5    | text_difficult_words_count | 0.0470     |
-| 6    | length_score               | 0.0451     |
-| 7    | topic_career               | 0.0428     |
-| 8    | sentiment_x_readability    | 0.0412     |
-| 9    | has_location_mention       | 0.0411     |
-| 10   | style_quote_marks          | 0.0372     |
-
-#### large (>200k)  —  XGBoost  |  F1=0.6667
+#### medium (50k-200k)  —  XGBoost  |  F1=0.3000
 
 | Rank | Feature                    | Importance |
 | ---- | -------------------------- | ---------- |
-| 1    | text_difficult_words_count | 0.1138     |
-| 2    | url_count                  | 0.0911     |
-| 3    | readability_flesch_kincaid | 0.0683     |
-| 4    | length_score               | 0.0589     |
-| 5    | readability_gunning_fog    | 0.0540     |
-| 6    | has_contrast               | 0.0518     |
-| 7    | link_penalty_score         | 0.0417     |
-| 8    | sentence_count             | 0.0376     |
-| 9    | sentiment_x_readability    | 0.0366     |
-| 10   | style_number_count         | 0.0364     |
+| 1    | text_sentence_count        | 0.0000     |
+| 2    | text_difficult_words_count | 0.0000     |
+| 3    | base_score                 | 0.0000     |
+| 4    | power_pattern_score        | 0.0000     |
+| 5    | text_lexical_diversity     | 0.0000     |
+| 6    | ner_date_count             | 0.0000     |
+| 7    | sentiment_compound         | 0.0000     |
+| 8    | text_avg_sentence_length   | 0.0000     |
+| 9    | ner_total_entities         | 0.0000     |
+| 10   | readability_flesch_kincaid | 0.0000     |
 
 ## 5. Discussion
 
 ### 5.1 Does Per-Tier Specialisation Help?
 
-Marginally or not — the weighted F1 of **0.7199** is comparable to or below NB11d (0.767). Despite per-tier specialisation, the reduction in training data per model appears to outweigh the benefit of context focus. The 71 content features may not carry sufficiently distinct tier-specific signal to justify separate models at these sample sizes.
+Marginally or not — the weighted F1 of **0.6972** is comparable to or below NB11d (0.767). Despite per-tier specialisation, the reduction in training data per model appears to outweigh the benefit of context focus. The 71 content features may not carry sufficiently distinct tier-specific signal to justify separate models at these sample sizes.
 
 ### 5.2 Sample Size Effects
 
@@ -276,10 +243,10 @@ Per-tier modelling is inherently more *fair* than a global model: each creator i
 
 | Metric | Value |
 |--------|-------|
-| Weighted Macro F1 | **0.7199** |
+| Weighted Macro F1 | **0.6972** |
 | Random baseline   | 0.5000 |
-| Lift              | **+0.2199** |
-| Models trained    | 12 (4 tiers × 3 algorithms) |
+| Lift              | **+0.1972** |
+| Models trained    | 9 (3 tiers × 3 algorithms) |
 | Feature set       | 71 content features |
 | Follower leakage  | None (follower features excluded) |
 
@@ -296,4 +263,4 @@ Per-tier modelling is inherently more *fair* than a global model: each creator i
 - **If medium/large F1 is noisy:** pool medium+large into a single "established" tier (n≈200) to gain sample stability before further experimentation.
 
 ---
-*Report generated by `11f_per_tier_models.ipynb` — 2026-02-20 03:56*
+*Report generated by `11f_per_tier_models.ipynb` — 2026-02-21 01:17*

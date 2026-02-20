@@ -1,8 +1,8 @@
 {
   "initial_rows": 786,
-  "final_rows": 772,
-  "rows_removed": 14,
-  "removal_percentage": 1.7811704834605597,
+  "final_rows": 606,
+  "rows_removed": 180,
+  "removal_percentage": 22.900763358778626,
   "duplicates_removed": 0,
   "missing_content": 0,
   "content_length_outliers_removed": 14,
@@ -20,32 +20,14 @@
     "total_removed": 14
   },
   "outlier_stats": {
-    "reactions": {
-      "min": 1.0,
-      "max": 26403.0,
-      "mean": 397.229274611399,
-      "median": 64.0,
-      "95th_percentile": 1669.8999999999999,
-      "outliers_count": 39.0,
-      "outliers_pct": 5.051813471502591
-    },
-    "comments": {
-      "min": 0.0,
-      "max": 729.0,
-      "mean": 33.44430051813472,
-      "median": 4.0,
-      "95th_percentile": 153.89999999999986,
-      "outliers_count": 39.0,
-      "outliers_pct": 5.051813471502591
-    },
     "followers": {
       "min": 80.0,
       "max": 2750998.0,
-      "mean": 175185.3031088083,
-      "median": 12279.0,
-      "95th_percentile": 1174428.0,
-      "outliers_count": 30.0,
-      "outliers_pct": 3.8860103626943006
+      "mean": 163380.44973544974,
+      "median": 12127.0,
+      "80th_percentile": 89867.0,
+      "outliers_count": 150.0,
+      "outliers_pct": 19.841269841269842
     }
   }
 }
