@@ -138,5 +138,684 @@
       }
     ],
     "timestamp": "2026-02-21T17:58:11.566894+00:00"
+  },
+  "Microservices": {
+    "score": 27.516129032258064,
+    "top_queries": [
+      {
+        "query": "microservices architecture",
+        "value": 100
+      },
+      {
+        "query": "microservices best practices",
+        "value": 80
+      },
+      {
+        "query": "what is microservices",
+        "value": 21
+      },
+      {
+        "query": "what are microservices",
+        "value": 9
+      },
+      {
+        "query": "kubernetes",
+        "value": 4
+      },
+      {
+        "query": "microservices interview questions",
+        "value": 2
+      },
+      {
+        "query": "latest climate change news",
+        "value": 1
+      },
+      {
+        "query": "best space documentaries",
+        "value": 0
+      },
+      {
+        "query": "europe visa requirements",
+        "value": 0
+      },
+      {
+        "query": "schengen visa requirements",
+        "value": 0
+      }
+    ],
+    "rising_queries": [
+      {
+        "query": "latest climate change news",
+        "value": "28050"
+      },
+      {
+        "query": "best space documentaries",
+        "value": "15950"
+      },
+      {
+        "query": "europe visa requirements",
+        "value": "15400"
+      },
+      {
+        "query": "schengen visa requirements",
+        "value": "13250"
+      },
+      {
+        "query": "microservices best practices",
+        "value": "350"
+      },
+      {
+        "query": "microservices architecture",
+        "value": "120"
+      }
+    ],
+    "timestamp": "2026-02-21T18:40:55.143787+00:00"
+  },
+  "Python": {
+    "score": 66.94623655913979,
+    "top_queries": [
+      {
+        "query": "what is python",
+        "value": 100
+      },
+      {
+        "query": "python list",
+        "value": 89
+      },
+      {
+        "query": "python code",
+        "value": 78
+      },
+      {
+        "query": "latest",
+        "value": 53
+      },
+      {
+        "query": "python news",
+        "value": 52
+      },
+      {
+        "query": "ball python",
+        "value": 44
+      },
+      {
+        "query": "python online",
+        "value": 40
+      },
+      {
+        "query": "python install",
+        "value": 40
+      },
+      {
+        "query": "monty python",
+        "value": 31
+      },
+      {
+        "query": "python set",
+        "value": 28
+      }
+    ],
+    "rising_queries": [
+      {
+        "query": "learn python for beginners",
+        "value": "2150"
+      },
+      {
+        "query": "python programming tutorial",
+        "value": "1950"
+      },
+      {
+        "query": "python web framework",
+        "value": "1650"
+      },
+      {
+        "query": "python programming tutorials",
+        "value": "300"
+      },
+      {
+        "query": "latest",
+        "value": "300"
+      },
+      {
+        "query": "python data analysis",
+        "value": "250"
+      },
+      {
+        "query": "python tutorial",
+        "value": "110"
+      },
+      {
+        "query": "learn python",
+        "value": "110"
+      },
+      {
+        "query": "openai news today",
+        "value": "80"
+      },
+      {
+        "query": "python programming",
+        "value": "80"
+      }
+    ],
+    "timestamp": "2026-02-21T18:47:34.857486+00:00"
+  },
+  ".NET": {
+    "score": 61.763440860215056,
+    "top_queries": [
+      {
+        "query": ".net framework",
+        "value": 100
+      },
+      {
+        "query": "what is .net",
+        "value": 92
+      },
+      {
+        "query": ".net core",
+        "value": 67
+      },
+      {
+        "query": ".net 10",
+        "value": 58
+      },
+      {
+        "query": ".net news",
+        "value": 48
+      },
+      {
+        "query": "microsoft .net",
+        "value": 45
+      },
+      {
+        "query": ".net download",
+        "value": 38
+      },
+      {
+        "query": ".net sdk",
+        "value": 31
+      },
+      {
+        "query": ".net runtime",
+        "value": 28
+      },
+      {
+        "query": ".net maui",
+        "value": 28
+      }
+    ],
+    "rising_queries": [
+      {
+        "query": ".net 10",
+        "value": "110"
+      },
+      {
+        "query": ".net news",
+        "value": "50"
+      },
+      {
+        "query": "what is .net",
+        "value": "50"
+      },
+      {
+        "query": ".net sdk",
+        "value": "50"
+      },
+      {
+        "query": ".net maui",
+        "value": "40"
+      }
+    ],
+    "timestamp": "2026-02-21T18:47:39.510122+00:00"
+  },
+  "proof of concepts": {
+    "score": 3.4946236559139785,
+    "top_queries": [],
+    "rising_queries": [],
+    "timestamp": "2026-02-21T19:15:56.996345+00:00"
+  },
+  "Dapr": {
+    "score": 8.623655913978494,
+    "top_queries": [],
+    "rising_queries": [],
+    "timestamp": "2026-02-21T19:15:59.759653+00:00"
+  },
+  "developer experience": {
+    "score": 42.56989247311828,
+    "top_queries": [],
+    "rising_queries": [],
+    "timestamp": "2026-02-21T19:16:02.974285+00:00"
+  },
+  "distributed systems": {
+    "score": 52.16129032258065,
+    "top_queries": [
+      {
+        "query": "what is distributed systems",
+        "value": 100
+      },
+      {
+        "query": "what are distributed systems",
+        "value": 54
+      },
+      {
+        "query": "distributed systems book",
+        "value": 17
+      },
+      {
+        "query": "distributed systems engineer",
+        "value": 17
+      },
+      {
+        "query": "distributed systems examples",
+        "value": 14
+      },
+      {
+        "query": "distributed systems architecture",
+        "value": 14
+      },
+      {
+        "query": "distributed systems course",
+        "value": 12
+      },
+      {
+        "query": "mit distributed systems",
+        "value": 8
+      },
+      {
+        "query": "patterns of distributed systems",
+        "value": 7
+      },
+      {
+        "query": "designing distributed systems",
+        "value": 5
+      }
+    ],
+    "rising_queries": [
+      {
+        "query": "distributed systems book",
+        "value": "60"
+      }
+    ],
+    "timestamp": "2026-02-21T19:16:06.233993+00:00"
+  },
+  "emerging OSS projects": {
+    "score": 0.0,
+    "top_queries": [],
+    "rising_queries": [],
+    "timestamp": "2026-02-21T19:16:08.656291+00:00"
+  },
+  "front-end development": {
+    "score": 4.505376344086022,
+    "top_queries": [
+      {
+        "query": "front-end development services",
+        "value": 100
+      }
+    ],
+    "rising_queries": [],
+    "timestamp": "2026-02-21T19:16:11.334421+00:00"
+  },
+  "architecture design sessions": {
+    "score": 0.0,
+    "top_queries": [],
+    "rising_queries": [],
+    "timestamp": "2026-02-21T19:16:13.756302+00:00"
+  },
+  "Azure App Dev": {
+    "score": 1.075268817204301,
+    "top_queries": [],
+    "rising_queries": [],
+    "timestamp": "2026-02-21T19:16:16.346043+00:00"
+  },
+  "cloud native": {
+    "score": 49.763440860215056,
+    "top_queries": [
+      {
+        "query": "what is cloud native",
+        "value": 100
+      },
+      {
+        "query": "cloud native security",
+        "value": 43
+      },
+      {
+        "query": "cloud native platform",
+        "value": 37
+      },
+      {
+        "query": "cloud native services",
+        "value": 34
+      },
+      {
+        "query": "cloud native application",
+        "value": 30
+      },
+      {
+        "query": "cloud native software",
+        "value": 24
+      },
+      {
+        "query": "cloud native computing",
+        "value": 21
+      },
+      {
+        "query": "cloud native meaning",
+        "value": 20
+      },
+      {
+        "query": "cloud native development",
+        "value": 19
+      },
+      {
+        "query": "cloud native architecture",
+        "value": 18
+      }
+    ],
+    "rising_queries": [
+      {
+        "query": "cloud native architecture",
+        "value": "50"
+      },
+      {
+        "query": "cloud native application protection platform",
+        "value": "40"
+      }
+    ],
+    "timestamp": "2026-02-21T19:18:09.711380+00:00"
+  },
+  "OSS projects": {
+    "score": 1.075268817204301,
+    "top_queries": [],
+    "rising_queries": [],
+    "timestamp": "2026-02-21T19:18:12.197450+00:00"
+  },
+  "architecture design": {
+    "score": 55.666666666666664,
+    "top_queries": [
+      {
+        "query": "interior design",
+        "value": 100
+      },
+      {
+        "query": "architecture design software",
+        "value": 57
+      },
+      {
+        "query": "architecture design services",
+        "value": 40
+      },
+      {
+        "query": "architectural design",
+        "value": 39
+      },
+      {
+        "query": "cloud architecture",
+        "value": 24
+      },
+      {
+        "query": "microservices architecture",
+        "value": 11
+      },
+      {
+        "query": "health tips",
+        "value": 1
+      },
+      {
+        "query": "api design principles",
+        "value": 1
+      }
+    ],
+    "rising_queries": [
+      {
+        "query": "api design principles",
+        "value": "180"
+      },
+      {
+        "query": "health tips",
+        "value": "130"
+      },
+      {
+        "query": "microservices architecture",
+        "value": "100"
+      }
+    ],
+    "timestamp": "2026-02-21T19:18:16.699686+00:00"
+  },
+  "java": {
+    "score": 82.18279569892474,
+    "top_queries": [
+      {
+        "query": "minecraft",
+        "value": 100
+      },
+      {
+        "query": "minecraft java",
+        "value": 100
+      },
+      {
+        "query": "what is java",
+        "value": 32
+      },
+      {
+        "query": "download java",
+        "value": 15
+      },
+      {
+        "query": "java code",
+        "value": 13
+      },
+      {
+        "query": "minecraft server",
+        "value": 9
+      },
+      {
+        "query": "minecraft java edition",
+        "value": 9
+      },
+      {
+        "query": "minecraft java download",
+        "value": 7
+      },
+      {
+        "query": "minecraft download",
+        "value": 6
+      },
+      {
+        "query": "install java",
+        "value": 6
+      }
+    ],
+    "rising_queries": [
+      {
+        "query": "optifine 1.21.11",
+        "value": "8200"
+      },
+      {
+        "query": "minecraft java & bedrock edition",
+        "value": "150"
+      },
+      {
+        "query": "chunkbase",
+        "value": "100"
+      },
+      {
+        "query": "curse forge",
+        "value": "90"
+      },
+      {
+        "query": "java indonesia",
+        "value": "80"
+      },
+      {
+        "query": "whats the difference between java and bedrock",
+        "value": "80"
+      },
+      {
+        "query": "how to turn on keep inventory in minecraft java",
+        "value": "70"
+      },
+      {
+        "query": "can java and bedrock play together",
+        "value": "70"
+      },
+      {
+        "query": "how to play multiplayer on minecraft java",
+        "value": "70"
+      },
+      {
+        "query": "seed map",
+        "value": "70"
+      }
+    ],
+    "timestamp": "2026-02-21T19:23:27.050347+00:00"
+  },
+  "deldi": {
+    "score": 0.0,
+    "top_queries": [],
+    "rising_queries": [],
+    "timestamp": "2026-02-21T19:23:30.254556+00:00"
+  },
+  "agentic AI": {
+    "score": 56.86021505376344,
+    "top_queries": [
+      {
+        "query": "what is agentic ai",
+        "value": 100
+      },
+      {
+        "query": "best agentic ai",
+        "value": 78
+      },
+      {
+        "query": "ai news",
+        "value": 74
+      },
+      {
+        "query": "ai agents",
+        "value": 34
+      },
+      {
+        "query": "google agentic ai",
+        "value": 32
+      },
+      {
+        "query": "agentic ai definition",
+        "value": 28
+      },
+      {
+        "query": "agentic definition",
+        "value": 28
+      },
+      {
+        "query": "agentic ai tools",
+        "value": 22
+      },
+      {
+        "query": "generative ai",
+        "value": 22
+      },
+      {
+        "query": "ai news today",
+        "value": 22
+      }
+    ],
+    "rising_queries": [
+      {
+        "query": "building trust with agentic ai from pindrop",
+        "value": "103550"
+      },
+      {
+        "query": "earmor vs peltor",
+        "value": "20600"
+      },
+      {
+        "query": "how do i activate google gravity",
+        "value": "18950"
+      },
+      {
+        "query": "peltor vs sordin vs earmor",
+        "value": "9350"
+      },
+      {
+        "query": "sam's club mobile app embraces the future in 2025",
+        "value": "9050"
+      },
+      {
+        "query": "8 tech ideas that made the web move quicker",
+        "value": "7450"
+      },
+      {
+        "query": "what are the four core characteristics of an ai agent?",
+        "value": "5650"
+      },
+      {
+        "query": "nerovet ai smart dentistry",
+        "value": "800"
+      },
+      {
+        "query": "agentic ai foundation",
+        "value": "600"
+      },
+      {
+        "query": "zupimage",
+        "value": "350"
+      }
+    ],
+    "timestamp": "2026-02-21T19:23:35.449950+00:00"
+  },
+  "byr": {
+    "score": 13.333333333333334,
+    "top_queries": [
+      {
+        "query": "bye byr bye",
+        "value": 100
+      },
+      {
+        "query": "byr meaning",
+        "value": 58
+      },
+      {
+        "query": "what does byr mean",
+        "value": 43
+      },
+      {
+        "query": "byr to usd",
+        "value": 24
+      },
+      {
+        "query": "what does byr mean in text",
+        "value": 16
+      },
+      {
+        "query": "byr meaning text",
+        "value": 9
+      },
+      {
+        "query": "david byr",
+        "value": 7
+      },
+      {
+        "query": "byram healthcare",
+        "value": 6
+      },
+      {
+        "query": "byr clogs",
+        "value": 2
+      }
+    ],
+    "rising_queries": [
+      {
+        "query": "byram healthcare",
+        "value": "47600"
+      },
+      {
+        "query": "byr to usd",
+        "value": "100"
+      },
+      {
+        "query": "byr meaning",
+        "value": "70"
+      }
+    ],
+    "timestamp": "2026-02-21T19:23:38.457151+00:00"
   }
 }
