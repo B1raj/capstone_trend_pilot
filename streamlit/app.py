@@ -1032,17 +1032,13 @@ def step5_final():
 
     # ── Actions ───────────────────────────────────────────────────────────────
     st.divider()
-    col_regen, col_copy, col_start = st.columns([2, 2, 2])
+    col_regen, col_start = st.columns([2, 2])
 
     with col_regen:
         if st.button("🔁 Regenerate image"):
             st.session_state["visual_path"] = None
             st.session_state["visual_error"] = None
             st.rerun()
-
-    with col_copy:
-        st.caption("Copy post text:")
-        st.code(st.session_state["final_post"], language=None)
 
     with col_start:
         if st.button("🔄 Start Over"):
