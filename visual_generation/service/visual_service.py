@@ -23,6 +23,7 @@ sys.path.insert(0, os.path.normpath(os.path.join(BASE_DIR, '..', 'llm')))
 # Import functions directly at module level (use functions directly)
 from llm.classify_llm import classify_and_generate
 from diagram.render_mermaid import render_mermaid
+from gv_diagram.render_graphviz import render_graphviz
 from image.generate_image import generate_image
 
 import logging
@@ -72,6 +73,21 @@ def generate_mermaid_image(mermaid_code: str, timeout: int = 200) -> str:
         raise
 
 
+def generate_graphviz_image(diagram_code: str, timeout: int = 200) -> str:
+    # Call the Graphviz renderer directly with the provided DOT code string
+    d = (diagram_code or '').strip()
+    out_path = os.path.join(OUTPUT_DIR, "generated_diagram.png")
+    try:
+        render_graphviz(d, out_path, format='png')
+        if not os.path.exists(out_path):
+            logger.error('Graphviz renderer did not produce output file: %s', out_path)
+            raise RuntimeError(f'Graphviz renderer did not produce output file: {out_path}')
+        return out_path
+    except Exception:
+        logger.exception('Error rendering diagram')
+        raise
+
+
 def generate_sd_image(prompt: str, timeout: int = 200) -> str:
     # Call the Stable Diffusion generator script to create an image file
     # Output file should be created in the output folder (OUTPUT_DIR)
@@ -107,26 +123,26 @@ def main():
 
     typ = llm_res.get('type')
     if typ == 'diagram':
-        mermaid = llm_res.get('mermaid_code', '')
-        # Log the Mermaid source produced by the LLM
-        logger.info('Mermaid code (first 1024 chars): %s', (mermaid or ''))
+        diagram_code = llm_res.get('diagram_code', '')
+        # Log the DOT source produced by the LLM
+        logger.info('DOT code (first 1024 chars): %s', (diagram_code or ''))
         try:
-            out_path = generate_mermaid_image(mermaid)
+            out_path = generate_graphviz_image(diagram_code)
         except Exception as e:
             import traceback
             traceback.print_exc()
-            # persist the mermaid source for inspection
+            # persist the DOT source for inspection
             ts = int(time.time())
-            mmd_name = f'failed_diagram_{ts}.mmd'
-            mmd_path = os.path.join(OUTPUT_DIR, mmd_name)
+            dot_name = f'failed_diagram_{ts}.dot'
+            dot_path = os.path.join(OUTPUT_DIR, dot_name)
             try:
-                with open(mmd_path, 'w', encoding='utf-8') as mf:
-                    mf.write(mermaid or '')
-                print(f'Saved failed mermaid source to {mmd_path}')
+                with open(dot_path, 'w', encoding='utf-8') as df:
+                    df.write(diagram_code or '')
+                print(f'Saved failed DOT source to {dot_path}')
             except Exception:
                 traceback.print_exc()
-                mmd_path = None
-            err_json = {"error": f"Mermaid render error: {e}", "mmd_path": mmd_path}
+                dot_path = None
+            err_json = {"error": f"Graphviz render error: {e}", "dot_path": dot_path}
             print(json.dumps(err_json))
             sys.exit(3)
         out_json = {"type": "diagram", "format": "png", "path": out_path}

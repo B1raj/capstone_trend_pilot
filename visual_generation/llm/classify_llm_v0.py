@@ -1,9 +1,9 @@
 # LLM Integration Script for Visual Generation Service
 """
-This script takes user text, classifies it as either an architectural diagram (generates Graphviz DOT code)
+This script takes user text, classifies it as either an architectural diagram (generates Mermaid code)
 or a general image, using a local Llama 3.1 (Ollama) API.
 
-- If architectural diagram: returns {"type": "diagram", "diagram_code": ...}
+- If architectural diagram: returns {"type": "diagram", "mermaid_code": ...}
 - If general image: returns {"type": "image", "prompt": ...} where "prompt" is the
     finalized image-generation prompt (optimized for Stable Diffusion) that should be passed
     directly to the image generator.
@@ -20,50 +20,46 @@ from .query_llm import send_prompt
 
 PROMPT = """
 You are a visual generation assistant that classifies user input and produces either
-Graphviz DOT diagram code or an image generation prompt.
+Mermaid diagram code, an image generation prompt, or a plain text response.
 
 ## STEP 1 — CLASSIFY
 Determine whether the user input requires:
-- "diagram": An architectural, flow, or system diagram
+- "diagram": An architectural, flow, sequence, class, or system diagram
 - "image": Any other visual (photo, illustration, artwork, scene, etc.)
 
 ## STEP 2A — IF DIAGRAM
-Generate valid Graphviz DOT language code. Rules:
-- Always use digraph (directed graph) unless the relationships are explicitly undirected
-- Declare every node before referencing it in edges, or declare inline
-- Keep node labels concise; use label= attribute for display names
-- Use subgraph cluster_* blocks to group related components
-- Set rankdir=LR for left-to-right layouts or rankdir=TB for top-to-bottom
-- Use shape= to distinguish node types: box (service), ellipse (user/client), cylinder (database), diamond (decision)
-- Use style=filled and fillcolor= to add colour for readability
+Generate valid Mermaid syntax. Rules:
+- Choose the most appropriate diagram type (flowchart, sequence, class, ER, etc.)
+- Keep node labels concise; avoid special characters that break Mermaid parsing
+- Use subgraphs to group related components when helpful
+- Validate mentally: every node referenced in edges must be declared
 
-Simple directed graph example:
-digraph Architecture {
-    rankdir=LR;
-    Client      [shape=ellipse style=filled fillcolor=lightblue];
-    LoadBalancer [label="Load Balancer" shape=box style=filled fillcolor=lightyellow];
-    Server1     [label="Server 1" shape=box];
-    Server2     [label="Server 2" shape=box];
-    Client -> LoadBalancer [label="request"];
-    LoadBalancer -> Server1;
-    LoadBalancer -> Server2;
-}
+Supported diagram type examples:
 
-Grouped with clusters example:
-digraph System {
-    rankdir=TB;
-    subgraph cluster_frontend {
-        label="Frontend"; style=filled; fillcolor=aliceblue;
-        Browser [shape=ellipse]; CDN [shape=box];
-    }
-    subgraph cluster_backend {
-        label="Backend"; style=filled; fillcolor=lightyellow;
-        API [shape=box]; DB [shape=cylinder];
-    }
-    Browser -> API [label="REST"];
-    API -> DB [label="SQL"];
-    Browser -> CDN;
-}
+Flowchart:
+graph LR
+  A[Client] -->|request| B[Load Balancer]
+  B --> C[Server 1]
+  B --> D[Server 2]
+
+Sequence:
+sequenceDiagram
+  participant C as Client
+  participant LB as Load Balancer
+  C->>LB: Send request
+  LB->>S: Forward request
+  S-->>LB: Response
+  LB-->>C: Response
+
+Class:
+classDiagram
+  class LoadBalancer {
+    +route(request)
+  }
+  class Server {
+    +handle(request)
+  }
+  LoadBalancer --> Server
 
 ## STEP 2B — IF IMAGE
 Produce a single, finalized prompt optimized for Stable Diffusion:
@@ -71,7 +67,7 @@ Produce a single, finalized prompt optimized for Stable Diffusion:
 - Format: comma-separated phrases covering subject, setting, lighting
 - Strip all narrative, emotion, and story context — describe only what is visually present
 - It will be very short!
-- Example: "subject1 verb1 adjective1 subject2 at location1"
+- Example: "subject1 verb1 adjective1 subject2 at locattion1"
 
 ## OUTPUT FORMAT
 Respond with ONLY a single JSON object — no markdown, no explanation, no extra text.
@@ -79,7 +75,7 @@ Respond with ONLY a single JSON object — no markdown, no explanation, no extra
 For diagrams:
 {
   "type": "diagram",
-  "diagram_code": "<<<DIAGRAM_CODE_START>>>\n<valid DOT code here>\n<<<DIAGRAM_CODE_END>>>"
+  "mermaid_code": "<<<MERMAID_CODE_START>>>\n<valid mermaid here>\n<<<MERMAID_CODE_END>>>"
 }
 
 For images:
@@ -92,12 +88,12 @@ For images:
 - Output must be valid, parseable JSON
 - String values must escape newlines as \\n and quotes as \\"
 - Do not include any text outside the JSON object
-- The diagram_code value must always include the <<<DIAGRAM_CODE_START>>> and <<<DIAGRAM_CODE_END>>> markers
+- The mermaid_code value must always include the <<<MERMAID_CODE_START>>> and <<<MERMAID_CODE_END>>> markers
 """
 
 def classify_and_generate(user_text):
     """
-    Classifies the user text and generates either Graphviz DOT code or returns the image prompt.
+    Classifies the user text and generates either Mermaid code or returns the image prompt.
     """
 
     system_prompt = (PROMPT)
@@ -113,13 +109,13 @@ def classify_and_generate(user_text):
     except Exception as e:
         print(f"Warning: could not write llm_raw_response.log: {e}")
 
-    # Quick marker-based extraction: if the model wrapped the DOT code in explicit markers,
+    # Quick marker-based extraction: if the model wrapped the mermaid in explicit markers,
     # extract that content immediately (handles cases where JSON parsing fails due to
     # unescaped newlines or non-JSON formatting).
-    marker = re.search(r'<<<DIAGRAM_CODE_START>>>(.*?)<<<DIAGRAM_CODE_END>>>', response, flags=re.S)
+    marker = re.search(r'<<<MERMAID_CODE_START>>>(.*?)<<<MERMAID_CODE_END>>>', response, flags=re.S)
     if marker:
-        dot_text = marker.group(1).strip('\n')
-        return {"type": "diagram", "diagram_code": dot_text}
+        mermaid_text = marker.group(1).strip('\n')
+        return {"type": "diagram", "mermaid_code": mermaid_text}
     # Find the first JSON object in the response
     try:
         start = response.index('{')
@@ -135,12 +131,12 @@ def classify_and_generate(user_text):
                 raise
             t = m_type.group(1)
             if t == 'diagram':
-                m_dot = re.search(r'"diagram_code"\s*:\s*"(.*?)"\s*(,|})', json_str, flags=re.S)
-                if m_dot:
-                    dot = m_dot.group(1)
+                m_mermaid = re.search(r'"mermaid_code"\s*:\s*"(.*?)"\s*(,|})', json_str, flags=re.S)
+                if m_mermaid:
+                    mermaid = m_mermaid.group(1)
                     # normalize leading/trailing whitespace
-                    dot = dot.strip('\n')
-                    return {"type": "diagram", "diagram_code": dot}
+                    mermaid = mermaid.strip('\n')
+                    return {"type": "diagram", "mermaid_code": mermaid}
             elif t == 'image':
                 m_prompt = re.search(r'"prompt"\s*:\s*"(.*?)"\s*(,|})', json_str, flags=re.S)
                 if m_prompt:
