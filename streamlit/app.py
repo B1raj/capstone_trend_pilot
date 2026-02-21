@@ -15,6 +15,7 @@ import re
 import sys
 import json
 import time
+import subprocess
 import joblib
 import unicodedata
 import warnings
@@ -102,6 +103,7 @@ Hard constraints:
 - Minimal promotional language
 - Tone: human, reflective, conversational
 - Platform: LinkedIn (B2B audience)
+- Add relevant hashtags in the last line
 
 Output should feel like a real professional sharing a genuine insight.
 """
@@ -471,7 +473,56 @@ def predict_engagement(post_text: str, followers: int, post_title: str) -> dict:
 
 
 # ══════════════════════════════════════════════════════════════════════════════
-# SECTION E — Session-state helpers
+# SECTION E — Visual generation (04_visual_generation/service/visual_service.py)
+# ══════════════════════════════════════════════════════════════════════════════
+
+VISUAL_SERVICE_SCRIPT = os.path.join(SCRIPT_DIR, "04_visual_generation", "service", "visual_service.py")
+VISUAL_SERVICE_DIR    = os.path.join(SCRIPT_DIR, "04_visual_generation", "service")
+
+
+def generate_visual(post_text: str) -> tuple[Optional[str], Optional[str]]:
+    """
+    Call visual_service.py with the post text.
+    Returns (image_path, error_message). One will be None.
+    """
+    result = subprocess.run(
+        [sys.executable, VISUAL_SERVICE_SCRIPT, post_text],
+        capture_output=True,
+        text=True,
+        cwd=VISUAL_SERVICE_DIR,
+        timeout=120,
+    )
+
+    stdout = result.stdout.strip()
+    stderr = result.stderr.strip()
+
+    if not stdout:
+        return None, f"Visual service produced no output.\n{stderr}"
+
+    # The service prints one JSON line to stdout
+    try:
+        last_json_line = next(
+            (l for l in reversed(stdout.splitlines()) if l.strip().startswith("{")),
+            None,
+        )
+        if not last_json_line:
+            return None, f"No JSON found in output:\n{stdout}"
+        data = json.loads(last_json_line)
+    except Exception as e:
+        return None, f"Could not parse visual service output: {e}\n{stdout}"
+
+    if "error" in data:
+        return None, data["error"]
+
+    path = data.get("path")
+    if path and os.path.exists(path):
+        return path, None
+
+    return None, f"Image path not found: {path}"
+
+
+# ══════════════════════════════════════════════════════════════════════════════
+# SECTION F — Session-state helpers
 # ══════════════════════════════════════════════════════════════════════════════
 
 def _init_state():
@@ -484,8 +535,15 @@ def _init_state():
         "parsed_titles": [],
         "chosen_topic": None,
         "chosen_title": None,
+        "selected_title_idx": None,   # which title card is highlighted in step 3
         "post_variants": [],
         "final_post": None,
+        "visual_path": None,
+        "visual_error": None,
+        # loading flags — set True before st.rerun() to disable all UI on next pass
+        "_step2_loading": False,
+        "_step3_loading": False,
+        "_step4_selected": None,      # variant index selected; disables other buttons
     }
     for k, v in defaults.items():
         if k not in st.session_state:
@@ -500,17 +558,182 @@ def _go(step: int):
 # SECTION F — UI helpers
 # ══════════════════════════════════════════════════════════════════════════════
 
+def _inject_css():
+    st.markdown("""
+    <style>
+    /* ── Background ─────────────────────────────────────────────────────────── */
+    .stApp {
+        background: linear-gradient(160deg, #0d1117 0%, #161b2e 45%, #1a1040 100%);
+        background-attachment: fixed;
+    }
+    [data-testid="stHeader"] { background: transparent; }
+    [data-testid="stAppViewContainer"] { background: transparent; }
+    [data-testid="stBottom"] { background: transparent; }
+
+    /* ── Global text ─────────────────────────────────────────────────────────── */
+    html, body, .stApp, .stMarkdown, p, span, label, div {
+        color: #e2e8f0;
+    }
+    h1 { color: #f1f5f9 !important; font-weight: 700; }
+    h2, h3 { color: #cbd5e1 !important; }
+    .stCaption, .stCaption p { color: #64748b !important; }
+
+    /* ── Title area ──────────────────────────────────────────────────────────── */
+    [data-testid="stVerticalBlock"] > div:first-child h1 {
+        background: linear-gradient(90deg, #818cf8, #c084fc);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    /* ── Bordered containers / cards ─────────────────────────────────────────── */
+    [data-testid="stVerticalBlockBorderWrapper"] {
+        background: rgba(255,255,255,0.04) !important;
+        border: 1px solid rgba(255,255,255,0.09) !important;
+        border-radius: 14px !important;
+        backdrop-filter: blur(8px);
+        transition: border-color 0.2s;
+    }
+    [data-testid="stVerticalBlockBorderWrapper"]:hover {
+        border-color: rgba(129,140,248,0.35) !important;
+    }
+    /* Selected card (step 3) — override hover so it stays blue */
+    div[data-testid="stVerticalBlockBorderWrapper"]:has(button[kind="primary"]) {
+        border: 2px solid #818cf8 !important;
+        background: rgba(129,140,248,0.08) !important;
+    }
+
+    /* ── Buttons ─────────────────────────────────────────────────────────────── */
+    .stButton > button {
+        background: rgba(255,255,255,0.06);
+        color: #cbd5e1;
+        border: 1px solid rgba(255,255,255,0.12);
+        border-radius: 8px;
+        font-weight: 500;
+        transition: all 0.18s ease;
+    }
+    .stButton > button:hover:not(:disabled) {
+        background: rgba(255,255,255,0.11);
+        border-color: rgba(255,255,255,0.25);
+        color: #f1f5f9;
+        transform: translateY(-1px);
+    }
+    /* Primary buttons */
+    .stButton > button[kind="primary"] {
+        background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+        color: #fff !important;
+        border: none;
+        box-shadow: 0 4px 15px rgba(79,70,229,0.35);
+    }
+    .stButton > button[kind="primary"]:hover:not(:disabled) {
+        background: linear-gradient(135deg, #4338ca 0%, #6d28d9 100%);
+        box-shadow: 0 6px 20px rgba(79,70,229,0.5);
+        transform: translateY(-1px);
+    }
+    .stButton > button:disabled {
+        opacity: 0.38 !important;
+        cursor: not-allowed !important;
+        transform: none !important;
+    }
+
+    /* ── Text areas & inputs ─────────────────────────────────────────────────── */
+    [data-testid="stTextArea"] textarea,
+    [data-testid="stNumberInput"] input,
+    [data-testid="stTextInput"] input {
+        background: rgba(255,255,255,0.05) !important;
+        color: #e2e8f0 !important;
+        border: 1px solid rgba(255,255,255,0.12) !important;
+        border-radius: 8px !important;
+    }
+    [data-testid="stTextArea"] textarea:focus,
+    [data-testid="stNumberInput"] input:focus {
+        border-color: #818cf8 !important;
+        box-shadow: 0 0 0 2px rgba(129,140,248,0.2) !important;
+    }
+
+    /* ── Radio buttons ───────────────────────────────────────────────────────── */
+    [data-testid="stRadio"] label { color: #cbd5e1 !important; }
+    [data-testid="stRadio"] div[data-testid="stMarkdownContainer"] p {
+        color: #cbd5e1 !important;
+    }
+
+    /* ── Dataframe ───────────────────────────────────────────────────────────── */
+    [data-testid="stDataFrame"], .stDataFrame iframe {
+        border-radius: 10px;
+        overflow: hidden;
+    }
+
+    /* ── Metrics ─────────────────────────────────────────────────────────────── */
+    [data-testid="stMetric"] {
+        background: rgba(255,255,255,0.04);
+        border: 1px solid rgba(255,255,255,0.08);
+        border-radius: 10px;
+        padding: 12px 16px;
+    }
+    [data-testid="stMetricValue"] { color: #a5b4fc !important; }
+    [data-testid="stMetricLabel"] { color: #64748b !important; }
+
+    /* ── Alerts (success / warning / error) ─────────────────────────────────── */
+    [data-testid="stAlert"] {
+        border-radius: 10px !important;
+        border-left-width: 4px !important;
+    }
+    div[data-baseweb="notification"][data-kind="positive"] {
+        background: rgba(16,185,129,0.12) !important;
+        border-left-color: #10b981 !important;
+    }
+    div[data-baseweb="notification"][data-kind="warning"] {
+        background: rgba(245,158,11,0.12) !important;
+        border-left-color: #f59e0b !important;
+    }
+    div[data-baseweb="notification"][data-kind="negative"] {
+        background: rgba(239,68,68,0.12) !important;
+        border-left-color: #ef4444 !important;
+    }
+
+    /* ── Code blocks ─────────────────────────────────────────────────────────── */
+    [data-testid="stCode"] {
+        background: rgba(0,0,0,0.35) !important;
+        border: 1px solid rgba(255,255,255,0.08) !important;
+        border-radius: 8px !important;
+    }
+
+    /* ── Expanders ───────────────────────────────────────────────────────────── */
+    [data-testid="stExpander"] {
+        background: rgba(255,255,255,0.03) !important;
+        border: 1px solid rgba(255,255,255,0.08) !important;
+        border-radius: 10px !important;
+    }
+
+    /* ── Divider ─────────────────────────────────────────────────────────────── */
+    hr { border-color: rgba(255,255,255,0.08) !important; }
+
+    /* ── Spinner text ────────────────────────────────────────────────────────── */
+    [data-testid="stSpinner"] p { color: #94a3b8 !important; }
+
+    /* ── Scrollbar ───────────────────────────────────────────────────────────── */
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb {
+        background: rgba(255,255,255,0.15);
+        border-radius: 3px;
+    }
+    ::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.25); }
+    </style>
+    """, unsafe_allow_html=True)
+
+
 def _progress_bar():
     steps = ["Profile", "Topics", "Post Title", "Posts", "Done"]
     cur = st.session_state["step"]
     cols = st.columns(len(steps))
     for i, (col, label) in enumerate(zip(cols, steps), start=1):
         if i < cur:
-            col.markdown(f"<div style='text-align:center;color:#4CAF50;font-weight:bold'>✓ {label}</div>", unsafe_allow_html=True)
+            col.markdown(f"<div style='text-align:center;color:#10b981;font-weight:600;font-size:13px'>✓ {label}</div>", unsafe_allow_html=True)
         elif i == cur:
-            col.markdown(f"<div style='text-align:center;color:#1E88E5;font-weight:bold'>▶ {label}</div>", unsafe_allow_html=True)
+            col.markdown(f"<div style='text-align:center;color:#818cf8;font-weight:700;font-size:13px'>▶ {label}</div>", unsafe_allow_html=True)
         else:
-            col.markdown(f"<div style='text-align:center;color:#9E9E9E'>{label}</div>", unsafe_allow_html=True)
+            col.markdown(f"<div style='text-align:center;color:#334155;font-size:13px'>{label}</div>", unsafe_allow_html=True)
     st.divider()
 
 
@@ -539,7 +762,10 @@ def step1_profile():
         key="_followers_input",
     )
 
-    if st.button("Analyze Trends →", type="primary", disabled=not profile.strip()):
+    if st.button("Analyze Trends →", type="primary"):
+        if not profile.strip():
+            st.error("Please paste your LinkedIn bio before continuing.")
+            return
         st.session_state["profile_text"] = profile.strip()
         st.session_state["followers"] = int(followers)
         with st.spinner("Extracting topics from your bio and fetching Google Trends data…"):
@@ -556,10 +782,29 @@ def step2_topics():
     st.subheader("Step 2 — Trending Topics")
     st.caption("These topics were extracted from your bio and scored against Google Trends. Pick one to focus your post.")
 
+    # ── Loading pass: spinner only, no interactive UI ─────────────────────────
+    if st.session_state["_step2_loading"]:
+        with st.spinner("LLM is picking the best search signals and writing post titles…"):
+            try:
+                output = run_topic_selection(
+                    st.session_state["trending_df"],
+                    st.session_state["profile_text"],
+                    chosen_topic=st.session_state["chosen_topic"],
+                )
+                st.session_state["llm_output"] = output
+                st.session_state["parsed_titles"] = parse_post_titles(output)
+            except Exception as e:
+                st.session_state["_step2_loading"] = False
+                st.error(f"Topic selection failed: {e}")
+                return
+        st.session_state["_step2_loading"] = False
+        _go(3); st.rerun()
+        return
+
+    # ── Normal UI ─────────────────────────────────────────────────────────────
     df: pd.DataFrame = st.session_state["trending_df"]
     top5 = df.head(5).reset_index(drop=True)
 
-    # Display table
     display_df = pd.DataFrame({
         "#": range(1, len(top5) + 1),
         "Topic": top5["topic"],
@@ -588,23 +833,32 @@ def step2_topics():
         if st.button("Generate Post Titles →", type="primary"):
             chosen_topic = None if chosen.startswith("🤖") else chosen
             st.session_state["chosen_topic"] = chosen_topic
-            with st.spinner("LLM is picking the best search signals and writing post titles…"):
-                try:
-                    output = run_topic_selection(
-                        st.session_state["trending_df"],
-                        st.session_state["profile_text"],
-                        chosen_topic=chosen_topic,
-                    )
-                    st.session_state["llm_output"] = output
-                    st.session_state["parsed_titles"] = parse_post_titles(output)
-                    _go(3); st.rerun()
-                except Exception as e:
-                    st.error(f"Topic selection failed: {e}")
+            st.session_state["_step2_loading"] = True
+            st.rerun()
 
 
 def step3_post_title():
     st.subheader("Step 3 — Choose a Post Title")
     st.caption("The AI analysed trending search signals and drafted these titles. Pick the one that resonates most.")
+
+    # ── Loading pass: spinner only, no interactive UI ─────────────────────────
+    if st.session_state["_step3_loading"]:
+        with st.spinner("Generating 3 post variants…"):
+            try:
+                variants = generate_post_variants(
+                    st.session_state["chosen_title"],
+                    st.session_state["profile_text"],
+                )
+                st.session_state["post_variants"] = variants
+            except Exception as e:
+                st.session_state["_step3_loading"] = False
+                st.session_state["selected_title_idx"] = None
+                st.error(f"Post generation failed: {e}")
+                return
+        st.session_state["_step3_loading"] = False
+        st.session_state["selected_title_idx"] = None
+        _go(4); st.rerun()
+        return
 
     titles = st.session_state["parsed_titles"]
     if not titles:
@@ -615,39 +869,59 @@ def step3_post_title():
             _go(2); st.rerun()
         return
 
-    chosen_title = None
-    for i, t in enumerate(titles, start=1):
+    selected_idx = st.session_state.get("selected_title_idx")
+
+    # Inject CSS: selected card gets a blue border + tinted background
+    st.markdown("""
+    <style>
+    div[data-testid="stVerticalBlockBorderWrapper"]:has(button[kind="primary"]) {
+        border: 2px solid #1E88E5 !important;
+        background: #f0f7ff !important;
+    }
+    </style>
+    """, unsafe_allow_html=True)
+
+    for i, t in enumerate(titles):
+        is_selected = selected_idx == i
         with st.container(border=True):
-            st.markdown(f"**Option {i}**")
+            st.markdown(f"**Option {i + 1}**")
             if t["signal"]:
                 st.caption(f"Search signal: *{t['signal']}*")
             st.markdown(f"### {t['title']}")
-            if st.button(f"Select Option {i}", key=f"title_{i}"):
-                chosen_title = t["title"]
 
-    # Also show reasoning
+            if is_selected:
+                st.button("✓ Selected", key=f"title_{i}", type="primary", disabled=True)
+            else:
+                if st.button(
+                    f"Select Option {i + 1}",
+                    key=f"title_{i}",
+                    type="secondary",
+                    disabled=selected_idx is not None,
+                ):
+                    st.session_state["selected_title_idx"] = i
+                    st.rerun()
+
+    # Reasoning expander
     reasoning_match = re.search(r"REASONING:(.*)", st.session_state["llm_output"], re.IGNORECASE | re.DOTALL)
     if reasoning_match:
         with st.expander("Why these titles?"):
             st.markdown(reasoning_match.group(1).strip())
 
-    col1, _ = st.columns([1, 5])
-    with col1:
-        if st.button("← Back"):
+    st.divider()
+    col_back, col_gap, col_next = st.columns([1, 4, 1])
+    with col_back:
+        if st.button("← Back", disabled=selected_idx is not None):
+            st.session_state["selected_title_idx"] = None
             _go(2); st.rerun()
-
-    if chosen_title:
-        st.session_state["chosen_title"] = chosen_title
-        with st.spinner("Generating 3 post variants…"):
-            try:
-                variants = generate_post_variants(
-                    chosen_title,
-                    st.session_state["profile_text"],
-                )
-                st.session_state["post_variants"] = variants
-                _go(4); st.rerun()
-            except Exception as e:
-                st.error(f"Post generation failed: {e}")
+    with col_next:
+        if st.button(
+            "Generate Posts →",
+            type="primary",
+            disabled=selected_idx is None,
+        ):
+            st.session_state["chosen_title"] = titles[selected_idx]["title"]
+            st.session_state["_step3_loading"] = True
+            st.rerun()
 
 
 def step4_posts():
@@ -660,17 +934,24 @@ def step4_posts():
     variants = st.session_state["post_variants"]
     followers = st.session_state["followers"]
     post_title = st.session_state["chosen_title"]
+    is_loading = "predictions" not in st.session_state
 
-    # Predict engagement for all variants
-    if "predictions" not in st.session_state:
+    # Back button at the top — disabled while predictions are loading
+    col_back, _ = st.columns([1, 5])
+    with col_back:
+        if st.button("← Back", disabled=is_loading):
+            st.session_state.pop("predictions", None)
+            st.session_state["_step4_selected"] = None
+            _go(3); st.rerun()
+
+    if is_loading:
         with st.spinner("Running engagement prediction model…"):
-            preds = []
-            for v in variants:
-                p = predict_engagement(v["post_text"], followers, post_title)
-                preds.append(p)
+            preds = [predict_engagement(v["post_text"], followers, post_title) for v in variants]
             st.session_state["predictions"] = preds
-    else:
-        preds = st.session_state["predictions"]
+        st.rerun()   # re-render with enabled back button + full content
+        return
+
+    preds = st.session_state["predictions"]
 
     # Summary table
     summary = pd.DataFrame([
@@ -685,6 +966,8 @@ def step4_posts():
     st.dataframe(summary, use_container_width=True, hide_index=True)
 
     st.divider()
+
+    selected_variant = st.session_state.get("_step4_selected")
 
     # Individual cards
     for i, (v, p) in enumerate(zip(variants, preds), start=1):
@@ -703,48 +986,69 @@ def step4_posts():
                 st.metric("Predicted Reactions", f"{p['reactions']:,}")
                 st.metric("Predicted Comments", f"{p['comments']:,}")
                 st.caption(f"{v['word_count']} words")
-                if st.button(f"Select Variant {i}", type="primary", key=f"select_{i}"):
-                    st.session_state["final_post"] = v["post_text"]
-                    # clear cached predictions on future runs
-                    if "predictions" in st.session_state:
-                        del st.session_state["predictions"]
-                    _go(5); st.rerun()
-
-    col1, _ = st.columns([1, 5])
-    with col1:
-        if st.button("← Back"):
-            if "predictions" in st.session_state:
-                del st.session_state["predictions"]
-            _go(3); st.rerun()
+                is_this_selected = selected_variant == i
+                btn_label = "✓ Selected" if is_this_selected else "Select Variant & Generate Image"
+                btn_disabled = selected_variant is not None and not is_this_selected
+                if st.button(btn_label, type="primary", key=f"select_{i}", disabled=btn_disabled):
+                    if not is_this_selected:
+                        st.session_state["_step4_selected"] = i
+                        st.session_state["final_post"] = v["post_text"]
+                        st.session_state.pop("predictions", None)
+                        st.session_state["visual_path"] = None
+                        st.session_state["visual_error"] = None
+                        _go(5); st.rerun()
 
 
 def step5_final():
     st.subheader("Step 5 — Your Final Post")
     st.success("Your post is ready! Copy it and paste it directly into LinkedIn.")
 
-    st.markdown(f"**Title:** {st.session_state['chosen_title']}")
+    # ── Visual generation pass: spinner only, then rerun ──────────────────────
+    if st.session_state["visual_path"] is None and st.session_state["visual_error"] is None:
+        with st.spinner("Generating visual for your post…"):
+            try:
+                path, err = generate_visual(st.session_state["final_post"])
+            except Exception as e:
+                path, err = None, str(e)
+            st.session_state["visual_path"] = path
+            st.session_state["visual_error"] = err
+        st.rerun()
+        return
 
-    final = st.text_area(
-        "Final post",
-        value=st.session_state["final_post"],
-        height=350,
-        key="_final_post_area",
-        label_visibility="collapsed",
-    )
-
-    # Update in case user edited
-    st.session_state["final_post"] = final
-
-    # Copy button via clipboard JS trick
-    st.code(final, language=None)
-    st.caption("Use the copy icon ↑ on the code block, or select-all and copy from the text area.")
+    # ── Display pass ──────────────────────────────────────────────────────────
+    st.markdown(f"**{st.session_state['chosen_title']}**")
+    st.write(st.session_state["final_post"])
 
     st.divider()
 
-    if st.button("🔄 Start Over"):
-        for key in list(st.session_state.keys()):
-            del st.session_state[key]
-        st.rerun()
+    if st.session_state["visual_path"] and os.path.exists(st.session_state["visual_path"]):
+        _, col_img, _ = st.columns([1, 2, 1])
+        with col_img:
+            st.image(st.session_state["visual_path"], use_container_width=True)
+    elif st.session_state["visual_error"]:
+        st.warning("Image generation failed.")
+        with st.expander("Error details"):
+            st.text(st.session_state["visual_error"])
+
+    # ── Actions ───────────────────────────────────────────────────────────────
+    st.divider()
+    col_regen, col_copy, col_start = st.columns([2, 2, 2])
+
+    with col_regen:
+        if st.button("🔁 Regenerate image"):
+            st.session_state["visual_path"] = None
+            st.session_state["visual_error"] = None
+            st.rerun()
+
+    with col_copy:
+        st.caption("Copy post text:")
+        st.code(st.session_state["final_post"], language=None)
+
+    with col_start:
+        if st.button("🔄 Start Over"):
+            for key in list(st.session_state.keys()):
+                del st.session_state[key]
+            st.rerun()
 
 
 # ══════════════════════════════════════════════════════════════════════════════
@@ -752,6 +1056,8 @@ def step5_final():
 # ══════════════════════════════════════════════════════════════════════════════
 
 def main():
+    _inject_css()
+
     st.title("🚀 TrendPilot — LinkedIn Post Creator")
     st.caption("Trend-driven post generation with engagement prediction")
 
