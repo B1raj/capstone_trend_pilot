@@ -1,0 +1,142 @@
+{
+  "microservices": {
+    "score": 27.35483870967742,
+    "top_queries": [
+      {
+        "query": "microservices architecture",
+        "value": 100
+      },
+      {
+        "query": "microservices best practices",
+        "value": 81
+      },
+      {
+        "query": "what is microservices",
+        "value": 21
+      },
+      {
+        "query": "what are microservices",
+        "value": 9
+      },
+      {
+        "query": "microservices architecture patterns",
+        "value": 3
+      },
+      {
+        "query": "microservices design patterns",
+        "value": 2
+      },
+      {
+        "query": "microservices interview questions",
+        "value": 2
+      },
+      {
+        "query": "monolith vs microservices",
+        "value": 1
+      },
+      {
+        "query": "monolithic vs microservices",
+        "value": 1
+      }
+    ],
+    "rising_queries": [
+      {
+        "query": "microservices best practices",
+        "value": "350"
+      },
+      {
+        "query": "microservices architecture",
+        "value": "120"
+      }
+    ],
+    "timestamp": "2026-02-21T17:58:05.785090+00:00"
+  },
+  "AWS": {
+    "score": 52.946236559139784,
+    "top_queries": [
+      {
+        "query": "what is aws",
+        "value": 100
+      },
+      {
+        "query": "aws news",
+        "value": 71
+      },
+      {
+        "query": "aws ai",
+        "value": 66
+      },
+      {
+        "query": "aws amazon",
+        "value": 64
+      },
+      {
+        "query": "aws cloud",
+        "value": 59
+      },
+      {
+        "query": "aws free",
+        "value": 34
+      },
+      {
+        "query": "aws s3",
+        "value": 34
+      },
+      {
+        "query": "aws services",
+        "value": 33
+      },
+      {
+        "query": "s3",
+        "value": 32
+      },
+      {
+        "query": "azure",
+        "value": 30
+      }
+    ],
+    "rising_queries": [
+      {
+        "query": "aws transform custom",
+        "value": "4200"
+      },
+      {
+        "query": "aws devops agent",
+        "value": "1000"
+      },
+      {
+        "query": "aws security agent",
+        "value": "300"
+      },
+      {
+        "query": "cybersecurity news today",
+        "value": "250"
+      },
+      {
+        "query": "kiro aws",
+        "value": "200"
+      },
+      {
+        "query": "aws news today",
+        "value": "170"
+      },
+      {
+        "query": "nvidia news today",
+        "value": "170"
+      },
+      {
+        "query": "aws news",
+        "value": "170"
+      },
+      {
+        "query": "technology news today",
+        "value": "160"
+      },
+      {
+        "query": "what is aws amazon",
+        "value": "160"
+      }
+    ],
+    "timestamp": "2026-02-21T17:58:11.566894+00:00"
+  }
+}
