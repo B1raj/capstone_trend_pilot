@@ -1,0 +1,55 @@
+{
+  "saved_at": "2026-02-25 21:07:28",
+  "model_type": "HistGradientBoostingRegressor",
+  "target_transform": "log1p (log(1+y)); predictions back-transformed with expm1",
+  "reactions": {
+    "file": "hgbr_reactions.pkl",
+    "params": {
+      "loss": "absolute_error",
+      "learning_rate": 0.05,
+      "max_iter": 500,
+      "max_depth": 6,
+      "min_samples_leaf": 20,
+      "l2_regularization": 0.1
+    },
+    "n_features": 84,
+    "feature_names_file": "feature_names_reactions.json",
+    "loo_stats_file": "loo_stats_reactions.json",
+    "test_metrics": {
+      "log_mae": 0.6838991713379441,
+      "log_r2": 0.6327908609157709,
+      "mae": 55.9820761354061,
+      "rmse": 127.71373572642175,
+      "r2": 0.6703633124797378,
+      "smape": 61.910437400887645,
+      "medae": 10.539495583077121,
+      "spearman_rho": 0.693457021003221,
+      "spearman_p": 2.373973883225039e-08
+    }
+  },
+  "comments": {
+    "file": "hgbr_comments.pkl",
+    "params": {
+      "loss": "absolute_error",
+      "learning_rate": 0.05,
+      "max_iter": 500,
+      "max_depth": 6,
+      "min_samples_leaf": 20,
+      "l2_regularization": 0.1
+    },
+    "n_features": 86,
+    "feature_names_file": "feature_names_comments.json",
+    "loo_stats_file": "loo_stats_comments.json",
+    "test_metrics": {
+      "log_mae": 0.5937336099378911,
+      "log_r2": 0.7652145328043587,
+      "mae": 7.718498641905893,
+      "rmse": 22.00767018413285,
+      "r2": 0.708047483403114,
+      "smape": 99.88687337599424,
+      "medae": 1.610451927681478,
+      "spearman_rho": 0.7930441041992735,
+      "spearman_p": 6.637782576232761e-12
+    }
+  }
+}
