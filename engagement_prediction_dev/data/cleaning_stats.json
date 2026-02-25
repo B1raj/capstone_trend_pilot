@@ -1,0 +1,33 @@
+{
+  "initial_rows": 786,
+  "final_rows": 606,
+  "rows_removed": 180,
+  "removal_percentage": 22.900763358778626,
+  "duplicates_removed": 0,
+  "missing_content": 0,
+  "content_length_outliers_removed": 14,
+  "quality_issues_fixed": 0,
+  "content_length_stats": {
+    "min": 12.0,
+    "max": 27299.0,
+    "mean": 2107.8409669211196,
+    "median": 1136.0,
+    "std": 2775.6798960802894,
+    "1st_percentile": 26.0,
+    "99th_percentile": 13184.549999999994,
+    "too_short_removed": 6,
+    "too_long_removed": 8,
+    "total_removed": 14
+  },
+  "outlier_stats": {
+    "followers": {
+      "min": 80.0,
+      "max": 2750998.0,
+      "mean": 163380.44973544974,
+      "median": 12127.0,
+      "80th_percentile": 89867.0,
+      "outliers_count": 150.0,
+      "outliers_pct": 19.841269841269842
+    }
+  }
+}

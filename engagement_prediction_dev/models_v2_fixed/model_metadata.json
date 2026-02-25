@@ -1,0 +1,50 @@
+{
+  "version": "2.0",
+  "status": "FIXED - No data leakage",
+  "training_date": "2026-02-09 21:38:14",
+  "dataset": {
+    "total_samples": 31996,
+    "training_samples": 25596,
+    "test_samples": 6400,
+    "n_features": 80,
+    "excluded_leakage_features": [
+      "reactions_per_sentiment",
+      "reactions_per_word",
+      "comments_per_word",
+      "reactions_vs_influencer_avg",
+      "comments_vs_influencer_avg",
+      "comment_to_reaction_ratio"
+    ]
+  },
+  "data_quality": {
+    "reactions_zeros_pct": 2.344043005375672,
+    "comments_zeros_pct": 30.403800475059384
+  },
+  "reactions_model": {
+    "type": "XGBoost Tuned",
+    "performance": {
+      "r2": 0.5998233165984286,
+      "mae": 197.2481915452684,
+      "rmse": 594.679149925111,
+      "smape": 95.99371901358487,
+      "medae": 44.638526916503906
+    }
+  },
+  "comments_model": {
+    "type": "XGBoost Tuned",
+    "performance": {
+      "r2": 0.5368444919586182,
+      "mae": 15.389760971069336,
+      "rmse": 36.01882611858606,
+      "smape": 114.71190666645433,
+      "medae": 4.418760776519775
+    }
+  },
+  "fixes_applied": [
+    "Removed data leakage features (reactions_per_word, comments_per_word, etc.)",
+    "Replaced MAPE with sMAPE (handles zeros properly)",
+    "Added cross-validation for robust evaluation",
+    "Increased model regularization to prevent overfitting",
+    "Added comprehensive data quality checks"
+  ]
+}

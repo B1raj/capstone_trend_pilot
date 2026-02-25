@@ -1,0 +1,292 @@
+LinkedIn Influencer Data
+Exploratory Data Analysis Report
+Capstone Project: TrendPilot
+A System for Creating Engaging LinkedIn Posts
+Data Analysis Phase
+Table of Contents
+1. Executive Summary 3
+2. Introduction and Objectives 4
+3. Dataset Overview 5
+4. Data Gap Analysis - Missing Values 6
+5. Data Quality Assessment 9
+6. Distribution Analysis of Key Metrics 12
+7. Content Analysis 15
+8. Engagement Analysis 18
+9. Correlation Analysis 22
+10. Top Performers Analysis 24
+11. Data Gap Risk Assessment 26
+12. Impact on Final Project 28
+13. Recommendations 31
+14. Conclusion 33
+1. Executive Summary
+This comprehensive Exploratory Data Analysis (EDA) report examines a dataset of LinkedIn 
+posts from 69 influential professionals, comprising 34,012 individual posts. The analysis 
+was conducted to support the development of TrendPilot, a system designed to help users 
+create engaging LinkedIn posts optimized for maximum likes (reactions) and comments.
+The primary objectives of this EDA were to: (1) identify data gaps and missing values that 
+could impact model development, (2) assess the quality and reliability of the available data, 
+(3) understand the distribution and relationships between key engagement metrics, and (4) 
+evaluate how data limitations might affect the final project deliverables.
+Key Findings at a Glance
+Data Completeness: The dataset achieves 86.7% overall completeness and 95.4% 
+completeness for core features essential to engagement prediction. This indicates the data 
+is suitable for building machine learning models.
+Critical Data Gap: Views data is 100% missing across all records. This is a significant 
+limitation as it prevents optimization for post reach and virality metrics.
+Engagement Metrics: Reactions and comments data is 100% complete, providing a solid 
+foundation for building engagement prediction models. These metrics show a strong 
+positive correlation (r=0.823).
+Content Availability: 94.1% of posts have content text available, enabling robust natural 
+language processing (NLP) analysis for content optimization features.
+Media Impact: Video and image content significantly outperform articles in engagement 
+metrics, with videos generating an average of 866 reactions compared to 161 for articles.
+Temporal Limitation: Timestamps are stored in relative format ("1 day ago", "2 weeks 
+ago") rather than absolute dates, preventing optimal posting time recommendations.
+Data Quality Assessment Summary
+Overall Data Completeness 86.7%
+Core Features Completeness 95.4%
+Quality Assessment GOOD
+Suitability for ML SUITABLE
+2. Introduction and Objectives
+2.1 Background
+LinkedIn has emerged as the premier professional networking platform, with over 900 
+million users worldwide. For professionals, thought leaders, and businesses, creating 
+engaging content on LinkedIn is crucial for building personal brands, establishing thought 
+leadership, and driving business outcomes. However, the factors that contribute to high-
+engagement posts are not always intuitive, and users often struggle to optimize their 
+content for maximum impact.
+This EDA supports the development of TrendPilot, an intelligent system designed to analyze 
+patterns in successful LinkedIn posts and provide data-driven recommendations for 
+content creation. By studying posts from verified influencers who consistently achieve high 
+engagement, we can extract insights that will benefit everyday LinkedIn users.
+2.2 Analysis Objectives
+This exploratory data analysis was conducted with the following specific objectives:
+1. Identify Data Gaps: Systematically catalog missing values, incomplete records, and 
+data quality issues that could affect downstream analysis and model development.
+2. Assess Data Quality: Evaluate the reliability, consistency, and accuracy of the collected 
+data through statistical analysis and anomaly detection.
+3. Understand Engagement Patterns: Analyze the distribution of engagement metrics 
+(reactions, comments, views) and identify patterns associated with high-performing 
+content.
+4. Evaluate Feature Relationships: Examine correlations between content 
+characteristics (length, hashtags, media type) and engagement outcomes.
+5. Impact Assessment: Determine how identified data gaps and quality issues will affect 
+the feasibility and scope of planned features in the final system.
+2.3 Methodology
+The analysis was conducted using Python with the following key libraries: Pandas for data 
+manipulation, NumPy for numerical operations, Matplotlib and Seaborn for static 
+visualizations, and Plotly for interactive dashboards. The analysis followed a structured 
+approach:
+● Data loading and initial inspection
+● Missing value analysis and visualization
+● Data type verification and conversion
+● Statistical summary generation
+● Distribution analysis with appropriate transformations
+● Correlation analysis between features
+● Segmented analysis by media type and influencer
+● Risk assessment and impact evaluation
+3. Dataset Overview
+3.1 Data Source and Collection
+The dataset comprises LinkedIn posts collected from 69 verified influencers across various 
+industries and professional domains. These influencers were selected based on their 
+established presence on the platform, consistent posting activity, and demonstrated ability 
+to generate engagement. The data includes both profile-level information (name, headline, 
+location, followers) and post-level details (content, media, hashtags, engagement metrics).
+3.2 Dataset Dimensions
+Total Records (Posts) 34,012
+Total Features (Columns) 19
+Unique Influencers 69
+Average Posts per Influencer 493
+3.3 Feature Descriptions
+The dataset contains 19 features capturing various aspects of influencer profiles and their 
+posts. Understanding each feature is crucial for effective analysis and feature engineering.
+Profile-Level Features
+Feature Data Type Description
+slno int64 Sequential identifier for 
+each record
+name object Full name of the LinkedIn 
+influencer
+headline object Professional headline 
+displayed on the profile
+location object Geographic location of the 
+influencer
+followers float64 Total number of followers 
+for the profile
+connections object Number of connections 
+(often shows "500+" for 
+max)
+about object Biography/about section 
+from the profile
+Post-Level Features
+Feature Data Type Description
+time_spent object Relative time since post was 
+published (e.g., "1 day ago")
+content object Text content of the LinkedIn 
+post
+content_links object Hyperlinks mentioned in 
+the post content
+media_type object Type of media attached 
+(article, image, video, etc.)
+media_url object URL(s) of attached media
+num_hashtags int64 Count of hashtags used in 
+the post
+hashtag_followers int64 Aggregate followers of 
+hashtags used
+hashtags object List of hashtags with their 
+URLs
+Engagement Metrics
+Feature Data Type Description
+reactions int64 Total reactions (likes, 
+celebrates, etc.) on the post
+comments int64 Total number of comments 
+on the post
+views float64 Number of 
+views/impressions (NOTE: 
+100% missing)
+votes object Poll votes if the post 
+contains a poll
+4. Data Gap Analysis - Missing Values
+A thorough understanding of missing data is essential for any data science project. Missing 
+values can introduce bias, reduce statistical power, and limit the features that can be 
+implemented in the final system. This section provides a comprehensive analysis of missing 
+data patterns in the LinkedIn influencer dataset.
+4.1 Missing Values Summary
+The following table presents a complete inventory of missing values across all 19 features in 
+the dataset, sorted by the percentage of missing data from highest to lowest.
+Column Missing Count Missing % Data Type
+views 34,012 100.00% float64
+votes 33,926 99.75% object
+connections 8,299 24.40% object
+media_type 7,233 21.27% object
+location 2,272 6.68% object
+content 2,016 5.93% object
+followers 42 0.12% float64
+time_spent 1 0.00% object
+All other columns 
+(reactions, 
+comments)
+0 0.00% various
+4.2 Visual Analysis of Missing Data
+The visualization below provides two complementary views of the missing data pattern. 
+The left panel shows a bar chart of missing percentages by column, making it easy to 
+identify which features have the most significant data gaps. The right panel displays a 
+heatmap of the missing data pattern across a sample of 1,000 records, revealing whether 
+missing values are randomly distributed or follow specific patterns.
+Figure: Missing Data Analysis - Bar Chart and Pattern Heatmap
+4.3 Interpretation of Missing Data Patterns
+Critical Missing Data (>50%)
+Two features have critically high levels of missing data that effectively render them 
+unusable for analysis:
+views (100% missing): The views column is entirely empty across all 34,012 records. This 
+represents a significant data collection gap, as views/impressions are a key metric for 
+understanding post reach and virality. Without this data, we cannot optimize content for 
+maximum visibility or calculate view-to-engagement conversion rates. This gap likely 
+resulted from LinkedIn API limitations or scraping restrictions that prevented access to 
+view counts.
+votes (99.75% missing): The votes column is nearly empty, with only 86 non-null values 
+out of 34,012 records. However, this is expected behavior rather than a data quality issue - 
+votes only apply to poll-type posts, which represent only 0.25% of the dataset. The 86 valid 
+entries correspond exactly to the 86 poll posts in the data.
+Moderate Missing Data (10-50%)
+Two features fall into the moderate missing data category, requiring careful consideration 
+for analysis:
+connections (24.40% missing): Approximately one quarter of records lack connection 
+count data. However, analysis of available data reveals that this field has limited analytical 
+value - 99.7% of non-null values show "500+" (the LinkedIn display cap), while only 80 
+records show the actual count of 171. This categorical nature limits its usefulness for 
+quantitative analysis.
+media_type (21.27% missing): About 21% of posts lack media type classification. This 
+could indicate text-only posts without attachments, or could represent a data collection gap. 
+Further investigation suggests these are likely text-only posts, as they still contain content 
+but no media_url entries.
+Minor Missing Data (<10%)
+Several features have minor missing data that can be handled through standard imputation 
+or exclusion techniques:
+location (6.68% missing): Geographic location is missing for 2,272 records. This prevents 
+geographic analysis for a subset of data but does not significantly impact content analysis 
+features.
+content (5.93% missing): Post content text is missing for 2,016 records. While this is a 
+core feature, the 94% availability rate is sufficient for training NLP models. Missing content 
+may indicate posts that were primarily media-based (images/videos) with minimal or no 
+text.
+followers (0.12% missing): Only 42 records lack follower count data, representing 
+negligible missing data that can be easily imputed using the influencer's other posts.
+5. Data Quality Assessment
+Beyond missing values, data quality encompasses issues such as duplicate records, 
+inconsistent formatting, outliers, and data type mismatches. This section examines these 
+aspects to ensure the dataset is suitable for building reliable machine learning models.
+5.1 Duplicate Records Analysis
+Duplicate records can artificially inflate dataset size and skew analysis results. We 
+examined the dataset for both exact duplicate rows and duplicate content.
+Duplicate Type Count Percentage
+Exact duplicate rows 0 0.00%
+Duplicate content text 757 2.37%
+The dataset contains no exact duplicate rows, indicating good data collection practices. 
+However, 757 posts (2.37%) share identical content text. This could represent: (1) 
+influencers reposting their own successful content, (2) common phrases or templates used 
+across posts, or (3) cross-posted content. For model training, these duplicates should be 
+considered - they may need to be deduplicated or weighted appropriately depending on the 
+modeling approach.
+5.2 Numerical Column Statistics
+Understanding the statistical properties of numerical features is essential for feature 
+engineering and model development. The table below presents comprehensive descriptive 
+statistics for key numerical columns.
+Statistic Followers Num 
+Hashtags
+Reactions Comments Eng. Rate*
+Count 33,970 34,012 34,012 34,012 33,970
+Mean 1,125,922 2.10 473 27 0.77
+Std Dev 3,057,750 3.52 4,164 216 3.91
+Min 171 0 0 0 0.00
+Median 
+(50%)
+408,254 0 36 2 0.11
+Max 18,289,351 48 391,498 32,907 -
+Skewness High + High + High + High + High +
+*Engagement Rate = Reactions per 1,000 followers
+Key Observations from Statistics
+Highly Skewed Distributions: All engagement metrics show extreme positive skewness, 
+with means significantly higher than medians. For example, the mean reactions (473) is 
+over 13 times the median (36). This indicates a small number of viral posts driving up 
+averages, while most posts receive modest engagement.
+Wide Range of Followers: Influencer follower counts span from 171 to over 18 million, 
+representing a 100,000x range. This diversity is valuable for understanding how 
+engagement scales with audience size.
+Hashtag Usage Patterns: The median hashtag count is 0, meaning more than half of posts 
+use no hashtags. The average of 2.1 hashtags is pulled up by a minority of posts with heavy 
+hashtag usage (max 48).
+Zero-Value Prevalence: A significant portion of posts have zero comments (32%) or zero 
+reactions (3.1%), indicating that even influencer content doesn't always generate 
+engagement.
+5.3 Connections Field Analysis
+The connections field exhibits unusual characteristics that warrant special attention. 
+LinkedIn displays "500+" for users who have reached the connection limit, rather than 
+showing the actual count.
+Value Count Percentage
+500+ 25,633 75.4%
+171 80 0.2%
+Missing 8,299 24.4%
+This analysis reveals that the connections field has limited analytical utility. The 
+overwhelming majority (99.7%) of non-null values are capped at "500+", making it 
+essentially a binary indicator rather than a continuous variable. For modeling purposes, this 
+field should either be: (1) converted to a binary feature (has_500_plus_connections), (2) 
+excluded from analysis, or (3) treated as categorical.
+5.4 Time Field Analysis
+The time_spent field captures when posts were published, but in a relative format rather 
+than absolute timestamps.
+Time Value Count
+1 year ago 7,753
+2 years ago 5,728
+3 years ago 3,759
+4 years ago 2,126
+3 months ago 1,456
+2 months ago 1,448
+4 months ago 1,279
+10 months ago 1,247
+11 months ago 1,133
+Other values ~9,000
+The relative time format presents a significant limitation for temporal analysis. Without 
+absolute timestamps, we cannot: (1) determine optimal posting times (day of week, hour of 
+day), (2) analyze engagement trends over time, (3) account for LinkedIn algorithm changes, 
+or (4) perform time-series forecasting. The data does show that posts span approximately 
+4+ years, providing good temporal diversity.

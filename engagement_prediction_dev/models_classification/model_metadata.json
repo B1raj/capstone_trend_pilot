@@ -1,0 +1,39 @@
+{
+  "version": "1.0",
+  "model_type": "3-Class Classification",
+  "training_date": "2026-02-19 12:56:46",
+  "best_model": "CatBoost",
+  "dataset": {
+    "total_samples": 772,
+    "training_samples": 624,
+    "test_samples": 148,
+    "n_features": 60,
+    "n_influencers": 495
+  },
+  "target_classes": {
+    "0": "Below Average",
+    "1": "Average",
+    "2": "Above Average"
+  },
+  "performance": {
+    "accuracy": 0.49324324324324326,
+    "f1_macro": 0.46408576533650986,
+    "f1_weighted": 0.48342803792476213,
+    "cv_accuracy_mean": 0.4274738165060746,
+    "cv_accuracy_std": 0.019919940066101347,
+    "cv_f1_mean": 0.40174182362553595,
+    "cv_f1_std": 0.023386074732738803
+  },
+  "class_distribution": {
+    "train": {
+      "2": 277,
+      "1": 205,
+      "0": 142
+    },
+    "test": {
+      "2": 62,
+      "1": 50,
+      "0": 36
+    }
+  }
+}

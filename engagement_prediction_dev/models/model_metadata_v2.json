@@ -1,0 +1,39 @@
+{
+  "version": "2.0",
+  "date": "2026-02-09 21:37:16",
+  "leakage_features_removed": [
+    "reactions_per_sentiment",
+    "reactions_per_word",
+    "comments_per_word",
+    "reactions_vs_influencer_avg",
+    "comments_vs_influencer_avg",
+    "comment_to_reaction_ratio"
+  ],
+  "reactions_model": {
+    "type": "XGBoost",
+    "performance": {
+      "mae": 201.77207956423902,
+      "rmse": 593.2958478828921,
+      "r2": 0.6016828786518515,
+      "mape": 507.00302846685713
+    },
+    "feature_count": 80
+  },
+  "comments_model": {
+    "type": "XGBoost",
+    "performance": {
+      "mae": 15.555455207824707,
+      "rmse": 35.997583943991124,
+      "r2": 0.5373905897140503,
+      "mape": 184.6432078651397
+    },
+    "feature_count": 80
+  },
+  "training_data": {
+    "total_samples": 31996,
+    "train_samples": 25596,
+    "test_samples": 6400,
+    "reactions_zeros": 750,
+    "comments_zeros": 9728
+  }
+}

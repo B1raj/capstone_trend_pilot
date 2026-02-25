@@ -1,0 +1,10 @@
+tier_id,tier,n_train,n_test,median_er,model,macro_f1,acc,is_best
+0,micro (<10k),275,70,21.8322,RandomForest,0.7105,0.7143,True
+0,micro (<10k),275,70,21.8322,XGBoost,0.6283,0.6286,False
+0,micro (<10k),275,70,21.8322,LightGBM,0.6708,0.6714,False
+1,small (10k-50k),177,45,2.894,RandomForest,0.6026,0.6222,False
+1,small (10k-50k),177,45,2.894,XGBoost,0.6961,0.7111,True
+1,small (10k-50k),177,45,2.894,LightGBM,0.5701,0.5778,False
+2,medium (50k-200k),32,7,1.5516,RandomForest,0.5714,0.5714,True
+2,medium (50k-200k),32,7,1.5516,XGBoost,0.3,0.4286,False
+2,medium (50k-200k),32,7,1.5516,LightGBM,0.5333,0.5714,False
