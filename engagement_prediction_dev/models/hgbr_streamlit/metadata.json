@@ -1,5 +1,5 @@
 {
-  "saved_at": "2026-03-01 22:57:33",
+  "saved_at": "2026-03-07 02:46:38",
   "model_type": "HistGradientBoostingRegressor + RandomForestRegressor (RF+)",
   "target_transform": "log1p (log(1+y)); predictions back-transformed with expm1",
   "reactions": {
@@ -12,19 +12,19 @@
       "min_samples_leaf": 20,
       "l2_regularization": 0.1
     },
-    "n_features": 78,
+    "n_features": 84,
     "feature_names_file": "feature_names_reactions.json",
     "loo_stats_file": "loo_stats_reactions.json",
     "test_metrics": {
-      "log_mae": 0.5176942604647476,
-      "log_r2": 0.8213521072982826,
-      "mae": 23.089052323396178,
-      "rmse": 56.78463653659029,
-      "r2": 0.8471753743125465,
-      "smape": 57.419410442295074,
-      "medae": 5.382135315584373,
-      "spearman_rho": 0.8370980170416181,
-      "spearman_p": 1.263606570342563e-17
+      "log_mae": 0.5128758986434153,
+      "log_r2": 0.8284273626784875,
+      "mae": 23.657604114923842,
+      "rmse": 60.28004370453148,
+      "r2": 0.827781914444793,
+      "smape": 57.699598102073814,
+      "medae": 5.410150831646552,
+      "spearman_rho": 0.8419274286783968,
+      "spearman_p": 5.4371059976087895e-18
     }
   },
   "comments": {
@@ -37,19 +37,19 @@
       "min_samples_leaf": 20,
       "l2_regularization": 0.1
     },
-    "n_features": 80,
+    "n_features": 86,
     "feature_names_file": "feature_names_comments.json",
     "loo_stats_file": "loo_stats_comments.json",
     "test_metrics": {
-      "log_mae": 0.4985346628279554,
-      "log_r2": 0.7638363665967969,
-      "mae": 5.282259145683519,
-      "rmse": 15.331386737879757,
-      "r2": 0.7556443263398602,
-      "smape": 117.54862381650145,
-      "medae": 0.887302197348955,
-      "spearman_rho": 0.6781363233603914,
-      "spearman_p": 5.437798081979416e-10
+      "log_mae": 0.5056721863582411,
+      "log_r2": 0.7697206075087586,
+      "mae": 5.496841426780268,
+      "rmse": 15.534544184539767,
+      "r2": 0.7491254660250464,
+      "smape": 121.82966952682943,
+      "medae": 0.9039657993950948,
+      "spearman_rho": 0.6997637491422634,
+      "spearman_p": 8.835089727989311e-11
     }
   },
   "rf_plus_reactions": {
@@ -62,20 +62,20 @@
       "criterion": "absolute_error",
       "oob_score": true
     },
-    "n_features": 78,
+    "n_features": 84,
     "feature_names_file": "feature_names_reactions.json",
     "loo_stats_file": "loo_stats_reactions.json",
-    "oob_r2": 0.743504643981669,
+    "oob_r2": 0.7458612551495822,
     "test_metrics": {
-      "log_mae": 0.5032639036396743,
-      "log_r2": 0.8436940990510333,
-      "mae": 25.462325148062277,
-      "rmse": 63.06886313438474,
-      "r2": 0.81147817070235,
-      "smape": 56.405585149095614,
-      "medae": 5.081534505905189,
-      "spearman_rho": 0.8629269598751355,
-      "spearman_p": 9.709517824249072e-20
+      "log_mae": 0.5133997414952673,
+      "log_r2": 0.8412498551668584,
+      "mae": 25.598549051564156,
+      "rmse": 62.154051577289486,
+      "r2": 0.8169075113489501,
+      "smape": 57.56865189384841,
+      "medae": 5.242750888508078,
+      "spearman_rho": 0.8530518942894838,
+      "spearman_p": 6.967055051079241e-19
     }
   },
   "rf_plus_comments": {
@@ -88,20 +88,20 @@
       "criterion": "absolute_error",
       "oob_score": true
     },
-    "n_features": 80,
+    "n_features": 86,
     "feature_names_file": "feature_names_comments.json",
     "loo_stats_file": "loo_stats_comments.json",
-    "oob_r2": 0.7260684472851817,
+    "oob_r2": 0.727968983015702,
     "test_metrics": {
-      "log_mae": 0.4890195326198717,
-      "log_r2": 0.7862434347747251,
-      "mae": 6.035590783651843,
-      "rmse": 18.698949277384948,
-      "r2": 0.6365087537319318,
-      "smape": 132.32741932556215,
-      "medae": 0.7029581008338512,
-      "spearman_rho": 0.7046346549734187,
-      "spearman_p": 5.7379533561841256e-11
+      "log_mae": 0.4947559909528368,
+      "log_r2": 0.7988820013677838,
+      "mae": 5.8766150241255986,
+      "rmse": 18.104797581177333,
+      "r2": 0.6592413440678058,
+      "smape": 131.3381700834463,
+      "medae": 0.794699426460314,
+      "spearman_rho": 0.7153453195730404,
+      "spearman_p": 2.1526254794905293e-11
     }
   }
 }
